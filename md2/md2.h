@@ -4,6 +4,7 @@
 
 #define SMD2_MAGIC_NUMBER 844121161 
 #define SMD2_SKIN_NAME_LENGTH 60
+extern float SMD2_LightNormals[][3];
 struct SMD2Header
 {
 	int m_iMagicNum;      /* Magic Number:IDP2(ID Polygon 2),Hex Value is 844121161 */
@@ -42,6 +43,7 @@ struct SMD2Vert
 		};
 		float m_fValues[3];
 	};
+	unsigned short m_iNormalIndice;
 };
 
 struct SMD2Tri
@@ -55,8 +57,8 @@ struct SMD2TexCoord
 	union{
 		struct
 		{
-			float m_fX;
-			float m_fY;
+			float m_fU;
+			float m_fV;
 		};
 		float m_fTex[2];
 	};

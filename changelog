@@ -1,0 +1,22 @@
+版本v0.1
+{
+	@develop OIL(Object Oriented Infomation Language)
+	@develop GrLib
+		1)memory manager
+		2)gerneral refence count object 
+		3)string object 
+		4)container object(array,dict)
+	@develop math lib 
+		1)matrix3 and matrix4;
+		2)vertex2,vectex3,vectex4;
+		3)quaternion
+	@abstract a gerneral 3d mesh 
+		1)support texture
+		2)support animation(key frame and skeleton)
+	@develop 3D module loader from different file format 
+		1)support md2,md3,obj 
+	@develop sence manager
+		1)cammer
+		2)render
+		3)interactive action 
+}

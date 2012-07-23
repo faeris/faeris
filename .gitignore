@@ -9,6 +9,14 @@ tags
 *.MD2
 *.md2
 grammar.tab.c
+*.aux
+*.log
+*.pdf
+*.backup
+*.toc
+*.dvi
+*.out
+*~
 
 temp
 

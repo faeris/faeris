@@ -1,0 +1,558 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{CJK}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{bibentry,natbib}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[top=2.54cm, bottom=2.54cm, left=3.18cm, right=3.18cm]{geometry}
+\begin{document}
+\begin{CJK}{UTF8}{song}
+\begin{center}
+\Large 向量(vector)与矩阵(matrix)
+\end{center}
+\section{向量}
+\subsection{向量的定义}
+在数学中，向量的定义如下：把即有大小又有方向的量叫作向量。由n个数组成的有序数组（$a_{1},a_{2},....a_{n}$ )叫做一个n维向量，其中 $a_i$ (i=1,2,3,..,n) 叫作它的第i个分量。向量有两种表示方法，横向和纵向,通常把:
+\begin{quote}
+$a=(a_1,a_2,...,a_n)$叫做行向量，把$\left( \begin{array}{c} a_1 \\ a_2 \\ \vdots{} \\ a_n \end{array} \right)$叫做列向量
+\end{quote}
+\subsection{向量的运算}
+设向量$\alpha=(\alpha{}_{1},\alpha{}_{2},\ldots{},\alpha{}_{n})$ , $\beta=(\beta{}_{1},\beta{}_{2},\ldots{},\beta{}_{n})$。
+\begin{enumerate}
+ \item 相等：当且仅当 $\alpha{}_{i}=\beta{}_{i} (i=1,2,\ldots{},n)$ 时，$\alpha=\beta$。
+\item 向量$\alpha$与向量$\beta$相加、减：
+\begin{displaymath}
+\alpha{}\pm{}\beta{}=(\alpha{}_{1}\pm{}\beta{}_{1},\alpha{}_{2}\pm{}\beta{}_{2},\ldots{},\alpha{}_{n}\pm{}\beta{}_{n})
+\end{displaymath}
+\item 与标量k与向量$\alpha$相乘：
+\begin{displaymath}
+k\alpha=(k\alpha{}_{1},k\alpha{}_{2},\ldots{},k\alpha{}_{n})
+\end{displaymath}
+\item 计算向量$\alpha$的长度：
+\begin{displaymath}
+|\alpha|=\sqrt{\alpha_{1}^{2}+\alpha_{2}^{2}+\ldots{}+\alpha_{n}^{2}}
+\end{displaymath}
+\item 归一化(normalize):
+\begin{displaymath}
+\alpha'=\frac{\alpha}{|\alpha|}
+\end{displaymath}
+\item 向量$\alpha$与向量$\beta$的点积:
+\begin{displaymath}
+\alpha\cdot\beta=\sum_{i=1}^{n}\alpha_{i}\cdot\beta{i}=\alpha_{1}\cdot\beta_{1}+\alpha_{2}\cdot\beta_{2}+\ldots{}+\alpha_{n}\cdot\beta_{n}
+\end{displaymath}
+在几何空间中，点积可以直观的定义为(其中$\theta$表示两个向个向量这间的角度)：
+\begin{displaymath}
+ \alpha\cdot\beta=|\alpha||\beta|cos\theta
+\end{displaymath}
+如果给定两个向量，它们之间的夹角可以通过下列公式得到：
+\begin{displaymath}
+cos\theta=\frac{\alpha\cdot\beta}{|\alpha||\beta|}
+\end{displaymath}
+\item 向量$\alpha$在向量$\beta$上的投影：
+
+\begin{displaymath}
+Proj_{\beta}\;\alpha=\frac{(\alpha\cdot\beta)*\beta}{|\beta||\beta|}
+\end{displaymath}
+\item 点积的乘法定律，如果给定向量u、v和w以及标量k;
+\begin{enumerate}
+\item $v\cdot u=u\cdot v $
+\item $u \cdot (v+w)=u \cdot v + u \cdot w $
+\item $k*(u\cdot v)=(k*u)\cdot v=u\cdot(k*v) $
+\end{enumerate}
+\item 设三维向量$u=(u_{x},u_{y},u_{z})$与$v=(v_{x},v_{y},v_{z})$，它们的叉积定义如下:
+\begin{displaymath}
+u\times v=|u||v|cos\theta\: n
+\end{displaymath}
+其中$\theta$为向量u与向量v的角度$(0^\circ\leq\theta\leq 180^\circ)$，而n是一个与u、v所在平面均垂直的单位矢量。向量u与向量v的另一种算法为，建立这样一个矩阵： 
+\begin{quote}
+\begin{math}
+\left| \begin{array}{ccc}
+	i & j & k \\
+	u_{x} & u_{y} & u_{z} \\
+	v_{x} & v_{y} & v_{z} \\
+       \end{array}
+\right|  
+\quad\Rightarrow\quad
+\alpha \times \beta =(u_{y}\cdot v_{z}-v_{y}\cdot u_{z} 
+                     , v_{x}\cdot u_{z}-u_{x}\cdot v_{z} 
+                     , u_{x}\cdot v_{y}-v_{x}\cdot u_{y})
+\end{math}
+\end{quote}
+其中i,j,k分别是与x轴，y轴，z轴平行的单位矢量。
+
+叉积的乘法定律，给定向量u、v和w以及标量k：
+\begin{enumerate}
+\item $u\times v= -(v \times u ) $
+\item $u \times ( v +w)=(u\times v) + (u\times w) $
+\item $(u+v)\times w =(u \times w) + (v \times w) $
+\item $k*(u \times v) = (k*u)\times v =u \times(k*v)$
+\end{enumerate}
+\end{enumerate}
+\section{矩阵}
+\subsection{矩阵的定义}
+矩阵是一个矩形阵列，有指定的行和列，通常说矩阵为$m\times n$，表示它有m行和n列，表示为：
+\begin{quote}
+\begin{math}
+A=\left|
+\begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1m} \\
+a_{21} & a_{22} & \cdots & a_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nm} \\
+\end{array}
+   \right|
+\end{math}
+\end{quote}
+在3D图形学中，常用的矩阵为$2\times 2$与$3\times 3$矩阵。
+\subsection{矩阵的运算}
+设$m\times n$矩阵$
+A=\left|
+\begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1m} \\
+a_{21} & a_{22} & \cdots & a_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nm} \\
+\end{array}
+   \right|
+$
+与矩阵$
+B=\left|
+\begin{array}{cccc}
+b_{11} & b_{12} & \cdots & b_{1m} \\
+b_{21} & b_{22} & \cdots & b_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+b_{n1} & b_{n2} & \cdots & b_{nm} \\
+\end{array}
+   \right|
+$
+
+\begin{enumerate}
+ \item 矩阵A与B加法与减法:
+\begin{quote}
+\begin{math}
+A\pm B=\left|
+\begin{array}{cccc}
+a_{11} \pm b_{11}& a_{12}\pm b_{11}& \cdots & a_{1m} \pm b_{1m} \\
+a_{21} \pm b_{21}& a_{22}\pm b_{22}& \cdots & a_{2m} \pm b_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1}\pm b_{n1} & a_{n2}\pm b_{n2} & \cdots & a_{nm}\pm b_{nm}\\
+\end{array}
+\right|
+\end{math}
+\end{quote}
+\item 矩阵的转置，将矩阵的行转换为列，例如将矩阵A转置后，记为$A^{T}$：
+\begin{quote}
+\begin{math}
+A^{T}=
+\left|
+\begin{array}{cccc}
+a_{11} & a_{21} & \cdots & a_{n1} \\
+a_{12} & a_{22} & \cdots & a_{n2} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{1m} & a_{2m} & \cdots & a_{nm} \\
+\end{array}
+\right|
+\end{math}
+\end{quote}
+\item 矩阵A与标量k的乘法：
+\begin{quote}
+\begin{math}
+A*k=k*A=k*\left|
+\begin{array}{cccc}
+a_{11} & a_{12} & \cdots & a_{1m} \\
+a_{21} & a_{22} & \cdots & a_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nm} \\
+\end{array}
+   \right| 
+=
+\left|
+\begin{array}{cccc}
+k*a_{11} & k*a_{12} & \cdots & k*a_{1m} \\
+k*a_{21} & k*a_{22} & \cdots & k*a_{2m} \\
+\vdots & \vdots & \ddots & \vdots \\
+k*a_{n1} & k*a_{n2} & \cdots & k*a_{nm} \\
+\end{array}
+   \right|
+\end{math}
+\end{quote}
+\item 矩阵的乘法，假设$m\times n$的矩阵A与矩阵$n\times v$的矩阵B相乘得$m\times v$的矩阵C，其中:
+\begin{quote}
+\begin{math}
+c_{ij}=A_{i1}B_{1J}+A_{i2}B_{2j}+\cdots{}+A_{in}B_{nj}=\sum_{r=1}^{n}{A_{ir}B_{rj}}
+\end{math}
+\end{quote}
+\item 矩阵的运算定律,假没$m\times n$矩阵A、B和C，以及标量k
+\begin{enumerate}
+\item $A+B=B+A$(加法交换律)
+\item $A+(B+C)=(A+B)+C$(加法结合律)
+\item $A*(B*C)=(A*B)*C$(乘法结合律)
+\item $A*(B+C)=A*B+A*C$(分配律)
+\item $k*(A+B)=k*A+k*B$(分配律)
+\end{enumerate}
+\end{enumerate}
+
+\subsection{应用矩阵的变化}
+\subsubsection{平移}
+在3D空间中执行平移，需要将点P(x,y,z)平移到新的位置$P^{'}$(x+dx,y+dy,z+dz)，用$4\times 4$执行钜阵变化为：
+\begin{quote}
+\begin{math}
+M_{t}=\left|
+\begin{array}{cccc}
+1&0&0&0 \\
+0&1&0&0 \\
+0&0&1&0 \\
+dx&dy&dz&1 \\
+\end{array}
+\right|
+\end{math} 
+\end{quote}
+给定p=[x y z 1]，执行如下平移变换：
+\begin{quote} 
+\begin{math}
+p^{'}=p*M_{t}=[\begin{array}{cccc}x &y &z &1 \end{array}]* \left|
+\begin{array}{cccc}
+1&0&0&0 \\
+0&1&0&0 \\
+0&0&1&0 \\
+dx&dy&dz&1 \\
+\end{array}
+\right|
+\end{math} \\
+
+\begin{math}
+=[ \begin{array}{cccc} (x+1*dx) & (y+1*dx) & (z+1*dz) & 1  \end{array} ]
+\end{math}  \\
+
+\begin{math}
+=[ \begin{array}{cccc} (x+dx) & (y+dx) & (z+dz) & 1  \end{array} ]
+\end{math}  \\
+
+\begin{math}
+=p^{'}(x+dz,y+dy,z+dz)
+\end{math}
+\end{quote}
+平移矩阵$M_{t}$的逆矩阵为$M_{t}^{-1}$：
+\begin{quote}
+\begin{math}
+M_{t}^{-1}=\left|
+\begin{array}{cccc}
+1&0&0&0 \\
+0&1&0&0 \\
+0&0&1&0 \\
+-dx&-dy&-dz&1 \\
+\end{array}
+\right|
+\end{math}
+\end{quote}
+\subsubsection{缩放}
+要相对于原点缩放某个点，只需要将点p(x,y,z)的各个分量分别乘以x轴，y轴，z轴的缩放因子sx，sy，sz。缩放矩阵为:
+\begin{quote}
+\begin{math}
+M_{s}=\left|
+\begin{array}{cccc}
+sx & 0 & 0 & 0 \\
+0 & sy & 0 & 0 \\
+0 & 0 & sz & 0 \\
+0 & 0 & 0 & 1  \\
+\end{array}
+\right|
+\end{math}
+\end{quote}
+给定p=[$\begin{array}{cccc}x & y & z& 1\end{array}$]，执行变化如下：
+\begin{quote}
+\begin{math}
+p^{'}=p*M_{s}=[\begin{array}{cccc} x & y & z & 1 \end{array} ]* 
+\left|
+\begin{array}{cccc}
+sx & 0 & 0 & 0 \\
+0 & sy & 0 & 0 \\
+0 & 0 & sz & 0 \\
+0 & 0 & 0  & 1 \\
+\end{array}
+\right| \\
+=[\begin{array}{cccc} x*sx & y* sy & z*sz & 1 \end{array} ]
+\end{math}
+\end{quote}
+缩放矩阵$M_{s}$的逆矩阵$M_{s}^{-1}$为:
+\begin{quote}
+\begin{math}
+M_{s}^{-1}=\left|
+\begin{array}{cccc}
+\frac{1}{sx} & 0 & 0 & 0 \\
+0 & \frac{1}{sy} & 0 & 0 \\
+0 & 0 & \frac{1}{sz} & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right| 
+\end{math}
+\end{quote}
+\subsubsection{旋转}
+在3D坐标系中，可以绕三个轴进行旋转：x轴，y轴，z轴：
+\begin{enumerate}
+\item 绕x轴旋转，矩阵为：
+\begin{quote}
+\begin{math}
+M_{x}=\left|
+\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & cos\theta & -sin\theta & 0 \\
+0 & sin\theta & cos\theta & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right|
+\end{math}
+\end{quote}
+\item 绕y轴旋转，矩阵为：
+\begin{quote}
+\begin{math}
+M_{y}=\left|
+\begin{array}{cccc}
+cos\theta & 0 & -sin\theta & 0  \\
+0 & 1 & 0 & 0 \\
+sin\theta & 0 & cos\theta & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right| 
+\end{math}
+\end{quote}
+\item 绕z轴旋转，矩阵为：
+\begin{quote}
+\begin{math}
+M_{z}=\left|
+\begin{array}{cccc}
+cos\theta & -sin\theta & 0 & 0 \\
+sin\theta & cos\theta & 0 & 0 \\
+0  & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right|
+\end{math}
+\end{quote}
+\end{enumerate}
+给定点p=[$\begin{array}{cccc} x & y & z & 1 \end{array} $ ]，绕z轴旋转角度$\theta$:
+\begin{quote}
+\begin{math}
+p^{'}=p*M_{z}=[\begin{array}{cccc} x & y & z & 1 \end{array} ]* 
+\left|
+\begin{array}{cccc}
+cos\theta & -sin\theta & 0 & 0  \\
+sin\theta & cos\theta & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right| \\
+p^{'}=[\begin{array}{cccc} (x*cos\theta +y*sin\theta) & (x*sin\theta -y*cos\theta) & z & (1*1) \end{array} ] \\
+p^{'}=( (x*cos\theta + y*sin\theta) , (x*sin\theta - y*cos\theta) , z ) 
+\end{math}
+\end{quote}
+
+$M_{x}$，$M_{y}$和$M_{z}$的逆矩阵计算方法为：例如要计算$M_{z}$的逆矩阵，可以使用两种方法，一种方法是基于几何学，别一种方法基于线性代数。几何学的计算方法学为，例如将物体绕z轴旋转角度$\theta$，要将它恢复到原来的位置，只需将它旋转角度$-\theta$即可。因此要计算旋转矩阵的逆矩阵，只需将旋转矩阵中的$\theta$替换为$-\theta$，因此逆矩阵$M_{x}^{-1}$，$M_{y}^{-1}$和$M_{z}^{-1}$如下:
+\begin{enumerate}
+\item 矩阵$M_{x}$的逆矩阵$M_{x}^{-1}$为：
+\begin{quote}
+\begin{math}
+M_{x}^{-1}=\left|
+\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & cos-\theta & -sin-\theta & 0 \\
+0 & sin-\theta & cos-\theta & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right|
+=\left|
+\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & cos\theta & sin\theta & 0 \\
+0 & -sin\theta & cos\theta & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right|
+\end{math}
+\end{quote}
+\item 矩阵$M_{y}$的逆矩阵$M_{y}^{-1}$为：
+\begin{quote}
+\begin{math}
+M_{y}=\left|
+\begin{array}{cccc}
+cos-\theta & 0 & -sin-\theta & 0  \\
+0 & 1 & 0 & 0 \\
+sin-\theta & 0 & cos-\theta & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right| 
+=\left|
+\begin{array}{cccc}
+cos\theta & 0 & sin\theta & 0  \\
+0 & 1 & 0 & 0 \\
+-sin\theta & 0 & cos\theta & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right| 
+\end{math}
+\end{quote}
+\item 矩阵$M_{z}$的逆矩阵$M_{z}^{-1}$为：
+\begin{quote}
+\begin{math}
+M_{z}^{-1}=\left|
+\begin{array}{cccc}
+cos-\theta & -sin-\theta & 0 & 0  \\
+sin-\theta & cos-\theta & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right| 
+=
+\left| 
+\begin{array}{cccc}
+cos\theta & sin\theta & 0 & 0 \\
+-sin\theta & cos\theta & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{array}
+\right|
+\end{math}
+\end{quote}
+\end{enumerate}
+
+\section{四元数}
+\subsection{定义}
+复数是由实数加上元素i组成，其中$i^{2}=-1$，相似地，四元数都是由实数加上三个元素i、j、k组成，而且它们有如下关系：
+\begin{quote}
+\begin{math}
+i^{2}=j^{2}=k^{2}=ijk=-1 
+\end{math}
+\end{quote}
+每个四元数都是1、i、j、k的线性组合，即是四元数一般可表示为:
+\begin{quote}
+$q=a+bi+cj+dk$
+\end{quote}
+另一种表示法采用标量与矢量相结合,例如：
+\begin{quote}
+\begin{math}
+q=a+\vec{u}=a+bi+cj+dk \\
+p=t+\vec{v}=t+zi+yj+zk
+\end{math}
+\end{quote}
+其中$\vec{u}$表示矢量$<b,c,d>$，而$\vec{v}$表示矢量$<x,y,z>$
+
+\subsection{性质}
+\subsubsection{共轭四元数}
+对于四元数q，用$q^{*}$表示其共轭四元数，其计算方法只需要将虚数分量的符号反过来即可,给定四元数q:
+\begin{quote}
+$ q=a+\vec{u}=a+bi+cj+dk$
+\end{quote}
+其共轭四元数$q^{*}$为:
+\begin{quote}
+$ q^{*}=a-\vec{u}=a-bi-cj-dk$
+\end{quote}
+\subsubsection{四元数的范数}
+范数表示四元数的长度信息，给定四元数h：
+\begin{quote}
+$ h=a+\vec{u}=a+bi+cj+dk$
+\end{quote}
+其范数为：
+\begin{quote}
+$|h|=\sqrt{h\cdot h^{*}}=\sqrt{a^{2}+b^{2}+c^{2}+d^{2}}$
+\end{quote}
+
+
+\subsection{四元数运算}
+假设有两个四元数:
+\begin{quote}
+\begin{math}
+q=a+\vec{u}=a+bi+cj+dk \\
+p=t+\vec{v}=t+zi+yj+zk
+\end{math}
+\end{quote}
+\subsubsection{加法}
+两个四元数相加，跟复数，矢量和矩阵一样，只需要将不同的元数加起来即可:
+\begin{quote}
+\begin{math}
+p+q=a+t+\vec{u}+\vec{v}=(a+t)+(b+x)i+(c+y)j+(d+z)k
+\end{math}
+\end{quote}
+\subsubsection{加法逆元素与加法恒等元}
+四元数q的加逆元数是这样一个数：将它与q相加时，结果为零，它就是-q，为：
+\begin{quote}
+$-q=-a-\vec{u}=-a-bi-ci-dk $
+\end{quote}
+加法恒等元（或四元数数学中的\verb|"0"|）为:
+\begin{quote}
+$z=0+<0,0,0>=0+0*i+0*j+0*k $
+\end{quote}
+\subsubsection{乘法}
+两个四元数之间的非可换乘积通常被称为格拉斯曼积，元系之间的乘积可以跟随以下的乘法表， 四元数的单位元的乘法构成了八阶四元群，$Q_{8}$
+\begin{quote}
+\begin{tabular}{c|c|c|c|c}
+ & 1 & i & j & k \\ 
+\hline 
+1 & 1 & i & j & k \\
+\hline 
+i & i & -1 & k & -j \\
+\hline 
+j & j & -k & -1 & i \\
+\hline 
+k & k & j & -i & -1 \\
+\end{tabular}
+\end{quote}
+乘法如下：
+\begin{quote}
+\begin{math}
+pq=at-\vec{u}\cdot\vec{v}+a\vec{v}+t\vec{u}+\vec{v}\times\vec{u} \\
+pq=(at-bx-cy-dz)+(bt+ax+cz-dy)i+(ct+ay+dx-bz)j+(dt+za+by-xc)k
+\end{math}
+\end{quote}
+\subsubsection{点积}
+点积也叫做欧几里得内积，四元数的点积等同于一个四维矢量的点积，点积的值是p中每个元数的数值与q中相应元数的数值的乘积的和，结果为一个标量。
+\begin{quote}
+$p\cdot q=at+\vec{u}\cdot{v}=at+bx+xy+dz $
+\end{quote}
+点积也可以用格拉斯曼积的形式表示：
+\begin{quote}
+\begin{math}
+p\cdot q = \frac{p^{*}q+q^{*}p}{2}
+\end{math}
+\end{quote}
+
+\subsubsection{倒数}
+如果四元数p与另一个四元数q，它们之间满足下列等式：
+\begin{quote}
+$qp=1=pq$
+\end{quote}
+则称q为p的倒数，对于四元数q，其倒数记为$q^{-1}$，其值为:
+\begin{quote}
+$q^{-1}=\frac{h^{*}}{|h|^{2}}$
+\end{quote}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{CJK}
+\end{document}
+

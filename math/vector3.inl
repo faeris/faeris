@@ -1,3 +1,5 @@
+#ifndef FY_MATH_VECTORE3_INL_
+#define FY_MATH_VECTORE3_INL_
 #include<math.h>
 #include"mathutil.h"
 #include<stdio.h>
@@ -64,11 +66,11 @@ void Vector3::normalize()
 }
 
 /* project(u,v)= (dot(u,v)*u)/(|u||u|) */
-inline Vector3 Vector3::project(const Vector3& v) const 
+inline Vector3 Vector3::proj(const Vector3& v) const 
 {
-	float l=x*x+y*y+z*z;
-	float k=v.dot(*this)/(l);
-	return this->scale(k);
+	float l=v.x*v.x+v.y*v.y+v.z*v.z;
+	float k=this->dot(v)/(l);
+	return v.scale(k);
 }
 
 inline float Vector3::angle(const Vector3& v) const 
@@ -84,6 +86,11 @@ inline float Vector3::length() const
 	return sqrt(l);
 }
 
+inline float Vector3::length2()const
+{
+	return x*x+y*y+z*z;
+}
+
 inline bool Vector3::equal(const Vector3& v) const 
 {
 	return (float_equal(x,v.x)&&float_equal(y,v.y)&&float_equal(z,v.z));
@@ -94,13 +101,4 @@ inline void Vector3::Vector3::print() const
 }
 
 
-
-
-
-
-
-
-
-
-
-
+#endif 

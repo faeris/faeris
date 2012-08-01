@@ -23,9 +23,10 @@ class Vector3
 		Vector3 cross(const Vector3& v)const;
 		Vector3 normal() const ;
 		void normalize() ;
-		Vector3 project(const Vector3& v) const;
+		Vector3 proj(const Vector3& v) const;
 		float angle(const Vector3& v) const;
 		float length() const;
+		float length2() const;
 		bool equal(const Vector3& v) const;
 		void print()const ;
 

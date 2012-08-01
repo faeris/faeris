@@ -139,22 +139,35 @@ int test_normal()
 {
 	Vector3 v1(100,100,100);
 
-	if(float_equal(v1.normal().length(),1))
+	if(!float_equal(v1.normal().length(),1))
 	{
-		return 1;
+		return 0;
 	}
-	return 0;
+
+	Vector3 v2(3,4,5);
+
+	float l=v2.length();
+
+	if(!v2.normal().equal(Vector3(3/l,4/l,5/l)))
+	{
+		return 0;
+	}
+
+	return 1;
 }
 
 int test_normalize()
 {
-	Vector3 v1(100,100,100);
+	Vector3 v1(10,142,13);
+	Vector3 r=v1.normal();
+
 	v1.normalize();
 
-	if(float_equal(v1.length(),1))
+	if(!v1.equal(r))
 	{
-		return 1;
+		return 0;
 	}
+
 	return 0;
 }
 
@@ -163,26 +176,38 @@ int test_project()
 {
 	Vector3 v1(2,2,2);
 	Vector3 v2(1,1,1);
-	if(!v1.project(v2).equal(Vector3(1,1,1)))
+	if(!v1.proj(v2).equal(Vector3(2,2,2)))
 	{
-		v1.project(v2).print();
+		v1.proj(v2).print();
 		return 0;
 	}
-	if(!v2.project(v1).equal(Vector3(2,2,2)))
+	if(!v2.proj(v1).equal(Vector3(1,1,1)))
 	{
-		v2.project(v1).print();
+		v2.proj(v1).print();
 		return 0;
 	}
 
 	Vector3 v3(1,1,0);
 
 
-	if(!v3.project(v1).equal(Vector3(2,2,0)))
+	if(!v3.proj(v1).equal(Vector3(2.0/3,2.0/3,2.0/3)))
 	{
+		v3.proj(v1).print();
 		return 0;
 	}
 
 
+	Vector3 v4(8.3,-9.2,1.3);
+	Vector3 v5(-3.5,3.3,9.5);
+
+	Vector3 vp=v4.proj(v5);
+	Vector3 vq=v4.sub(vp);
+
+	if (!float_equal(vp.dot(vq),0))
+	{
+		printf("%.10f\n",vp.dot(vq));
+		return 0;
+	}
 
 
 	return 1;

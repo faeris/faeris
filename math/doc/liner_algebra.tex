@@ -1,0 +1,353 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage{CJK}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{bibentry,natbib}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[top=2.54cm, bottom=2.54cm, left=3.18cm, right=3.18cm]{geometry}
+\begin{document}
+\begin{CJK}{UTF8}{song}
+\begin{center}
+\Large 线性代数(liner algebra)
+\end{center}
+\section{行列式}
+行列式是研究线性代数的一个工具，它是为求解线性方程组而引入的，但在数学的其他分支应用也很方泛。
+\subsection{二阶和三阶行列式}
+\begin{enumerate}
+\item 定义1: 符号
+ $\left|\begin{array}{cc}a_{11}&a_{12} \\
+                                      a_{21}&a_{22}\end{array} \right|$ 
+称为二阶行列式，它由两行两列4个数组成，它代表一个算式，等于数 $a_{11}a_{22}-a_{12}a_{21}$ ；即：
+\begin{quote}
+$\left|\begin{array}{cc}
+    a_{11}&a_{12} \\
+    a_{21}&a_{22}
+\end{array} \right| =a_{11}a_{22}-a_{12}a_{21} $
+\end{quote}
+其中$a_{ij}(i,j=1,2)$称为行列式的元素，第一个下标i表示第不行，第二个下标j表示第j列。$a_{ij}$就表示第i行第j列相交处的那个元素。
+\item 定义2：符号D＝
+$\left|\begin{array}{ccc}
+a_{11}&a_{12}&a_{13} \\
+a_{21}&a_{22}&a_{23} \\
+a_{31}&a_{32}&a_{33}  \\
+\end{array}\right| $
+称为三阶行列式，它由$3^{2}$个数组成，也代表一个算式，即：
+\begin{quote}
+$D=\left|\begin{array}{ccc}
+a_{11}&a_{12}&a_{13} \\
+a_{21}&a_{22}&a_{23} \\
+a_{31}&a_{32}&a_{33}  \\
+\end{array}\right|  \\
+ \quad\quad =a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{13}a_{22}a_{31}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}
+$
+\end{quote}
+\end{enumerate}
+\subsection{n阶行列式}
+n阶行列式由$n^{2}$个元素构成，记为：
+\begin{quote}
+$D=\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+ka_{21}&ka_{22}&\cdots{}&ka_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right| $
+\end{quote}
+
+其中$a_{ij}(i,j=1,2,3,...,n)$称为行列式第i行第j列的元素 \\
+特殊地:
+\begin{quote}
+$D=\left|\begin{array}{cccc}
+a_{11}&0&\cdots{}&0\\
+0&a_{22}&\cdots{}&0 \\
+\vdots&\vdots&\ddots{}&\vdots \\
+0&0&\cdots{}&a_{nn} \\          
+\end{array}\right| $
+\end{quote}
+称为主对角行列式。
+\begin{quote}
+$D=\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+0&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+0&0&\cdots{}&a_{nn} \\          
+\end{array}\right| $
+\end{quote}
+称为上三角行列式
+\begin{quote}
+$D=\left|\begin{array}{cccc}
+a_{11}&0&\cdots{}&0 \\
+a_{21}&a_{22}&\cdots{}&0 \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right| $
+\end{quote}
+称为下三角行列式，这三个行列式的值都为：$a_{11}a_{22}\cdots{}a_{nn}$。
+
+\section{行列式的性质}
+\subsection{转置行列式}
+将行列式D的行与相应的列互换后得到的新的行列式，称为D的转置行列式，记为$D^{T}$。
+即若：
+\begin{quote}
+$D=\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right| $
+\end{quote}
+则转置行列式为：
+\begin{quote}
+$D^{T}=\left|\begin{array}{cccc}
+a_{11}&a_{21}&\cdots{}&a_{n1} \\
+a_{12}&a_{22}&\cdots{}&a_{n2} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{1n}&a_{2n}&\cdots{}&a_{nn} \\          
+\end{array}\right| $
+\end{quote}
+
+\subsection{行列式的性质}
+行列式具有如下性质：
+\begin{description}
+\item[性质1:] 行列式转置后，其值不变，即$D=D^{T}$；
+\item[性质2:] 互换行列式中的任意两行（列），行列式仅改变符号；
+\item[性质3:] 如果行列式中有两行（列）的对应元素相同，则此行列式为零；
+\item[性质4:] 如果行列式中有一行（列）元素全为零，则这个行列式等于零；
+\item[性质5:] 把行列式的某一行（列）的每一个元素同乘以数k，等于以数k乘该行列式，即：
+\begin{quote}
+$\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+ka_{21}&ka_{22}&\cdots{}&ka_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right| 
+=k
+\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{nn}&\cdots{}&a_{nn} \\          
+\end{array}\right|$
+\end{quote}
+\begin{description}
+\item[推论1:] 如果行列式（列）的所有元素有公因子，则公因子可以提到行列式外面；
+\item[推论2:] 如果行列式有两行（列）的对应成比列，则行列式等于零；
+\end{description}
+\item[性质6:] 如果行列式中的某一行（列）所有元素都是两个数的和，则此行列式等于两个行列式的和，而且这两个行列式除了这一行（列）以外，其余的元素与原行列式的对应元素相同，即：
+\begin{quote}
+$D=\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}+b_{21}&a_{22}+b_{22}&\cdots{}&a_{2n}+b_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right|\\
+=
+\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right|
++ 
+\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+b_{21}&b_{22}&\cdots{}&b_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right| $
+\end{quote}
+\item[性质7:] 以数k乘行列式的某一行（列）的所有元素，然后加到另一行（列）的对应元素上，则行列式的值不变，即：
+\begin{quote}
+$ 
+\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right| 
+=
+\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+ka_{11}+a_{21}&ka_{12}+a_{22}&\cdots{}&ka_{1n}+a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right| 
+$
+\end{quote}
+
+\end{description} 
+\subsection{行列式的展开}
+为了介绍行列式的展开，先引入余子式和代数余子式的概念。
+\begin{description}
+\item[定义:] 在n阶行列式中划去元素$a_{ij}$所在的第i行和第j列的元素，剩下的元素按原次序构成的 n-1 阶行列式称为$a_{ij}$的余子式，记和$M_{ij}$。
+$a_{ij}$的余子式乘上$(-1)^{i+j}$称为$a_{ij}$的代数余子式，记作$A_{ij}$，即$A_{ij}=(-1)^{i+j}M_{ij}$。
+\item[定理：] 行列式D等于它的任一行的各元素与对应的代数余子式的乘积之后，即：
+\begin{displaymath}
+D=a_{i1}A_{i1}+a_{i2}A_{i2}+\cdots{}+a_{in}A_{in}=\sum_{j=1}^{n}a_{ij}A_{ij} 
+\end{displaymath}
+或
+\begin{displaymath}
+D=a_{1j}A_{1j}+a_{2j}A_{2j}+\cdots{}+a_{nj}A_{nj}=\sum_{i=1}^{n}a_{ij}A_{ij}
+\end{displaymath}
+\item[推论:] 行列式的某一行（列）的元素与另一行（列）对应元素的代数余子式乘积之和等于零，即：
+\begin{quote}
+\begin{math}
+a_{i1}A_{j1}+a_{i2}A_{j2}+\cdots{}+a_{in}A_{jn}=0, i\neq{}j \\
+a_{1i}A_{1j}+a_{2i}A_{2j}+\cdots{}+a_{ni}A_{nj}=0, i\neq{}j
+\end{math}
+\end{quote}
+结合定理可以写为：
+\begin{displaymath}
+\sum_{k=1}^{n}a_{ik}A_{jk}=\sum_{k=1}^{n}a_{ki}A_{kj}=
+\biggl\{ \begin{array}{c}
+D,i=j \\
+0,i\neq{}j 
+\end{array} 
+\end{displaymath}
+\end{description}
+\section{克萊姆法则}
+含有n个未知量的n个方程的线性方程组为：
+\begin{quote}
+\begin{math}
+\left\{
+\begin{array}{c}
+a_{11}x_{1}+a_{12}x_{2}+\cdots{}+a_{1n}x_{n}=b_{1} \\
+a_{21}x_{1}+a_{22}x_{2}+\cdots{}+a_{1n}x_{n}=b_{2} \\
+\quad\quad \cdots{} \\
+a_{n1}x_{1}+a_{n2}x_{2}+\cdots{}+a_{nn}x_{n}=b_{n} \\
+\end{array} \right.
+\end{math}
+\end{quote}
+将线性方程组系数组成的行列式记为Ｄ，即:
+\begin{quote}
+$D=
+\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right| 
+$
+\end{quote}
+用常数项$b_{1},b_{2},\cdots{},b_{n}$代替Ｄ中的第j列，组成的行列式记为$D_{j}$，即：
+\begin{quote}
+\begin{math}
+D_{j}=\left|
+\begin{array}{ccccccc}
+a_{11}& \cdots{} & a_{1j-1} & b_{1} & a_{1j+1} & \cdots{} & a_{1n} \\
+a_{21}& \cdots{} & a_{2j-1} & b_{2} & a_{2j+1} & \cdots{} & a_{2n} \\
+\vdots{}&        & \vdots{} & \vdots{} & \vdots{} &       & \vdots{} \\
+a_{n1}& \cdots{} & a_{nj-1} & b_{n} & a_{nj+1} & \cdots{} & a_{nn} \\
+\end{array}\right| (j=1,2,\cdots{},n)
+\end{math}
+\end{quote}
+\begin{description}
+ \item[定理:](克莱姆法则）若线性方程组(1)的系数行列式$D\neq{}0$，则存在唯一解：
+\begin{displaymath}
+ x_{1}=\frac{D_{1}}{D},x_{2}=\frac{D_{2}}{D},\cdots{},x_{n}=\frac{D_{n}}{D}
+\end{displaymath}
+即：
+\begin{displaymath}
+x_{j}=\frac{D_{j}}{D} (j=1,2,\cdots{},n)
+\end{displaymath}
+\end{description}
+克莱姆法则揭示了线性方程组的解与它的系数和常数项之间关系，用克莱姆法则解n元线性方程组有两个前提条件：
+\begin{enumerate}
+ \item 方程个数与未知数个数相等
+\item 系数行列式D不等于零
+\end{enumerate}
+
+\section{矩阵的概念}
+由$m\times{}n$个数$a_{ij}(i=1,2,\cdots,m,j=1,2,\cdots,n)$排成的矩形数表
+\begin{quote}
+$
+\left[\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{m1}&a_{m2}&\cdots{}&a_{mn} \\    
+\end{array}\right]     
+$
+\end{quote}
+叫做一个m行n列的矩阵，简称$m\times{}n$矩阵，这个$m\times{}n$叫做矩阵的元素，$a_{ij}$称为该矩阵第i行第j列的元素。$m\times{}n$矩阵可记作$A_{m\times{}n}$或$(a_{ij}m\times{}n$，有时简记作Ａ或$(a_{ij})$。
+\begin{enumerate}
+\item 当m=n时，矩阵A称为n阶方阵，矩阵与行列式是两个不同的概念，二都有本质区别。行列式可以展开，它的值是一个算式或一个数，矩阵是一个数表，它不表示一个算式或一个数与没有展开式，通常把方阵$A_{n\times{}n}$的元素按原来顺序所构成的行列式，称为方阵$A_{n\times{}n}$行列式，记作detA。如果方阵A满足$detA\neq{}0$，称A为非奇异方阵，否则，称A为奇异方阵。
+\item 当m=1时，矩阵A称为行距阵；
+\item 当n=1时，矩阵A称为列矩阵；
+\item 如果矩阵的元素全为零，称A为零矩阵，记作0；
+\item 在n阶方阵中，如果主对角线工下方的元素全为零，则称为上三角矩阵；
+\item 在n阶方阵中，如果主对角线右下方的元素全为零，则称为下三角矩阵；
+\item 如果一个方阵主对角线以外的元素全为零，则这个方阵称为对角方阵；
+\item 在n阶对角方阵中，当对角线上的元素都为1时，则称为n称单位矩阵，记作E;
+\item 如果矩阵$A=(a_{ij},B=(b_{ij})$的行数与列数分别相同，并且各对应位置的元素也相等，则称矩阵A与矩阵B相等，记作A＝B；
+\end{enumerate}
+\subsection{转置矩阵}
+将$m\times{}n$矩阵$A_{m\times{}n}$的行换成列，列换成行，所得到的$n\times{}m$矩阵称为$A_{m\times{}n}$的转置矩阵，记作$A^{T}$，即: \\
+若
+\begin{quote}
+$A=\left|\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{m1}&a_{m2}&\cdots{}&a_{mn} \\          
+\end{array}\right| $
+\end{quote}
+则$A^{T}$为
+\begin{quote}
+$A^{T}=\left|\begin{array}{cccc}
+a_{11}&a_{21}&\cdots{}&a_{m1} \\
+a_{12}&a_{22}&\cdots{}&a_{m2} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{1n}&a_{2n}&\cdots{}&a_{mn} \\          
+\end{array}\right| $
+\end{quote}
+转置矩阵具有下列性质：
+\begin{enumerate}
+\item $(A^{T})^{T}=A$
+\item $(A+B)^{T}=A^{T}+B^{T}$
+\item $(\lambda{}A)^{T}=\lambda{}A^{T}$
+\item $(AB)^T=B^{T}A^{T}$
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{CJK}
+\end{document}

@@ -286,21 +286,21 @@ $
 将$m\times{}n$矩阵$A_{m\times{}n}$的行换成列，列换成行，所得到的$n\times{}m$矩阵称为$A_{m\times{}n}$的转置矩阵，记作$A^{T}$，即: \\
 若
 \begin{quote}
-$A=\left|\begin{array}{cccc}
+$A=\left[\begin{array}{cccc}
 a_{11}&a_{12}&\cdots{}&a_{1n} \\
 a_{21}&a_{22}&\cdots{}&a_{2n} \\
 \vdots&\vdots&\ddots{}&\vdots \\
 a_{m1}&a_{m2}&\cdots{}&a_{mn} \\          
-\end{array}\right| $
+\end{array}\right] $
 \end{quote}
 则$A^{T}$为
 \begin{quote}
-$A^{T}=\left|\begin{array}{cccc}
+$A^{T}=\left[\begin{array}{cccc}
 a_{11}&a_{21}&\cdots{}&a_{m1} \\
 a_{12}&a_{22}&\cdots{}&a_{m2} \\
 \vdots&\vdots&\ddots{}&\vdots \\
 a_{1n}&a_{2n}&\cdots{}&a_{mn} \\          
-\end{array}\right| $
+\end{array}\right] $
 \end{quote}
 转置矩阵具有下列性质：
 \begin{enumerate}
@@ -311,7 +311,186 @@ a_{1n}&a_{2n}&\cdots{}&a_{mn} \\
 \end{enumerate}
 
 
+\section{矩阵的运算}
+\subsection{矩阵的加法运算}
+\begin{description}
+ \item[定义:] 设两个$m\times{}n$矩阵$A=(a_{ij}),B=(b_{ij})$，将其对应位置元素相加（或相减）得到的$m\times{}n$，称为矩阵与矩阵的和（或差），记作$A\pm{}B$，即：
+\begin{quote}
+$A=\left[\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{m1}&a_{m2}&\cdots{}&a_{mn} \\          
+\end{array}\right]  \quad 
+B=\left[\begin{array}{cccc}
+b_{11}&b_{12}&\cdots{}&b_{1n} \\
+b_{21}&b_{22}&\cdots{}&b_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+b_{m1}&b_{m2}&\cdots{}&b_{mn} \\          
+\end{array}\right]  \\
+A+B=\left[\begin{array}{cccc}
+a_{11}+b_{11}&a_{12}+b_{12}&\cdots{}&a_{1n}+b_{1n} \\
+a_{21}+b_{21}&a_{22}+b_{22}&\cdots{}&a_{2n}+b_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{m1}+b_{m1}&a_{m2}+b_{m2}&\cdots{}&a_{mn}+b_{mn} \\          
+\end{array}\right] 
+$
+\end{quote}
+注意：只有在两个矩阵的行数和列数都对应相同时才能作加法（或减法）运算。 \\
+由定义，可得矩阵的加法具有以下性质：
+\begin{enumerate}
+\item $A+B=B+A$
+\item $(A+B)+C=A+(B+C)$
+\item $A+0=A$
+\end{enumerate}
+其中A、B、C、0都是$m\times{}n$矩阵.
+\end{description}
 
+\subsection{数与矩阵的乘法}
+\begin{description}
+\item[定义：]设k为任意数，以数k乘以矩阵A中每一个元素所得到的矩阵叫做k与A的积，记为kA （或Ak） 即：
+\begin{quote}
+$kA=(ka_{ij})_{m\times{}n}=
+\left[\begin{array}{cccc}
+ka_{11}&ka_{12}&\cdots{}&ka_{1n} \\
+ka_{21}&ka_{22}&\cdots{}&ka_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+ka_{m1}&ka_{m2}&\cdots{}&ka_{mn} \\          
+\end{array}\right]  
+$ 
+\end{quote}
+数乘具有以下运算规律：
+\begin{enumerate}
+\item $k(A+B)=kA+kB$
+\item $(k+h)A=kA+hA$
+\item $(kh)A=k(hA)$
+\end{enumerate}
+\end{description}
+\subsection{矩阵与矩阵相乘}
+\begin{description}
+ \item[定义：]设矩阵$A＝(a_{ik})_{m\times{}s},B=(b_{kj})_{s\times{}n}$（A的列数与B的行数相等），那么矩阵$C=(c_{ij})_{m\times{}n}$ 称为矩阵A与矩阵B的乘积，记做$C=A+B$其中：
+\begin{displaymath}
+c_{ij}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots{}+a_{is}b_{sj}
+=\sum_{k=1}^{s}a_{ik}b_{kj}(i=1,2,\cdots{},m,j=1,2,\cdots{},n)
+\end{displaymath}
+矩阵的乘法满足下列运算规律：
+\begin{enumerate}
+\item $(AB)C=A(BC)$
+\item $A(B+C)=AB+AC$ , $(B+C)A=BA+CA$
+\item $k(AB)=(kA)B=A(kB)$
+\item $AE=EA=A$
+\item $A^{k}=\underbrace{AA\cdots{}A}_{k}$ , $A^{k}A^{l}=A^{k+l}$ , $(A^{k})^{l}=A^{kl}$
+\end{enumerate}
+\end{description}
+\subsection{矩阵的初等变换}
+\begin{description}
+\item[定义：]对矩行的行（或列）作下列三种变换称为矩阵的初等变换：
+\begin{enumerate}
+\item 位置变换：交换矩阵的某两行或列，用记号$r_{i}\leftrightarrow{}r_{j}$或$c_{i}\leftrightarrow{}c_{j}$表示;
+\item 倍法变换：用一个不为零的数乘矩阵的某一行或列，用记号$kr_{i}$或$kc_{i}$表示；
+\item 倍加变换：用一个数乘矩阵的某一行或列加到另一行或列上，用记号$kr_{i}+r_{j}$或$kc_{i}+c_{j}$表示；
+\end{enumerate}
+
+\end{description}
+
+\section{逆矩阵}
+\begin{description}
+ \item[定义：]对于n阶方阵A，如果存在n阶方阵C，使得$AC=CA=E$（E为n阶单位矩阵），则把方阵C称为A的逆矩阵（简称逆阵）记作$A^{-1}$，即$C=A^{-1}$。\\
+逆矩阵具有如下性质：
+\begin{enumerate}
+\item 若A是可逆的，则逆矩阵唯一；
+\item 若A可逆，则$(A^{-1})^{-1}=A$；
+\item 若A、B为同阶方阵且均可逆，则AB可逆，且$(AB)^{-1}=B^{-1}A^{-1}$；
+\item 若A可逆，则$detA\neq{}0$。反之，若$detA\neq{}0$，则A是可逆的。
+\end{enumerate}
+\end{description}
+\subsection{逆矩阵的求法}
+\subsubsection{伴随矩阵}
+设矩阵
+\begin{quote}
+$A=\left[\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right]   $
+\end{quote}
+所对应的行列式detA中元素$a_{ij}$的代数余子式矩阵：
+\begin{quote}
+$\left[\begin{array}{cccc}
+A_{11}&A_{21}&\cdots{}&A_{n1} \\
+A_{12}&A_{22}&\cdots{}&A_{nn} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+A_{1n}&A_{2n}&\cdots{}&A_{nn} \\          
+\end{array}\right]   $
+\end{quote}
+称为A的伴随矩阵，记为$A^{*}$。 \\
+显然：
+\begin{quote}
+$AA^{*}=\left[\begin{array}{cccc}
+a_{11}&a_{12}&\cdots{}&a_{1n} \\
+a_{21}&a_{22}&\cdots{}&a_{2n} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+a_{n1}&a_{n2}&\cdots{}&a_{nn} \\          
+\end{array}\right]
+\left[\begin{array}{cccc}
+A_{11}&A_{21}&\cdots{}&A_{n1} \\
+A_{12}&A_{22}&\cdots{}&A_{nn} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+A_{1n}&A_{2n}&\cdots{}&A_{nn} \\          
+\end{array}\right] $
+\end{quote}
+仍是一个n阶方阵，其中第i行第j列的元素为：
+\begin{quote}
+$a_{i1}A_{j1}+a_{i2}A_{j2}+\cdots{}+a_{in}A_{jn}$
+\end{quote}
+由行列式按一行或列展开可知：
+\begin{quote}
+\begin{math}
+\sum_{k=1}^{n}a_{ik}A_{jk}=\sum_{k=1}^{n}a_{ki}A_{kj}=
+\biggl\{ \begin{array}{c}
+D,i=j \\
+0,i\neq{}j 
+\end{array} 
+\end{math}
+\end{quote}
+所以
+\begin{quote}
+$AA^{*}=\left[
+\begin{array}{cccc}
+detA& 0 & \cdots{} & 0 \\
+0 & detA & \cdots{} & 0 \\
+\vdots{} & \vdots{} & \ddots{} & \vdots{} \\
+0 & 0 & \cdots{} & detA \\
+\end{array}\right]
+=detAE
+$
+\end{quote}
+同理：
+\begin{quote}
+$AA^{*}=detAE=A^{*}A$   (1)
+\end{quote}
+\begin{description}
+\item[定理：]n阶方阵A可逆的充分必要条件是A为非奇异矩阵，而且：
+\begin{quote}
+$
+A^{-1}=\frac{1}{detA}A^{*}=\frac{1}{detA} 
+\left[\begin{array}{cccc}
+A_{11}&A_{21}&\cdots{}&A_{n1} \\
+A_{12}&A_{22}&\cdots{}&A_{nn} \\
+\vdots&\vdots&\ddots{}&\vdots \\
+A_{1n}&A_{2n}&\cdots{}&A_{nn} \\          
+\end{array}\right] $
+\end{quote}
+\item[必要性：]
+如果A可逆，且 $A^{-1}$ 存在使 $AA^{-1}=E$ ，两边取行列式 $det(AA^{-1})=detE$ ,即 $detAdetA^{-1}=1$ ，因而 $detA\neq{}0$，即A为非奇异矩阵。
+\item[充分必：]
+设A为非奇异矩阵，所以$detA\neq{}0$，由(1)式可知$A(\frac{1}{detA}A^{*})=(\frac{1}{detA}A^{*})A=E$，所以A是可逆矩阵，且：
+\begin{displaymath}
+A^{-1}=\frac{1}{detA}A^{*}
+\end{displaymath}
+
+\end{description}
 
 
 

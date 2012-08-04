@@ -20,76 +20,198 @@ $a=(a_1,a_2,...,a_n)$叫做行向量，把$\left( \begin{array}{c} a_1 \\ a_2 \\
 \end{quote}
 \subsection{向量的运算}
 设向量$\alpha=(\alpha{}_{1},\alpha{}_{2},\ldots{},\alpha{}_{n})$ , $\beta=(\beta{}_{1},\beta{}_{2},\ldots{},\beta{}_{n})$。
-\begin{enumerate}
- \item 相等：当且仅当 $\alpha{}_{i}=\beta{}_{i} (i=1,2,\ldots{},n)$ 时，$\alpha=\beta$。
-\item 向量$\alpha$与向量$\beta$相加、减：
-\begin{displaymath}
-\alpha{}\pm{}\beta{}=(\alpha{}_{1}\pm{}\beta{}_{1},\alpha{}_{2}\pm{}\beta{}_{2},\ldots{},\alpha{}_{n}\pm{}\beta{}_{n})
-\end{displaymath}
-\item 与标量k与向量$\alpha$相乘：
-\begin{displaymath}
-k\alpha=(k\alpha{}_{1},k\alpha{}_{2},\ldots{},k\alpha{}_{n})
-\end{displaymath}
-\item 计算向量$\alpha$的长度：
-\begin{displaymath}
-|\alpha|=\sqrt{\alpha_{1}^{2}+\alpha_{2}^{2}+\ldots{}+\alpha_{n}^{2}}
-\end{displaymath}
-\item 归一化(normalize):
-\begin{displaymath}
-\alpha'=\frac{\alpha}{|\alpha|}
-\end{displaymath}
-\item 向量$\alpha$与向量$\beta$的点积:
-\begin{displaymath}
-\alpha\cdot\beta=\sum_{i=1}^{n}\alpha_{i}\cdot\beta{i}=\alpha_{1}\cdot\beta_{1}+\alpha_{2}\cdot\beta_{2}+\ldots{}+\alpha_{n}\cdot\beta_{n}
-\end{displaymath}
-在几何空间中，点积可以直观的定义为(其中$\theta$表示两个向个向量这间的角度)：
-\begin{displaymath}
- \alpha\cdot\beta=|\alpha||\beta|cos\theta
-\end{displaymath}
-如果给定两个向量，它们之间的夹角可以通过下列公式得到：
-\begin{displaymath}
-cos\theta=\frac{\alpha\cdot\beta}{|\alpha||\beta|}
-\end{displaymath}
-\item 向量$\alpha$在向量$\beta$上的投影：
+\subsubsection{基本运算}
+% \item 相等：当且仅当 $\alpha{}_{i}=\beta{}_{i} (i=1,2,\ldots{},n)$ 时，$\alpha=\beta$。
+向量的加运算在向量所对应的分量上进行，对于给定的两个向量P和Q，可以将加运算P+Q定义为：
+\begin{quote}
+$P+Q=(P_{1}+Q_{1},P_{2}+Q_{2},\ldots{},P_{n}+Q_{n}) $
+\end{quote}
+两个向量的减运算表示为P-Q，实际上可以用简单的加运算来表示：P+(-Q)。
 
-\begin{displaymath}
-Proj_{\beta}\;\alpha=\frac{(\alpha\cdot\beta)*\beta}{|\beta||\beta|}
-\end{displaymath}
-\item 点积的乘法定律，如果给定向量u、v和w以及标量k;
+标量k与向量Q相乘：
+\begin{quote}
+$kQ=(kQ_{1},kQ_{2},\ldots{},kQ_{n})$
+\end{quote}
+根据以上的定义，可以得到向量运算的一些基本性质。
+\begin{description}
+ \item[定理：]对于给定的任何两个系数a和b，以及任何三个向量P、Q和R，存在下述运算规律：
 \begin{enumerate}
-\item $v\cdot u=u\cdot v $
-\item $u \cdot (v+w)=u \cdot v + u \cdot w $
-\item $k*(u\cdot v)=(k*u)\cdot v=u\cdot(k*v) $
+\item $P+Q=Q+P$
+\item $(P+Q)+R=P+(Q+R)$
+\item $(ab)P=a(bP)$
+\item $a(P+Q)=aP+aQ$
+\item $(a+b)Q=aP+bP$
 \end{enumerate}
-\item 设三维向量$u=(u_{x},u_{y},u_{z})$与$v=(v_{x},v_{y},v_{z})$，它们的叉积定义如下:
+\end{description}
+
+\subsubsection{模与规格化}
+一个n维向量V的模是一个系数，记作$|V|$，由下面公式得到：
+\begin{quote}
+$|V|=\sqrt{\sum_{i=1}^{n}V_{i}^{2}}$
+\end{quote}
+展开为：
+\begin{quote}
+$|V|=\sqrt{V_{1}^{2}+V_{2}^{2}+\ldots{}+V_{n}^{2}} $
+\end{quote}
+向量的模有时又称为向量的范数或长度，模为1的向量称作单位长度向量，或者简称为单位向量。
+
+如果向量V至少有一个非零的分量，则可以对该向量进行规格化:
+\begin{quote}
+$V'=\frac{V}{|V|}$
+\end{quote}
+\begin{description}
+\item[定理：]对于任意给定的系数a，以及任意的两个向量P与Q，有以下性质：
+\begin{enumerate}
+\item $|P|\ge{}0$
+\item 当且仅当$P=(0,0,\cdots{},0)$时，$|P|=0$
+\item $|aP|=|a||P|$
+\item $|P+Q|\le{}|P|+|Q|$
+\end{enumerate}
+\end{description}
+
+
+\subsubsection{点积}
+两个向量的每个对应分量的乘积之和称为点积，有时又称做向量间的数量积或内积，两个n维向量P和Q的点积记做$P\cdot{}Q$，其结果由下面公式给出，即：
+\begin{quote}
+$P\cdot{}Q=\sum_{i=1}^{n}P_{i}\cdot{}Q_{i}
+$
+\end{quote}
+展开得：
+\begin{quote}
+$P\cdot{}Q=P_{1}\cdot{}Q_{1}+P_{2}\cdot{}Q_{2}+\ldots{}+P_{n}\cdot{}Q_{n}$
+\end{quote}
+点积$P\cdot{}Q$也可以用矩阵的乘积形式给出，即：
+\begin{quote}
+$PQ^{T}=\left[
+\begin{array}{cccc}
+ P_{1} & P_{2} &  \cdots{} & P_{n} 
+\end{array}\right]
+\left[
+\begin{array}{c}
+Q_{1} \\
+Q_{2} \\
+\vdots{} \\
+Q_{n}
+\end{array}\right]
+$
+\end{quote}
+在几何空间中，点积可以直观的定义为(其中$\theta$表示两个向个向量这间的角度)：
+\begin{quote}
+ $P\cdot{}Q=|P||Q|cos\theta $
+\end{quote}
+如果给定两个向量，它们之间的夹角可以通过下列公式得到：
+\begin{quote}
+$cos\theta=\frac{P\cdot{}Q}{|P||Q|}$
+\end{quote}
+\begin{description}
+\item[定理：]对于给定的系数a和任意三个向量P、Q和R，存在以下性质：
+\begin{enumerate}
+\item $P\cdot{}Q=Q\cdot{}P$
+\item $(aP)\cdot{}Q=a(P\cdot{}Q)$
+\item $P\cdot{}(Q+R)=P\cdot{}Q+P\cdot{}R$
+\item $P\cdot{}P=|P|^2 $
+\item $|P\cdot{}Q|\le{}|P||Q|$
+\end{enumerate}
+
+\end{description}
+\subsubsection{投影}
+在许多情况下，需要将一个向量P分解为平行于和垂直于另一个向量Q的分量，这个时候需要用到投影，下面的公式表示向量P到Q的投影，记作$proj_{Q}P$:
 \begin{displaymath}
-u\times v=|u||v|cos\theta\: n
+proj_{Q}P=\frac{(P\cdot{}Q)}{|Q|^2}Q
 \end{displaymath}
-其中$\theta$为向量u与向量v的角度$(0^\circ\leq\theta\leq 180^\circ)$，而n是一个与u、v所在平面均垂直的单位矢量。向量u与向量v的另一种算法为，建立这样一个矩阵： 
+向量P相对于向量Q的垂直分量记作$perp_{Q}P$，即用向量P减去平行分量即可：
+\begin{displaymath}
+perp_{Q}P=P-proj_{Q}P=P-\frac{P\cdot{}Q}{Q^2}Q
+\end{displaymath}
+P到Q的投影是一个线性变换的过程，可以将该过程表示为矩阵向量的乘积。在三维情况下，$proj_{Q}P$也可以用下面的公式来计算，即:
+\begin{quote}
+$proj_{Q}P=\frac{1}{|Q|^2}\left[
+\begin{array}{ccc}
+Q_{x}^2 &Q_{x}Q_{y} & Q_{x}Q_{z} \\
+Q_{x}Q_{y} & Q_{y}^2 & Q_{y}Q_{z} \\
+Q_{x}Q_{z} & Q_{y}Q_{z} & Q_{z}^2 \\
+\end{array} \right]
+\left[
+\begin{array}{c}
+P_{x} \\
+P_{y} \\
+P_{z} \\
+\end{array}
+\right]
+$
+\end{quote}
+
+
+
+\subsubsection{叉积}
+两个3D向量P和Q的叉积记作$P\times{}Q$，其结果向量为:
+\begin{displaymath}
+P\times{}Q=(P_yQ_z-P_zQ_y,P_zQ_x-P_xQ_z,P_xQ_y-P_yQ_z)
+\end{displaymath}
+叉积也可以写成向量矩阵乘积的形式：
 \begin{quote}
 \begin{math}
+P\times{}Q=
+\left[\begin{array}{ccc}
+0 & -P_{z}  & P_{y} \\
+P_{z} & 0 & -P_{x} \\
+-P_{y} & P_{x} & 0 \\
+\end{array} \right]
+\left[\begin{array}{c}
+Q_{x} \\
+Q_{y} \\
+Q_{z} \\ 
+\end{array}\right]
+\end{math}
+\end{quote}
+叉积的模与P和Q之间的夹角a关系为：
+\begin{quote}
+$|P\times{}Q|=|P||Q|sin(a)$
+\end{quote}
+向量u与向量v的另一种算法为，建立这样一个矩阵： 
+\begin{quote}
+\begin{math}
+P \times Q 
+\quad\Rightarrow\quad
 \left| \begin{array}{ccc}
 	i & j & k \\
-	u_{x} & u_{y} & u_{z} \\
-	v_{x} & v_{y} & v_{z} \\
+	P_{x} & P_{y} & P_{z} \\
+	Q_{x} & Q_{y} & Q_{z} \\
        \end{array}
-\right|  
-\quad\Rightarrow\quad
-\alpha \times \beta =(u_{y}\cdot v_{z}-v_{y}\cdot u_{z} 
-                     , v_{x}\cdot u_{z}-u_{x}\cdot v_{z} 
-                     , u_{x}\cdot v_{y}-v_{x}\cdot u_{y})
+\right|  \\
 \end{math}
 \end{quote}
 其中i,j,k分别是与x轴，y轴，z轴平行的单位矢量。
-
-叉积的乘法定律，给定向量u、v和w以及标量k：
+\begin{description}
+\item[定理：]对于给定的两个系数a和b和任意三个3D向量P、Q和R，有以下性质存在
 \begin{enumerate}
-\item $u\times v= -(v \times u ) $
-\item $u \times ( v +w)=(u\times v) + (u\times w) $
-\item $(u+v)\times w =(u \times w) + (v \times w) $
-\item $k*(u \times v) = (k*u)\times v =u \times(k*v)$
+\item $P\times{}Q=-(Q\times{}P)$
+\item $(aP)\times{}Q=a(P\times{}Q)$
+\item $P\times{}(Q+R)=P\times{}Q+P\times{}R$
+\item $P\times{}P=0=(0,0,0)$
+\item $(P\times{}Q)\cdot{}R=(R\times{}P)\cdot{}Q=(Q\times{}R)\cdot{}P $
 \end{enumerate}
-\end{enumerate}
+\end{description}
+
+\subsection{向量的线性组合}
+\begin{description}
+\item[定义：]m个向量$V_1,V_2,\cdots{},V_m$的线性组合具有如下形式的向量：
+\begin{displaymath}
+w=a_1V_1+a_2V_2+\cdots{}+a_mV_m
+\end{displaymath}
+其中$a_1,a_2,\cdots{},a_m$是标量
+\end{description}
+\subsubsection{向量的仿射组合}
+如果线性组合系数$a_1,a_2,\cdots{},a_m$的和等于1，那么它就是仿射组合，因此上面等式中的线性组合若满足：
+\begin{displaymath}
+a_1+a_2+\cdots{}+a_m=1
+\end{displaymath}
+就是一个仿射组合，如果每一个系数都还满足非负数，则该线性组合为一个凸组合
+
+
+
+
+
 \section{矩阵}
 \subsection{矩阵的定义}
 矩阵是一个矩形阵列，有指定的行和列，通常说矩阵为$m\times n$，表示它有m行和n列，表示为：

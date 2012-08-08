@@ -323,10 +323,10 @@ c_{ij}=A_{i1}B_{1J}+A_{i2}B_{2j}+\cdots{}+A_{in}B_{nj}=\sum_{r=1}^{n}{A_{ir}B_{r
 \begin{math}
 M_{t}=\left|
 \begin{array}{cccc}
-1&0&0&0 \\
-0&1&0&0 \\
-0&0&1&0 \\
-dx&dy&dz&1 \\
+1&0&0&dx \\
+0&1&0&dy \\
+0&0&1&dz \\
+0&0&0&1 \\
 \end{array}
 \right|
 \end{math} 
@@ -334,26 +334,32 @@ dx&dy&dz&1 \\
 给定p=[x y z 1]，执行如下平移变换：
 \begin{quote} 
 \begin{math}
-p^{'}=p*M_{t}=[\begin{array}{cccc}x &y &z &1 \end{array}]* \left|
+p^{'}=M_{t}*p= \left|
 \begin{array}{cccc}
-1&0&0&0 \\
-0&1&0&0 \\
-0&0&1&0 \\
-dx&dy&dz&1 \\
+1&0&0&dx \\
+0&1&0&dy \\
+0&0&1&dz \\
+0&0&0&1 \\
 \end{array}
-\right|
-\end{math} \\
-
-\begin{math}
-=[ \begin{array}{cccc} (x+1*dx) & (y+1*dx) & (z+1*dz) & 1  \end{array} ]
+\right|*
+\left[\begin{array}{c}
+x  \\
+y \\
+z  \\
+1 
+\end{array}\right]
+=\left[
+\begin{array}{c} 
+(x+1*dx) \\
+(y+1*dx) \\
+ (z+1*dz) \\
+ 1 
+\end{array} \right]
+=\left[ \begin{array}{c} (x+dx) \\ (y+dx) \\ (z+dz) \\ 1  \end{array} \right]
 \end{math}  \\
 
 \begin{math}
-=[ \begin{array}{cccc} (x+dx) & (y+dx) & (z+dz) & 1  \end{array} ]
-\end{math}  \\
-
-\begin{math}
-=p^{'}(x+dz,y+dy,z+dz)
+=>\quad p^{'}=(x+dz,y+dy,z+dz)
 \end{math}
 \end{quote}
 平移矩阵$M_{t}$的逆矩阵为$M_{t}^{-1}$：
@@ -361,10 +367,10 @@ dx&dy&dz&1 \\
 \begin{math}
 M_{t}^{-1}=\left|
 \begin{array}{cccc}
-1&0&0&0 \\
-0&1&0&0 \\
-0&0&1&0 \\
--dx&-dy&-dz&1 \\
+1&0&0&-dx \\
+0&1&0&-dy \\
+0&0&1&-dz \\
+0&0&0&1 \\
 \end{array}
 \right|
 \end{math}
@@ -383,10 +389,10 @@ sx & 0 & 0 & 0 \\
 \right|
 \end{math}
 \end{quote}
-给定p=[$\begin{array}{cccc}x & y & z& 1\end{array}$]，执行变化如下：
+给定p=(x , y , z , 1)，执行变化如下：
 \begin{quote}
 \begin{math}
-p^{'}=p*M_{s}=[\begin{array}{cccc} x & y & z & 1 \end{array} ]* 
+p^{'}=M_{s}*p=
 \left|
 \begin{array}{cccc}
 sx & 0 & 0 & 0 \\
@@ -394,8 +400,8 @@ sx & 0 & 0 & 0 \\
 0 & 0 & sz & 0 \\
 0 & 0 & 0  & 1 \\
 \end{array}
-\right| \\
-=[\begin{array}{cccc} x*sx & y* sy & z*sz & 1 \end{array} ]
+\right| *\left[\begin{array}{c} x \\ y \\ z \\ 1 \end{array} \right]
+=\left[\begin{array}{c} x*sx \\ y* sy \\ z*sz \\ 1 \end{array} \right]
 \end{math}
 \end{quote}
 缩放矩阵$M_{s}$的逆矩阵$M_{s}^{-1}$为:
@@ -411,7 +417,7 @@ M_{s}^{-1}=\left|
 \right| 
 \end{math}
 \end{quote}
-\subsubsection{旋转}
+\subsubsection{绕坐标轴旋转}
 在3D坐标系中，可以绕三个轴进行旋转：x轴，y轴，z轴：
 \begin{enumerate}
 \item 绕x轴旋转，矩阵为：
@@ -454,10 +460,10 @@ sin\theta & cos\theta & 0 & 0 \\
 \end{math}
 \end{quote}
 \end{enumerate}
-给定点p=[$\begin{array}{cccc} x & y & z & 1 \end{array} $ ]，绕z轴旋转角度$\theta$:
+给定点p( x , y , z , 1 )，绕z轴旋转角度$\theta$:
 \begin{quote}
 \begin{math}
-p^{'}=p*M_{z}=[\begin{array}{cccc} x & y & z & 1 \end{array} ]* 
+p^{'}=M_{z}*p=
 \left|
 \begin{array}{cccc}
 cos\theta & -sin\theta & 0 & 0  \\
@@ -465,9 +471,9 @@ sin\theta & cos\theta & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1 \\
 \end{array}
-\right| \\
-p^{'}=[\begin{array}{cccc} (x*cos\theta +y*sin\theta) & (x*sin\theta -y*cos\theta) & z & (1*1) \end{array} ] \\
-p^{'}=( (x*cos\theta + y*sin\theta) , (x*sin\theta - y*cos\theta) , z ) 
+\right| \left[\begin{array}{c} x \\ y \\ z \\ 1 \end{array} \right] 
+=\left[\begin{array}{c} (x*cos\theta +y*sin\theta) \\ (x*sin\theta -y*cos\theta) \\ z \\ (1*1) \end{array} \right] \\
+=>\quad p^{'}=( (x*cos\theta + y*sin\theta) , (x*sin\theta - y*cos\theta) , z ) 
 \end{math}
 \end{quote}
 
@@ -538,6 +544,84 @@ cos\theta & sin\theta & 0 & 0 \\
 \end{math}
 \end{quote}
 \end{enumerate}
+
+\subsubsection{绕平行于坐标轴的轴旋转}
+处理平行于坐标轴的轴V旋转时，方法为：先把轴V平移到到坐标轴处，然后再旋转，最后再平移回去。假设轴V平行于Z轴，点$P(P_{x},P_{y},P_{z})$绕轴V旋转$\theta$度，得到点$P'$:
+\begin{quote}
+$
+\left[\begin{array}{c}
+P'_{x} \\
+P'_{y} \\
+P'_{z} \\
+1
+\end{array}\right]=
+T_{tx,ty,0}R_{\theta,z}T_{-tx,-ty,0}
+\left[\begin{array}{c}
+P_{x} \\
+P_{y} \\
+P_{z} \\
+1
+\end{array}\right]
+$
+
+\end{quote}
+\begin{enumerate}
+\item 平行于Z轴
+\begin{quote}
+$
+R_{\theta,x,(0,t_y,t_z)}=
+\left[\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & cos\theta & -sin\theta & t_y(1-cos\theta)+t_{z}sin\theta) \\
+0 & sin\theta & cos\theta & t_z(1-cos\theta)-t_{y}sin\theta) \\
+0 & 0 & 0 & 1 
+\end{array} \right]
+$
+\end{quote}
+\item 平行于y轴：
+\begin{quote}
+$
+R_{\theta,y,(t_x,0,t_z)}=
+\left[\begin{array}{cccc}
+cos\theta  & 0  & sin\theta  & t_{x}(1-cos\theta)-t_{z}sin\theta \\
+0 & 1 & 0 & 0 \\
+-sin\theta & 0 & cos\theta & t_{z}(1-cos\theta)+t_{x}sin\theta  \\
+0 & 0 & 0 & 1 
+\end{array}\right]
+$
+\end{quote}
+\item 平行于z轴：
+\begin{quote}
+$
+R_{\theta,z,(t_x,t_y,0)}=
+\left[\begin{array}{cccc}
+cos\theta  & -sin\theta & 0 & t_{x}(1-cos\theta)+t_{y}sin\theta \\
+sin\theta  & cos\theta & 0 & t_{y}(1-cos\theta)-t_{x}sin\theta \\
+0 & 0  & 1 &0  \\
+0 & 0& 0& 1
+\end{array} \right]
+$
+\end{quote}
+\end{enumerate}
+
+\subsubsection{绕任意轴旋转}
+点$P( x , y , z )$绕单位向量$n( a , b ,c )$旋转角度$\alpha$得到点P'( x' , y' , z')，旋转矩阵为：
+\begin{quote}
+$
+R_{\alpha,(a,b,c)}=
+\left[\begin{array}{ccc}
+a^{2}K+cos\alpha & abK-csin\alpha & acK+bsin\alpha \\
+abK+csin\alpha & b^{2}K+cos\alpha & bcK-asin\alpha \\
+acK-bsin\alpha & bcK+asin\alpha & c^{2}K+cos\alpha \\
+\end{array}\right]
+$
+\end{quote}
+其中：
+\begin{quote}
+ $K=1-cos\alpha $
+\end{quote}
+
+
 
 \section{四元数}
 \subsection{定义}

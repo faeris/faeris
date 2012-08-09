@@ -642,53 +642,58 @@ q=a+\vec{u}=a+bi+cj+dk \\
 p=t+\vec{v}=t+zi+yj+zk
 \end{math}
 \end{quote}
-其中$\vec{u}$表示矢量$<b,c,d>$，而$\vec{v}$表示矢量$<x,y,z>$
-
-\subsection{性质}
-\subsubsection{共轭四元数}
-对于四元数q，用$q^{*}$表示其共轭四元数，其计算方法只需要将虚数分量的符号反过来即可,给定四元数q:
+其中$\vec{u}$表示矢量$<b,c,d>$，而$\vec{v}$表示矢量$<x,y,z>$ \\
+也可用有序队表示为：
 \begin{quote}
-$ q=a+\vec{u}=a+bi+cj+dk$
+\begin{math}
+q=[s,v] \quad s\in{}R, v\in{}R^3
+\end{math}
 \end{quote}
-其共轭四元数$q^{*}$为:
-\begin{quote}
-$ q^{*}=a-\vec{u}=a-bi-cj-dk$
-\end{quote}
-\subsubsection{四元数的范数}
-范数表示四元数的长度信息，给定四元数h：
-\begin{quote}
-$ h=a+\vec{u}=a+bi+cj+dk$
-\end{quote}
-其范数为：
-\begin{quote}
-$|h|=\sqrt{h\cdot h^{*}}=\sqrt{a^{2}+b^{2}+c^{2}+d^{2}}$
-\end{quote}
-
+其中s称为缩放部分，v称为向量部分
+\begin{enumerate}
+\item 如果四元数$q=[s,v]$，的缩放部分s为0，则该四元数称为纯四元数。
+\item 如果纯四元数的向量部分的模为1 $( |v|=1 ) $，则该四元数称为单位四元数。
+\item 如果四元数$q=[s,v]$ 满足 $s^2+|v|^2=1$，则该四元数称为单位范型四元数。
+\end{enumerate}
 
 \subsection{四元数运算}
 假设有两个四元数:
 \begin{quote}
 \begin{math}
-q=a+\vec{u}=a+bi+cj+dk \\
-p=t+\vec{v}=t+zi+yj+zk
+q_{1}=[s_{1},v_{1}]= s_{1}+x_{1}i+y_{1}j+z_{1}k \\
+q_{2}=[s_{2},v_{2}]= s_{2}+x_{2}i+y_{2}j+z_{2}k \\
 \end{math}
 \end{quote}
 \subsubsection{加法}
 两个四元数相加，跟复数，矢量和矩阵一样，只需要将不同的元数加起来即可:
 \begin{quote}
 \begin{math}
-p+q=a+t+\vec{u}+\vec{v}=(a+t)+(b+x)i+(c+y)j+(d+z)k
+\begin{array}{ccl}
+q_{1}+q_{2} & = & [s_{1}+s_{2},v_{1}+v_{2}] \\
+	    & =& s_{1}+s_{2}+(x_{1}+x_{2})i+(y_{1}+y_{2})j+(z_{1}+z_{2})k 
+\end{array}
 \end{math}
 \end{quote}
-\subsubsection{加法逆元素与加法恒等元}
-四元数q的加逆元数是这样一个数：将它与q相加时，结果为零，它就是-q，为：
+
+与标量的乘法为：
 \begin{quote}
-$-q=-a-\vec{u}=-a-bi-ci-dk $
+$\begin{array}{ccl}
+\lambda{}q&=&[\lambda{}s,\lambda{}v] \\
+          &=&\lambda{}s+\lambda{}xi+\lambda{}yj+\lambda{}zk \\
+\end{array}
+$
 \end{quote}
-加法恒等元（或四元数数学中的\verb|"0"|）为:
+
+\subsubsection{共轭四元数}
+对于四元数q，用$q^{*}$表示其共轭四元数，其计算方法只需要将虚数分量的符号反过来即可,给定四元数q:
 \begin{quote}
-$z=0+<0,0,0>=0+0*i+0*j+0*k $
+$ q=[s,v]=s+xi+yj+zk $
 \end{quote}
+其共轭四元数$q^{*}$为:
+\begin{quote}
+$ q^{*}=[s,-v]=s-xi-yj-zk $
+\end{quote}
+
 \subsubsection{乘法}
 两个四元数之间的非可换乘积通常被称为格拉斯曼积，元系之间的乘积可以跟随以下的乘法表， 四元数的单位元的乘法构成了八阶四元群，$Q_{8}$
 \begin{quote}
@@ -707,14 +712,50 @@ k & k & j & -i & -1 \\
 乘法如下：
 \begin{quote}
 \begin{math}
-pq=at-\vec{u}\cdot\vec{v}+a\vec{v}+t\vec{u}+\vec{v}\times\vec{u} \\
-pq=(at-bx-cy-dz)+(bt+ax+cz-dy)i+(ct+ay+dx-bz)j+(dt+za+by-xc)k
+\begin{array}{ccl}
+q_{1}q_{2}& = &[s_{1}s_{2}-v_{1}{v_2},s_{1}v_{2}+s_{2}v_{1}+v_{1}\times{}v_{2}] \\
+          & = &(s_{1}s_{2}-x_{1}x_{2}-y_{1}y_{2}-z_{1}z_{2})  \\
+	  &  &+(s_{1}x_{2}+s_{2}x_{1}+y_{1}z_{2}-z_{1}y_{2}) i \\
+          &  &+(s_{1}y_{2}+s_{2}y_{1}+z_{1}x_{2}-x_{1}z_{2}) j \\
+          &  &+(s_{1}z_{2}+s_{2}z_{1}+x_{1}y_{2}-y_{1}x_{2}) k \\
+\end{array} \\
 \end{math}
 \end{quote}
+
+\subsubsection{四元数的范数}
+范数表示四元数的长度信息，给定四元数q：
+\begin{quote}
+$ q=[s,v]=s+xi+yi+zk $
+\end{quote}
+其范数记为$|p|$为：
+\begin{quote}
+$|q|=\sqrt{qq^{*}}=\sqrt{s^{2}+x^{2}+y^{2}+z^{2}}$
+\end{quote}
+\subsubsection{规格化四元数}
+如果四元数的范数为1，则该四元数称为单位模范四元数，对于给定的四元数p，可以使用下面的方法求其单位模范四元数$p'$:
+\begin{displaymath}
+q'=\frac{q}{|q|}=\frac{q}{\sqrt{s^2+v^2}}
+\end{displaymath}
+
+
+
+
+
+\subsubsection{倒数}
+如果四元数p与另一个四元数q，它们之间满足下列等式：
+\begin{displaymath}
+qp=1=pq
+\end{displaymath}
+则称q为p的倒数(也称为逆乘元)，对于四元数q，其倒数记为$q^{-1}$，其值为:
+\begin{displaymath}
+q^{-1}=\frac{1}{q}=\frac{q*}{qq*}=[\frac{s}{s^2+x^2+y^2+z^2},\frac{-v}{s^2+x^2+y^2+z^2}]
+\end{displaymath}
+
+
 \subsubsection{点积}
 点积也叫做欧几里得内积，四元数的点积等同于一个四维矢量的点积，点积的值是p中每个元数的数值与q中相应元数的数值的乘积的和，结果为一个标量。
 \begin{quote}
-$p\cdot q=at+\vec{u}\cdot{v}=at+bx+xy+dz $
+$p\cdot q=s_{1}s_{2}+v_{1}\dot{}v_{2}=s_{1}s_{2}+x_{1}x_{2}+y_{1}y_{2}+z_{1}z_{2}$
 \end{quote}
 点积也可以用格拉斯曼积的形式表示：
 \begin{quote}
@@ -723,16 +764,194 @@ p\cdot q = \frac{p^{*}q+q^{*}p}{2}
 \end{math}
 \end{quote}
 
-\subsubsection{倒数}
-如果四元数p与另一个四元数q，它们之间满足下列等式：
-\begin{quote}
-$qp=1=pq$
-\end{quote}
-则称q为p的倒数，对于四元数q，其倒数记为$q^{-1}$，其值为:
-\begin{quote}
-$q^{-1}=\frac{h^{*}}{|h|^{2}}$
-\end{quote}
 
+\subsection{四元数的应用}
+\subsubsection{旋转}
+对于一个向量p，绕轴v（v为单位向量)旋转$\theta$度，得到向量$p'$，用四元数处理为:
+\begin{enumerate}
+\item 构造向量四元数:
+\begin{displaymath}
+p=[0,p]
+\end{displaymath}
+\item 构造旋转四元数:
+$$q=[cos\frac{1}{2}\theta,sin\frac{1}{2}\theta{}v]$$
+\end{enumerate}
+旋转后的向量$p'$，用下面的公式得到$(s=cos\frac{1}{2}\theta,\lambda{}=sin\frac{1}{2}\theta{})$：
+\begin{displaymath}
+\begin{array}{ccl}
+ p' & = &  qpq^{-1} \\
+    & = &  [s,\lambda{}v][0,p][s,-\lambda{}v] \\
+    & = &  [0,2\lambda{}^2(v\cdot{}p)v+(s^2-\lambda^2)p+2\lambda{}sv\times{}p] \\
+    & = &  [0,(1-cos\theta)(v\cdot{}p)v+cos\theta{}p+sin\theta{}v\times{}p]
+\end{array}
+\end{displaymath}
+\subsubsection{四元数转换为矩阵}
+对于旋转四元数:
+\begin{quote}
+$$
+\begin{array}{ccl}
+q& = & [s,\lambda{}\hat{v}]  \\
+ & = & [s,v]  \quad (v=\lambda\hat{v})\\
+ & = & [s,xi+yj+zk] \quad (v=(x,y,z)) \\
+\end{array}
+$$
+\end{quote}
+在旋转中，得到:
+\begin{displaymath}
+\begin{array}{cll}
+p' &  =  & q^{-1}pq  \\
+   &  =  & [0,2\lambda{}^2(v\cdot{}p)v+(s^2-\lambda^2)p+2\lambda{}sv\times{}p] \\
+\end{array}
+\end{displaymath}
+用$|v|$替换$\lambda$，并通过一系列代换，推出：
+\begin{displaymath}
+p'=\left[
+\begin{array}{ccc}
+2(s^2+x^2)-1 & 2(xy-sz) & 2(xz+sy)  \\
+2(xy+sz)  &  2(s^2+y^2)-1 & 2(yz-sx) \\
+2(xz-sy) & 2(yz+sx) & 2(s^2+z^2)-1 \\  
+\end{array}\right]
+\left[
+\begin{array}{c}
+x_p \\
+y_p \\
+z_p \\ 
+\end{array}\right]
+\end{displaymath}
+或者
+\begin{displaymath}
+p'=\left[
+\begin{array}{ccc}
+1-2(y^2+z^2) & 2(xy-sz) & 2(xz+sy)  \\
+2(xy+sz)  &  1-2(x^2+z^2) & 2(yz-sx) \\
+2(xz-sy) & 2(yz+sx) & 1-2(x^2+y^2) \\  
+\end{array}\right]
+\left[
+\begin{array}{c}
+x_p \\
+y_p \\
+z_p \\ 
+\end{array}\right]
+\end{displaymath}
+\subsubsection{矩阵转换为四元数}
+使用矩阵表示时，其形式如下：
+\begin{displaymath}
+\begin{array}{ccl}
+qpq^{-1}& = &\left[
+\begin{array}{ccc}
+2(s^2+x^2)-1 & 2(xy-sz) & 2(xz+sy)  \\
+2(xy+sz)  &  2(s^2+y^2)-1 & 2(yz-sx) \\
+2(xz-sy) & 2(yz+sx) & 2(s^2+z^2)-1 \\  
+\end{array}\right]
+\left[
+\begin{array}{c}
+x_p \\
+y_p \\
+z_p \\       
+\end{array}\right] \\
+  &= &
+\left[
+\begin{array}{ccc}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33} \\
+\end{array}
+\right]
+\left[\begin{array}{c}
+x_p \\
+y_p \\
+z_p \\       
+\end{array}\right] \\
+\end{array}
+\end{displaymath}
+要求出旋转角度与旋转轴，可以通过其中几个数的组合得到：
+\begin{enumerate}
+ \item 旋转角：
+\begin{displaymath}
+\begin{array}{ccl}
+a_{11}+a_{22}+a_{33} & = & (2(s^2+x^2-1)+(2(s^2+y^2)-1)+(2(s^2+z^2)-1)   \\
+                     & = & 6s^2+2(x^2+y^2+z^2)-3   \\
+                     & = & 4s^2-1
+\end{array}
+\end{displaymath}
+所以：
+\begin{displaymath}
+s=\pm{}\frac{1}{2}\sqrt{(1+a_{11}+a_{22}+a_{33})}
+\end{displaymath}
+\item x为：
+\begin{displaymath}
+ x=\frac{1}{4s}(a_{32}-a_{23})  \\
+\end{displaymath}
+\item y为：
+\begin{displaymath}
+ y=\frac{1}{4s}(a_{13}-a_{31}) \\
+\end{displaymath}
+\item z为:
+\begin{displaymath}
+ z=\frac{1}{4s}(a_{21}-a_{12}) \\
+\end{displaymath}
+\end{enumerate}
+\subsubsection{欧拉角转换成四元数}
+常用的一种旋转方法是使用欧拉角x,y,z轴的组合旋转，用四元数表示每个轴的旋转为：
+\begin{displaymath}
+\begin{array}{c}
+R_{\alpha,x}=q_{x}=[cos\frac{1}{2}\alpha,sin\frac{1}{2}\alpha{}i] \\
+\\
+R_{\beta,y}=q_{y}=[cos\frac{1}{2}\beta,sin\frac{1}{2}\beta{}j] \\
+\\
+R_{\gamma,z}=q_{z}=[cos\frac{1}{2}\gamma,sin\frac{1}{2}\gamma{}k] \\
+\end{array}
+\end{displaymath}
+组合旋转为：
+\begin{displaymath}
+\begin{array}{ccl}
+q & = & R_{\gamma,z}R_{\beta,y}R_{\alpha,x} \\
+  & = &q_{z}q_{y}q_{x}  \\
+  & = &[cos\frac{1}{2}\gamma,sin\frac{1}{2}\gamma{}k]
+       [cos\frac{1}{2}\beta,sin\frac{1}{2}\beta{}j] 
+       [cos\frac{1}{2}\alpha,sin\frac{1}{2}\alpha{}i]  \\
+\end{array}
+\end{displaymath}
+推出：
+\begin{displaymath}
+s=cos\frac{1}{2}\gamma{}cos\frac{1}{2}\beta{}cos\frac{1}{2}\alpha+sin\frac{1}{2}\gamma{}sin\frac{1}{2}\beta{}sin\frac{1}{2}\alpha 
+\end{displaymath}
+\begin{displaymath}
+x_{q}=cos\frac{1}{2}\gamma{}cos\frac{1}{2}\beta{}sin\frac{1}{2}\alpha-sin\frac{1}{2}\gamma{}sin\frac{1}{2}\beta{}cos\frac{1}{2}\alpha
+\end{displaymath}
+\begin{displaymath}
+y_{q}=cos\frac{1}{2}\gamma{}sin\frac{1}{2}\beta{}cos\frac{1}{2}\alpha+sin\frac{1}{2}\gamma{}cos\frac{1}{2}\beta{}sin\frac{1}{2}\alpha
+\end{displaymath}
+\begin{displaymath}
+z_{q}=sin\frac{1}{2}\gamma{}cos\frac{1}{2}\beta{}cos\frac{1}{2}\alpha-cos\frac{1}{2}\gamma{}sin\frac{1}{2}\beta{}sin\frac{1}{2}\alpha
+\end{displaymath}
+
+\subsubsection{四元数的插值}
+像向量一样，四元数也可以用于插值来计算出一个中间的四元数，向量在球面的插值公式为：
+\begin{displaymath}
+ v=\frac{sin(1-t)\theta}{sin\theta}v_{1}+\frac{sin t\theta{}}{sin\theta}v_{2}
+\end{displaymath}
+其中$\theta$为两个向量的夹角，四元数的插值和向量一样.
+\begin{displaymath}
+ q=\frac{sin(1-t)\theta}{sin\theta}q_{1}+\frac{sin t\theta{}}{sin\theta}q_{2}
+\end{displaymath}
+对于两个给定的四元数：
+\begin{displaymath}
+ q1=[s_{1},x_{1}i+y_{1}j+z_{1}k]
+\end{displaymath}
+\begin{displaymath}
+ q2=[s_{2},x_{2}i+y_{2}j+z_{2}k]
+\end{displaymath}
+其中$\theta$为$q_{1}$和$q_{2}$的4D点积算出的:
+\begin{displaymath}
+  cos\theta  = \frac{q_{1}\cdot{}q_{2}}{|q_{1}||q_{2}|} \\
+             = \frac{s_{1}s_{2}+x_{1}x_{2}+y_{1}y_{2}+z_{1}z_{2}}{|q_{1}||q_{2}|}
+\end{displaymath}
+如果$q_{1}$和$q_{2}$为单位范型四元数：
+
+\begin{displaymath}
+cos\theta= s_{1}s_{2}+x_{1}x_{2}+y_{1}y_{2}+z_{1}z_{2}
+\end{displaymath}
 
 
 

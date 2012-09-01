@@ -1,0 +1,30 @@
+初始化：
+  1）双缓存
+  2）着色模型(GL_SMOOTH)：glShadeModel
+  3）隐藏面消除（深度测试）：glEnable(GL_DEPTH_TEST)
+  4）清除画面glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+  
+光源的属性：
+  1）GL_AMBIENT：光环境强度，默认值为（0.0，0.0，0.0，0.0）
+  2）GL_DIFFUSE：光的散射强度，light0的默认值为白色，其它为黑色
+  3）GL_SPECLUAR：光的镜面强度，light0的默认值为白色，其它为黑色
+  
+  4）GL_POSITION：表示光源位置的坐标，默认值为（0.0，0.0，1.0，0.0）
+  
+  5）GL_SPOT_DIRECTION：表示聚光灯的方向向量，默认值为（0.0,0.0,-1.0）
+  6）GL_SPOT_EXPONENT：表示聚光指数，默认值为0.0
+  7）GL_SPOT_CUTOFF：表示聚光类的切角，默认值为180.0
+  
+  8）GL_CONSTANT_ATTENUATION：表示常衰减因子，默认值为1.0
+  9）GL_LINERAR_ATTENUATION：表示线性衰减因子，默认值为0.0
+  10）GL_QUADRATIC_ATTENUATION：二次衰减因子，默认值为0.0
+  
+光源的强度与衰减因子：
+                     1
+  衰减因子＝  -------------------
+              kc+ki*d+kq*d*d
+  其中：
+    1）d＝光源与顶点之间的距离
+    2）kc＝GL_CONSTANT_ATTENUATION
+    3）ki=GL_LINERAR_ATTENUATION
+    4）kq=GL_QUADRATIC_ATTENUATION

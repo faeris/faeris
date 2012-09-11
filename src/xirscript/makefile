@@ -1,18 +1,19 @@
-PROJECT=extends
- 
-SRC=md2.c
+PROJECT=grlib
+  
+SRC= sl_simple_str.cc sl_single_quote_str.cc sl_double_quote_str.cc \
+	 sl_white_space.cc sl_comment.cc sl_specific_symbol.cc
 
 
 DEBUG=
 
-BIN= md2_info.c
+BIN=
 
 
 
-OBJ_NAME=$(SRC:%.c=%.o) 
+OBJ_NAME=$(SRC:%.cc=%.o) 
 OBJ_NAME_WITH_PATH=$(addprefix obj/,$(OBJ_NAME))
 
-DEBUG_OBJ_NAME=$(DEBUG:%.c=%.o) 
+DEBUG_OBJ_NAME=$(DEBUG:%.cc=%.o) 
 DEBUG_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(DEBUG_OBJ_NAME))
 
 ALL_OBJ=$(OBJ_NAME) $(DEBUG_OBJ_NAME)
@@ -20,16 +21,16 @@ ALL_OBJ_WITH_PATH= $(OBJ_NAME_WITH_PATH) $(DEBUG_OBJ_NAME_WITH_PATH)
 
 
 
-BIN_NAME=$(BIN:%.c=%.exe)
+BIN_NAME=$(BIN:%.cc=%.exe)
 BIN_NAME_WITH_PATH=$(addprefix bin/,$(BIN_NAME))
 
-BIN_OBJ_NAME=$(BIN:%.c=%.o)
+BIN_OBJ_NAME=$(BIN:%.cc=%.o)
 BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 
-CC=gcc
+CC=g++
 FLAGS=-g -Wall  -Werror -include sys/types.h
-INCLUDE=-I. -I./debug   -I../  -I$(GINCLUDE)
-LIB=-Llib -l$(PROJECT) -l$(PROJECT)debug  
+INCLUDE=-I. -I./debug   -I../  
+LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug  -lfyutil
 
 
 
@@ -48,14 +49,12 @@ lib/lib$(PROJECT)debug.a:$(DEBUG_OBJ_NAME_WITH_PATH)
 bin/%.exe:obj/%.o lib/lib$(PROJECT).a lib/lib$(PROJECT)debug.a 
 	$(CC) $(FLAGS) -o $@ $< -Xlinker "-(" $(LIB) -Xlinker "-)"
 
-obj/%.o:%.c
+obj/%.o:%.cc
 	$(CC) $(FLAGS) -c -o $@ $< $(INCLUDE) 
 
-obj/%.o:debug/%.c
+obj/%.o:debug/%.cc
 	$(CC) $(FLAGS) -c -o $@ $< $(INCLUDE) 
 	
-grammar.tab.c: grammar.y
-	bison grammar.y
 	
 init:
 	mkdir -p obj 

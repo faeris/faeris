@@ -57,15 +57,6 @@ enum  Specific_Input_type
 void id_array_create()
 {
 	memset(id_array,0,sizeof(id_array));
-	id_array['\n']=SI_NEWLINE;
-	id_array[',']=SI_COMMA;
-	id_array[':']=SI_COLON;
-	id_array['&']=SI_AMPERSAND;
-	id_array['$']=SI_DOLLAR;
-	id_array['{']=SI_L_RB;
-	id_array['}']=SI_R_RB;
-	id_array['[']=SI_L_SB;
-	id_array[']']=SI_R_SB;
 }
 
 

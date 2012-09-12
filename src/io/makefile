@@ -1,12 +1,11 @@
-PROJECT=grlib
-  
-SRC= sl_simple_str.cc sl_single_quote_str.cc sl_double_quote_str.cc \
-	 sl_white_space.cc sl_comment.cc sl_specific_symbol.cc xir_file.cc \
-	 xir_scanner.cc
+PROJECT=io
+ 
+SRC= sys_file.cc
+
 
 DEBUG=
 
-BIN=
+BIN= 
 
 
 
@@ -30,7 +29,7 @@ BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 CC=g++
 FLAGS=-g -Wall  -Werror -include sys/types.h
 INCLUDE=-I. -I./debug   -I../  
-LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug  -lfyutil
+LIB=-Llib -l$(PROJECT) -l$(PROJECT)debug  
 
 
 
@@ -55,6 +54,8 @@ obj/%.o:%.cc
 obj/%.o:debug/%.cc
 	$(CC) $(FLAGS) -c -o $@ $< $(INCLUDE) 
 	
+grammar.tab.c: grammar.y
+	bison grammar.y
 	
 init:
 	mkdir -p obj 
@@ -84,7 +85,7 @@ depend:
 	echo -n >.$(PROJECT).dep
 	for element in $(addprefix debug/,$(BIN)) $(SRC) $(addprefix debug/,$(DEBUG));do \
 		file_name=`basename $$element`;\
-		result=`echo $$file_name | sed -e 's/.c/.o/'`;\
+		result=`echo $$file_name | sed -e 's/.cc/.o/'`;\
 		gcc -M -MT "obj/$$result" $$element $(INCLUDE) >>.$(PROJECT).dep ;\
 	done
 

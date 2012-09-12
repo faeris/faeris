@@ -3,6 +3,8 @@
 enum XirToken
 {
 	XT_UNKOWN=0,
+	XT_EOF,
+	XT_ERROR,
 	XT_SIM_STR,
 	XT_DOU_STR,
 	XT_SIN_STR,

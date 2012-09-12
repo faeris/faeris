@@ -35,7 +35,7 @@ extern XirState Specific_Symbol_Begin;
 extern XirState Specific_Symbol_Newline; 
 extern XirState Specific_Symbol_Comma; 
 extern XirState Specific_Symbol_Colon;
-extern XirState Specific_Symbol_AMPERSAND;
+extern XirState Specific_Symbol_Ampersand;
 extern XirState Specific_Symbol_Dollar;
 extern XirState Specific_Symbol_L_RB;
 extern XirState Specific_Symbol_R_RB;

@@ -33,7 +33,7 @@ static XirState* Specific_Symbol_Begin_Targets[]=
 	&Specific_Symbol_Newline,
 	&Specific_Symbol_Comma,
 	&Specific_Symbol_Colon,
-	&Specific_Symbol_AMPERSAND,
+	&Specific_Symbol_Ampersand,
 	&Specific_Symbol_Dollar,
 	&Specific_Symbol_L_RB,
 	&Specific_Symbol_R_RB,
@@ -49,6 +49,38 @@ XirState Specific_Symbol_Begin=
 	XT_UNKOWN,
 	Specific_Symbol_Begin_Targets,
 };
+
+
+static unsigned char zeor_input_map[]=
+{
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+};
+
+static XirState* Error_Targets[]= { &Err_State};
+
+
+
+#define SPECIFIC_SYMBOL_STATE(name,token) \
+	XirState name = { #name,zeor_input_map,1,token,Error_Targets} 
+
+
+SPECIFIC_SYMBOL_STATE(Specific_Symbol_Newline,XT_NEWLINE);
+SPECIFIC_SYMBOL_STATE(Specific_Symbol_Comma,XT_COMMA);
+SPECIFIC_SYMBOL_STATE(Specific_Symbol_Colon,XT_COLON);
+SPECIFIC_SYMBOL_STATE(Specific_Symbol_Ampersand,XT_AMPERSAND);
+SPECIFIC_SYMBOL_STATE(Specific_Symbol_Dollar,XT_DOLLAR);
+SPECIFIC_SYMBOL_STATE(Specific_Symbol_L_RB,XT_L_RB);
+SPECIFIC_SYMBOL_STATE(Specific_Symbol_R_RB,XT_R_RB);
+SPECIFIC_SYMBOL_STATE(Specific_Symbol_L_SB,XT_L_SB);
+SPECIFIC_SYMBOL_STATE(Specific_Symbol_R_SB,XT_R_SB);
+
 
 
 

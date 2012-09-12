@@ -8,9 +8,19 @@ struct tagXirState
 	bool finally;
 	int token;
 	struct tagXirState**  targets;
+
+	struct tagXirState* next(char c)
+	{
+		return targets[input_map[(unsigned char)c]];
+	}
+	int isFinnally()
+	{
+		return finally;
+	}
 };
 
 typedef  struct tagXirState XirState;
+
 
 #endif  /* _FAERY_XIR_SCRIPT_H_ */
 

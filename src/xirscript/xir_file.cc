@@ -1,4 +1,5 @@
 #include"xirscript/xir_file.h"
+#include"util/marocs.h"
 #include<string.h>
 #include<stdio.h>
 #define LEX_FILE_DEFAULT_SIZE 64
@@ -34,6 +35,7 @@ char XirFile::nextChar()
 
 int XirFile::loadData()
 {
+	//DEBUG("loadData");
 	int readbyte;
 	if(m_buf_size==0)
 	{
@@ -47,7 +49,7 @@ int XirFile::loadData()
 	int read_pos=m_buf_pos;
 	int buf_cap=m_buf_cap;
 
-	int buf_used=read_pos-begin;
+	int buf_used=m_buf_size-begin;
 	int buf_free=buf_cap-buf_used;
 
 	if(buf_free<LEX_FILE_DEFAULT_SIZE/2)
@@ -73,7 +75,7 @@ int XirFile::loadData()
 	m_mark=mark-begin;
 	m_buf_pos=read_pos-begin;
 
-	readbyte=m_file->read(m_buf,buf_cap-buf_used);
+	readbyte=m_file->read(m_buf+buf_used,buf_cap-buf_used);
 	m_buf_size=buf_used+readbyte;
 	return readbyte;
 }

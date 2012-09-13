@@ -2,11 +2,11 @@ PROJECT=grlib
   
 SRC= sl_simple_str.cc sl_single_quote_str.cc sl_double_quote_str.cc \
 	 sl_white_space.cc sl_comment.cc sl_specific_symbol.cc xir_file.cc \
-	 xir_scanner.cc
+	 xir_scanner.cc sl_top.cc
 
 DEBUG=
 
-BIN=
+BIN= scanner_test.cc
 
 
 
@@ -30,7 +30,7 @@ BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 CC=g++
 FLAGS=-g -Wall  -Werror -include sys/types.h
 INCLUDE=-I. -I./debug   -I../  
-LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug  -lfyutil
+LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug  -lfyutil -lio
 
 
 

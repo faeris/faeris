@@ -3,13 +3,14 @@
 #include"xirscript/sl_state.h"
 #include<stdio.h>
 #include"util/marocs.h"
+#include<string>
 
 XirScanner::XirScanner(IFile* file,XirState* begin_state)
 {
 	m_file=new XirFile(file);
 	m_begin_state=begin_state;
 	m_cur_token=XT_UNKOWN;
-	m_cur_line=0;
+	m_cur_line=1;
 }
 XirScanner::~XirScanner()
 {
@@ -71,7 +72,7 @@ int XirScanner::nextToken()
 			{
 				m_cur_token=XT_ERROR;
 				file->mark();
-				DEBUG("Error Translate %s(%c)",cur_state->name,event);
+//				DEBUG("Error Translate %s(%c)",cur_state->name,event);
 			}
 			else
 			{
@@ -103,6 +104,31 @@ int XirScanner::nextToken()
 	return m_cur_token;
 }
 
+static const char* s_xir_token_name[]=
+{
+	"XT_UNKOWN",
+	"XT_EOF",
+	"XT_ERROR",
+	"XT_SIM_STR",
+	"XT_DOU_STR",
+	"XT_SIN_STR",
+	"XT_WS",
+	"XT_COMMENT",
+	"XT_NEWLINE",
+	"XT_COMMA",
+	"XT_COLON",
+	"XT_AMPERSAND",
+	"XT_DOLLAR",
+	"XT_L_RB",
+	"XT_R_RB",
+	"XT_L_SB",
+	"XT_R_SB",
+};
+
+std::string XirScanner::curTokenName()
+{
+	return std::string(s_xir_token_name[m_cur_token]);
+}
 
 
 

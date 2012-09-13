@@ -1,9 +1,10 @@
 #ifndef _FEARY_XIR_SL_STATE_H_
 #define _FEARY_XIR_SL_STATE_H_
 
-#include"xir_state.h"
+#include"xirscript/xir_state.h"
 
 extern XirState Err_State;
+extern XirState Xir_Top;
 /* Dobule Quote String */
 extern XirState Double_Quote_Str_Begin;
 extern XirState Double_Quote_Str_Body;

@@ -15,12 +15,12 @@ SysFile* SysFile::open(const char* name,const char* mode)
 
 int SysFile::read(void* buf,size_t length)
 {
-	return fread(buf,length,1,mfile);
+	return fread(buf,1,length,mfile);
 }
 
 int SysFile::write(const void* buf,size_t length)
 {
-	return fwrite(buf,length,1,mfile);
+	return fwrite(buf,1,length,mfile);
 }
 long SysFile::seek(long offset,int where)
 {

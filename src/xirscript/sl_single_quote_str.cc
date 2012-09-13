@@ -46,7 +46,7 @@ XirState Single_Quote_Str_End=
 {
 	"Single_Quote_Str_End",
 	input_map,
-	0,
+	1,
 	XT_SIN_STR,
 	Single_Quote_Str_End_Targets,
 };

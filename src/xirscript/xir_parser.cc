@@ -52,8 +52,7 @@ void xir_parse_err(const char* msg,void* parm)
 
 }
 
-/*
-XirAst* XirParser::parse(IFile* file)
+XirAstNode* XirParser::parse(IFile* file)
 {
 	XirScanner* lex=new XirScanner(file,&Xir_Top);
 	YYParserParm* parm=new YYParserParm(lex);
@@ -66,13 +65,14 @@ XirAst* XirParser::parse(IFile* file)
 			delete parm->m_root;
 			parm->m_root=NULL;
 		}
+		parm->deletePendingNode();
 		delete parm;
 		return NULL;
 	}
 
 	delete lex;
-	XirAst ast=parm->m_root;
+	XirAstNode* ast=parm->getRoot();
+	BUG_ON(ast==NULL,"Some Error Must Happened In xir_grammy.y");
 	delete parm;
 	return ast;
 }
-*/

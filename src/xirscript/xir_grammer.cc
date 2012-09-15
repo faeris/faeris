@@ -73,9 +73,12 @@
 #include"xirscript/xir_scanner.h"
 #include"xirscript/xir_parser.h"
 
+#define CAST_PARAM  ((YYParserParm*) YYPARSE_PARAM)
+#define YYSTYPE XirAstNode* 
+
 
 /* Line 189 of yacc.c  */
-#line 79 "xir_grammer.cc"
+#line 82 "xir_grammer.cc"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -133,7 +136,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 137 "xir_grammer.cc"
+#line 140 "xir_grammer.cc"
 
 #ifdef short
 # undef short
@@ -353,11 +356,11 @@ union yyalloc
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  17
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  15
+#define YYNNTS  16
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  36
+#define YYNRULES  37
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  51
+#define YYNSTATES  52
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
@@ -405,34 +408,34 @@ static const yytype_uint8 yytranslate[] =
 static const yytype_uint8 yyprhs[] =
 {
        0,     0,     3,     6,    10,    12,    14,    16,    18,    20,
-      22,    24,    26,    29,    31,    33,    38,    42,    46,    49,
-      51,    53,    56,    59,    63,    65,    69,    73,    76,    80,
-      82,    84,    87,    90,    94,    96,   100
+      22,    24,    26,    28,    31,    33,    35,    39,    44,    47,
+      51,    53,    55,    58,    61,    65,    67,    71,    75,    78,
+      82,    84,    86,    89,    92,    96,    98,   102
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      18,     0,    -1,    23,    25,    -1,    22,    23,    25,    -1,
-      25,    -1,    24,    -1,    28,    -1,    20,    -1,    21,    -1,
-       5,    -1,     6,    -1,     7,    -1,    12,     5,    -1,     8,
-      -1,     9,    -1,    11,    13,    25,    14,    -1,    11,    13,
-      14,    -1,    13,    25,    14,    -1,    13,    14,    -1,    22,
-      -1,    26,    -1,    26,    22,    -1,    22,    26,    -1,    22,
-      26,    22,    -1,    27,    -1,    26,    22,    27,    -1,     5,
-      10,    19,    -1,    15,    16,    -1,    15,    29,    16,    -1,
-      22,    -1,    30,    -1,    30,    22,    -1,    22,    30,    -1,
-      22,    30,    22,    -1,    31,    -1,    30,    22,    31,    -1,
-      19,    -1
+      18,     0,    -1,    24,    26,    -1,    23,    24,    26,    -1,
+      26,    -1,    25,    -1,    29,    -1,    20,    -1,    22,    -1,
+       5,    -1,     6,    -1,     7,    -1,     5,    -1,    12,     5,
+      -1,     8,    -1,     9,    -1,    11,    13,    14,    -1,    11,
+      13,    26,    14,    -1,    13,    14,    -1,    13,    26,    14,
+      -1,    23,    -1,    27,    -1,    27,    23,    -1,    23,    27,
+      -1,    23,    27,    23,    -1,    28,    -1,    27,    23,    28,
+      -1,    21,    10,    19,    -1,    15,    16,    -1,    15,    30,
+      16,    -1,    23,    -1,    31,    -1,    31,    23,    -1,    23,
+      31,    -1,    23,    31,    23,    -1,    32,    -1,    31,    23,
+      32,    -1,    19,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    16,    16,    17,    18,    20,    20,    20,    20,    21,
-      21,    21,    23,    25,    25,    27,    28,    30,    31,    33,
-      34,    35,    36,    37,    40,    41,    44,    47,    48,    50,
-      51,    52,    53,    54,    57,    58,    62
+       0,    19,    19,    27,    35,    44,    45,    46,    47,    50,
+      54,    58,    64,    68,    74,    74,    76,    80,    88,    92,
+      98,   102,   103,   104,   105,   108,   114,   122,   132,   137,
+     140,   145,   146,   147,   148,   151,   158,   167
 };
 #endif
 
@@ -444,7 +447,7 @@ static const char *const yytname[] =
   "$end", "error", "$undefined", "tUNKOWN", "tERR", "tSIM_STR",
   "tDOU_STR", "tSIN_STR", "tNEWLINE", "tCOMMA", "tCOLON", "tAMPERSAND",
   "tDOLLAR", "tL_RB", "tR_RB", "tL_SB", "tR_SB", "$accept", "xir_start",
-  "primity", "string", "refer", "delimiter", "ref_body", "dict",
+  "primity", "string", "sim_str", "refer", "delimiter", "ref_body", "dict",
   "dict_body", "dict_body_real", "dict_entry", "array", "array_body",
   "array_body_real", "array_entry", 0
 };
@@ -464,18 +467,18 @@ static const yytype_uint16 yytoknum[] =
 static const yytype_uint8 yyr1[] =
 {
        0,    17,    18,    18,    18,    19,    19,    19,    19,    20,
-      20,    20,    21,    22,    22,    23,    23,    24,    24,    25,
-      25,    25,    25,    25,    26,    26,    27,    28,    28,    29,
-      29,    29,    29,    29,    30,    30,    31
+      20,    20,    21,    22,    23,    23,    24,    24,    25,    25,
+      26,    26,    26,    26,    26,    27,    27,    28,    29,    29,
+      30,    30,    30,    30,    30,    31,    31,    32
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
        0,     2,     2,     3,     1,     1,     1,     1,     1,     1,
-       1,     1,     2,     1,     1,     4,     3,     3,     2,     1,
-       1,     2,     2,     3,     1,     3,     3,     2,     3,     1,
-       1,     2,     2,     3,     1,     3,     1
+       1,     1,     1,     2,     1,     1,     3,     4,     2,     3,
+       1,     1,     2,     2,     3,     1,     3,     3,     2,     3,
+       1,     1,     2,     2,     3,     1,     3,     1
 };
 
 /* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
@@ -483,39 +486,39 @@ static const yytype_uint8 yyr2[] =
    means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,    13,    14,     0,     0,    19,     0,     4,    20,
-      24,     0,     0,     1,     0,    22,    19,     2,    21,     9,
-      10,    11,     0,     0,     0,    26,     7,     8,     5,     6,
-      16,     0,     3,    23,    25,    12,    18,     0,    27,    36,
-      29,     0,    30,    34,    15,    17,    32,    28,    31,    33,
-      35
+       0,    12,    14,    15,     0,     0,     0,    20,     0,     4,
+      21,    25,     0,     1,     0,     0,    23,    20,     2,    22,
+      16,     0,     9,    10,    11,     0,     0,     0,    27,     7,
+       8,     5,     6,     3,    24,    26,    17,    13,    18,     0,
+      28,    37,    30,     0,    31,    35,    19,    33,    29,    32,
+      34,    36
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     5,    39,    26,    27,    16,     7,    28,     8,     9,
-      10,    29,    41,    42,    43
+      -1,     5,    41,    29,     6,    30,    17,     8,    31,     9,
+      10,    11,    32,    43,    44,    45
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -45
+#define YYPACT_NINF -18
 static const yytype_int8 yypact[] =
 {
-      42,    15,   -45,   -45,    22,    36,    23,    47,   -45,     5,
-     -45,    26,     2,   -45,    47,     5,    32,   -45,    32,   -45,
-     -45,   -45,    40,    35,    14,   -45,   -45,   -45,   -45,   -45,
-     -45,    34,   -45,    32,   -45,   -45,   -45,    43,   -45,   -45,
-      26,    38,     5,   -45,   -45,   -45,     5,   -45,    26,    26,
-     -45
+      44,   -18,   -18,   -18,    -9,     7,    -1,     1,    49,   -18,
+      29,   -18,     6,   -18,    28,    49,    29,    13,   -18,    13,
+     -18,    12,   -18,   -18,   -18,    25,    37,    16,   -18,   -18,
+     -18,   -18,   -18,   -18,    13,   -18,   -18,   -18,   -18,    22,
+     -18,   -18,    28,    23,    29,   -18,   -18,    29,   -18,    28,
+      28,   -18
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -45,   -45,    48,   -45,   -45,     0,    52,   -45,    -6,    -4,
-     -15,   -45,   -45,    20,   -44
+     -18,   -18,    34,   -18,   -18,   -18,     0,    43,   -18,    -7,
+      -4,   -17,   -18,   -18,    14,    10
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -525,36 +528,36 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-       6,    17,    15,    34,    50,    50,    31,     1,    32,    18,
-       2,     3,    15,     2,     3,    33,    30,    37,    34,    19,
-      20,    21,     2,     3,    40,    11,    22,    23,     1,    24,
-      38,    19,    20,    21,     4,    12,    13,     1,    22,    23,
-       1,    24,    48,     2,     3,    35,    49,     1,    44,    36,
-       2,     3,     1,     4,    47,     2,     3,    45,    14,    25,
-      46
+       7,    18,    35,    16,    12,    21,     1,    13,    33,    14,
+      19,     1,     4,    16,     2,     3,    34,    35,     1,    39,
+      20,    22,    23,    24,     2,     3,    36,    42,    25,    26,
+      37,    27,    40,    22,    23,    24,    46,     2,     3,    48,
+      25,    26,     1,    27,    49,     2,     3,    50,    28,     1,
+      15,    38,     2,     3,     1,     4,    47,     2,     3,    51,
+      51
 };
 
 static const yytype_uint8 yycheck[] =
 {
-       0,     7,     6,    18,    48,    49,    12,     5,    14,     9,
-       8,     9,    16,     8,     9,    15,    14,    23,    33,     5,
-       6,     7,     8,     9,    24,    10,    12,    13,     5,    15,
-      16,     5,     6,     7,    11,    13,     0,     5,    12,    13,
-       5,    15,    42,     8,     9,     5,    46,     5,    14,    14,
-       8,     9,     5,    11,    16,     8,     9,    14,     6,    11,
-      40
+       0,     8,    19,     7,    13,    12,     5,     0,    15,    10,
+      10,     5,    11,    17,     8,     9,    16,    34,     5,    26,
+      14,     5,     6,     7,     8,     9,    14,    27,    12,    13,
+       5,    15,    16,     5,     6,     7,    14,     8,     9,    16,
+      12,    13,     5,    15,    44,     8,     9,    47,    14,     5,
+       7,    14,     8,     9,     5,    11,    42,     8,     9,    49,
+      50
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     5,     8,     9,    11,    18,    22,    23,    25,    26,
-      27,    10,    13,     0,    23,    26,    22,    25,    22,     5,
-       6,     7,    12,    13,    15,    19,    20,    21,    24,    28,
-      14,    25,    25,    22,    27,     5,    14,    25,    16,    19,
-      22,    29,    30,    31,    14,    14,    30,    16,    22,    22,
-      31
+       0,     5,     8,     9,    11,    18,    21,    23,    24,    26,
+      27,    28,    13,     0,    10,    24,    27,    23,    26,    23,
+      14,    26,     5,     6,     7,    12,    13,    15,    19,    20,
+      22,    25,    29,    26,    23,    28,    14,     5,    14,    26,
+      16,    19,    23,    30,    31,    32,    14,    31,    16,    23,
+      23,    32
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1364,10 +1367,314 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-      
+        case 2:
 
 /* Line 1455 of yacc.c  */
-#line 1371 "xir_grammer.cc"
+#line 20 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=CAST_PARAM->newComplexNode(XirAstNode::AT_ROOT);
+		node->addChrild((yyvsp[(1) - (2)]));
+		node->addChrild((yyvsp[(2) - (2)]));
+		(yyval)=node;
+		CAST_PARAM->setRoot(node);
+	;}
+    break;
+
+  case 3:
+
+/* Line 1455 of yacc.c  */
+#line 28 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=CAST_PARAM->newComplexNode(XirAstNode::AT_ROOT);
+		node->addChrild((yyvsp[(2) - (3)]));
+		node->addChrild((yyvsp[(3) - (3)]));
+		(yyval)=node;
+		CAST_PARAM->setRoot(node);
+	;}
+    break;
+
+  case 4:
+
+/* Line 1455 of yacc.c  */
+#line 36 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=CAST_PARAM->newComplexNode(XirAstNode::AT_ROOT);
+		node->addChrild((yyvsp[(1) - (1)]));
+		(yyval)=node;
+		CAST_PARAM->setRoot(node);
+	;}
+    break;
+
+  case 5:
+
+/* Line 1455 of yacc.c  */
+#line 44 "xir_grammer.y"
+    {(yyval)=(yyvsp[(1) - (1)]);;}
+    break;
+
+  case 6:
+
+/* Line 1455 of yacc.c  */
+#line 45 "xir_grammer.y"
+    {(yyval)=(yyvsp[(1) - (1)]);;}
+    break;
+
+  case 7:
+
+/* Line 1455 of yacc.c  */
+#line 46 "xir_grammer.y"
+    {(yyval)=(yyvsp[(1) - (1)]);;}
+    break;
+
+  case 8:
+
+/* Line 1455 of yacc.c  */
+#line 47 "xir_grammer.y"
+    {(yyval)=(yyvsp[(1) - (1)]);;}
+    break;
+
+  case 9:
+
+/* Line 1455 of yacc.c  */
+#line 51 "xir_grammer.y"
+    {
+		(yyval)=CAST_PARAM->newStringNode();
+	;}
+    break;
+
+  case 10:
+
+/* Line 1455 of yacc.c  */
+#line 55 "xir_grammer.y"
+    {
+		(yyval)=CAST_PARAM->newStringNode();
+	;}
+    break;
+
+  case 11:
+
+/* Line 1455 of yacc.c  */
+#line 59 "xir_grammer.y"
+    {
+		(yyval)=CAST_PARAM->newStringNode();
+	;}
+    break;
+
+  case 12:
+
+/* Line 1455 of yacc.c  */
+#line 65 "xir_grammer.y"
+    {
+		(yyval)=CAST_PARAM->newStringNode();
+	;}
+    break;
+
+  case 13:
+
+/* Line 1455 of yacc.c  */
+#line 69 "xir_grammer.y"
+    {
+	(yyval)=CAST_PARAM->newReferNode();
+;}
+    break;
+
+  case 16:
+
+/* Line 1455 of yacc.c  */
+#line 77 "xir_grammer.y"
+    {
+		(yyval)=CAST_PARAM->newComplexNode(XirAstNode::AT_REf_DICT);
+	;}
+    break;
+
+  case 17:
+
+/* Line 1455 of yacc.c  */
+#line 81 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=(XirAstComplexNode*)((yyvsp[(3) - (4)]));
+		node->setType(XirAstNode::AT_REf_DICT);
+		(yyval)=node;
+	;}
+    break;
+
+  case 18:
+
+/* Line 1455 of yacc.c  */
+#line 89 "xir_grammer.y"
+    {	
+		(yyval)=CAST_PARAM->newComplexNode(XirAstNode::AT_DICT);
+	;}
+    break;
+
+  case 19:
+
+/* Line 1455 of yacc.c  */
+#line 93 "xir_grammer.y"
+    {
+		(yyval)=(yyvsp[(2) - (3)]);
+	;}
+    break;
+
+  case 20:
+
+/* Line 1455 of yacc.c  */
+#line 99 "xir_grammer.y"
+    {
+		(yyval)=CAST_PARAM->newComplexNode(XirAstNode::AT_DICT);
+	;}
+    break;
+
+  case 21:
+
+/* Line 1455 of yacc.c  */
+#line 102 "xir_grammer.y"
+    {(yyval)=(yyvsp[(1) - (1)]);;}
+    break;
+
+  case 22:
+
+/* Line 1455 of yacc.c  */
+#line 103 "xir_grammer.y"
+    {(yyval)=(yyvsp[(1) - (2)]);;}
+    break;
+
+  case 23:
+
+/* Line 1455 of yacc.c  */
+#line 104 "xir_grammer.y"
+    {(yyval)=(yyvsp[(2) - (2)]);;}
+    break;
+
+  case 24:
+
+/* Line 1455 of yacc.c  */
+#line 105 "xir_grammer.y"
+    {(yyval)=(yyvsp[(2) - (3)]);;}
+    break;
+
+  case 25:
+
+/* Line 1455 of yacc.c  */
+#line 109 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=CAST_PARAM->newComplexNode(XirAstNode::AT_DICT);
+		node->addChrild((yyvsp[(1) - (1)]));
+		(yyval)=node;
+	;}
+    break;
+
+  case 26:
+
+/* Line 1455 of yacc.c  */
+#line 115 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=(XirAstComplexNode*)((yyvsp[(1) - (3)]));
+		node->addChrild((yyvsp[(3) - (3)]));
+		(yyval)=node;
+	;}
+    break;
+
+  case 27:
+
+/* Line 1455 of yacc.c  */
+#line 123 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=CAST_PARAM->newComplexNode(XirAstNode::AT_DICT_ENTRY);
+		node->addChrild((yyvsp[(1) - (3)]));
+		node->addChrild((yyvsp[(3) - (3)]));
+		(yyval)=node;
+	;}
+    break;
+
+  case 28:
+
+/* Line 1455 of yacc.c  */
+#line 133 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=CAST_PARAM->newComplexNode(XirAstNode::AT_ARRAY);
+		(yyval)=node;
+	;}
+    break;
+
+  case 29:
+
+/* Line 1455 of yacc.c  */
+#line 137 "xir_grammer.y"
+    {(yyval)=(yyvsp[(2) - (3)]);;}
+    break;
+
+  case 30:
+
+/* Line 1455 of yacc.c  */
+#line 141 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=CAST_PARAM->newComplexNode(XirAstNode::AT_ARRAY);
+		(yyval)=node;
+	;}
+    break;
+
+  case 31:
+
+/* Line 1455 of yacc.c  */
+#line 145 "xir_grammer.y"
+    {(yyval)=(yyvsp[(1) - (1)]);;}
+    break;
+
+  case 32:
+
+/* Line 1455 of yacc.c  */
+#line 146 "xir_grammer.y"
+    {(yyval)=(yyvsp[(1) - (2)]);;}
+    break;
+
+  case 33:
+
+/* Line 1455 of yacc.c  */
+#line 147 "xir_grammer.y"
+    {(yyval)=(yyvsp[(2) - (2)]);;}
+    break;
+
+  case 34:
+
+/* Line 1455 of yacc.c  */
+#line 148 "xir_grammer.y"
+    {(yyval)=(yyvsp[(2) - (3)]);;}
+    break;
+
+  case 35:
+
+/* Line 1455 of yacc.c  */
+#line 152 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=CAST_PARAM->newComplexNode(XirAstNode::AT_ARRAY);
+		node->addChrild((yyvsp[(1) - (1)]));
+		(yyval)=node;
+	;}
+    break;
+
+  case 36:
+
+/* Line 1455 of yacc.c  */
+#line 159 "xir_grammer.y"
+    {
+		XirAstComplexNode* node=(XirAstComplexNode*)((yyvsp[(1) - (3)]));
+		node->addChrild((yyvsp[(3) - (3)]));
+		(yyval)=node;
+	;}
+    break;
+
+  case 37:
+
+/* Line 1455 of yacc.c  */
+#line 167 "xir_grammer.y"
+    {(yyval)=(yyvsp[(1) - (1)]);;}
+    break;
+
+
+
+/* Line 1455 of yacc.c  */
+#line 1678 "xir_grammer.cc"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);

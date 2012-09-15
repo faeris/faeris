@@ -12,7 +12,15 @@ car:{
 		name:Nosiclin
 		age:32
 		marred:true
+		abc:{
+			not:1
+			good:2
+		}
 	}
 	people:[like,tom,boy,nike]
 }
 
+car2:{
+	white:red
+	doors:4
+}

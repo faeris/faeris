@@ -1,15 +1,13 @@
 #ifndef _FEARY_XIR_TOKEN_H_
 #define _FEARY_XIR_TOKEN_H_
+#include<string>
 enum XirToken
 {
 	XT_UNKOWN=0,
-	XT_EOF,
 	XT_ERROR,
 	XT_SIM_STR,
 	XT_DOU_STR,
 	XT_SIN_STR,
-	XT_WS,
-	XT_COMMENT,
 
 	XT_NEWLINE,
 	XT_COMMA,
@@ -22,9 +20,14 @@ enum XirToken
 	XT_L_SB,
 	XT_R_SB,
 
+	XT_WS,
+	XT_COMMENT,
+	XT_EOF,
+
 	XT_TOKEN_NU,
 };
 
+std::string XirToken_Name(int token);
 #endif  /*_FEARY_XIR_TOKEN_H_*/
 
 

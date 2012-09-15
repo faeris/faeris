@@ -2,11 +2,12 @@ PROJECT=grlib
   
 SRC= sl_simple_str.cc sl_single_quote_str.cc sl_double_quote_str.cc \
 	 sl_white_space.cc sl_comment.cc sl_specific_symbol.cc xir_file.cc \
-	 xir_scanner.cc sl_top.cc
+	 xir_scanner.cc sl_top.cc  xir_token.cc  xir_parser.cc xir_grammer.cc \
+
 
 DEBUG=
 
-BIN= scanner_test.cc
+BIN= scanner_test.cc  lexical_test.cc  parser_test.cc
 
 
 
@@ -55,6 +56,8 @@ obj/%.o:%.cc
 obj/%.o:debug/%.cc
 	$(CC) $(FLAGS) -c -o $@ $< $(INCLUDE) 
 	
+xir_grammer.cc:xir_grammer.y
+	bison xir_grammer.y -o xir_grammer.cc
 	
 init:
 	mkdir -p obj 

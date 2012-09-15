@@ -1,0 +1,18 @@
+&{
+	little:small
+	just:sfdsf
+	safasf:ewe
+}
+
+car:{
+	color:$little
+	doors:4
+	mpg:23
+	driver:{
+		name:Nosiclin
+		age:32
+		marred:true
+	}
+	people:[like,tom,boy,nike]
+}
+

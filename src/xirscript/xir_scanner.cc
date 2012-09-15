@@ -11,6 +11,7 @@ XirScanner::XirScanner(IFile* file,XirState* begin_state)
 	m_begin_state=begin_state;
 	m_cur_token=XT_UNKOWN;
 	m_cur_line=1;
+	m_eof=0;
 }
 XirScanner::~XirScanner()
 {
@@ -42,21 +43,29 @@ int XirScanner::nextToken()
 		char event=file->nextChar();
 		if(event==EOF)
 		{
-			if(token_size==0)
+			if(!m_eof)
 			{
-				m_cur_token=XT_EOF;
-				break;
-			}
-			if(finnal_state==NULL)
-			{
-				file->mark();
-				m_cur_token=XT_ERROR;
+				event='\n';
+				m_eof=true;
 			}
 			else
 			{
-				m_cur_token=finnal_state->token;
+				if(token_size==0)
+				{
+					m_cur_token=XT_EOF;
+					break;
+				}
+				if(finnal_state==NULL)
+				{
+					file->mark();
+					m_cur_token=XT_ERROR;
+				}
+				else
+				{
+					m_cur_token=finnal_state->token;
+				}
+				break;
 			}
-			break;
 		}
 
 		token_size++;
@@ -72,7 +81,7 @@ int XirScanner::nextToken()
 			{
 				m_cur_token=XT_ERROR;
 				file->mark();
-//				DEBUG("Error Translate %s(%c)",cur_state->name,event);
+				//				DEBUG("Error Translate %s(%c)",cur_state->name,event);
 			}
 			else
 			{
@@ -104,30 +113,10 @@ int XirScanner::nextToken()
 	return m_cur_token;
 }
 
-static const char* s_xir_token_name[]=
-{
-	"XT_UNKOWN",
-	"XT_EOF",
-	"XT_ERROR",
-	"XT_SIM_STR",
-	"XT_DOU_STR",
-	"XT_SIN_STR",
-	"XT_WS",
-	"XT_COMMENT",
-	"XT_NEWLINE",
-	"XT_COMMA",
-	"XT_COLON",
-	"XT_AMPERSAND",
-	"XT_DOLLAR",
-	"XT_L_RB",
-	"XT_R_RB",
-	"XT_L_SB",
-	"XT_R_SB",
-};
 
 std::string XirScanner::curTokenName()
 {
-	return std::string(s_xir_token_name[m_cur_token]);
+	return XirToken_Name(m_cur_token);
 }
 
 

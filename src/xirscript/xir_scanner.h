@@ -11,6 +11,7 @@ class XirScanner
 		int m_cur_line;
 		std::string m_cur_string;
 		XirState* m_begin_state;
+		bool m_eof;
 	public:
 		XirScanner(IFile* file,XirState* begin_state);
 		~XirScanner();

@@ -20,7 +20,3 @@ car:{
 	people:[like,tom,boy,nike]
 }
 
-car2:{
-	white:red
-	doors:4
-}

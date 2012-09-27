@@ -15,9 +15,11 @@ class GrObject
 		void decRef();
 		int refCount();
 
-		virtual size_t getHashCode() const; 
+		virtual const char* getName()const=0; 
+		virtual size_t getHashCode()const; 
+		virtual int equal(GrObject* g)const;
+
 		virtual ~GrObject();
-		virtual const char* getName() const; 
 };
 #endif 
 

@@ -8,3 +8,7 @@ size_t GrObject::getHashCode()const
 {
 	return ERR_HASH_CODE;
 }
+int grobject::equal(GrObject* g)const 
+{
+	return false;
+}

@@ -60,11 +60,6 @@ XirAstNode* XirParser::parse(IFile* file)
 	if(ret!=YYACCEPT)
 	{
 		delete lex;
-		if(parm->m_root!=NULL)
-		{
-			delete parm->m_root;
-			parm->m_root=NULL;
-		}
 		parm->deletePendingNode();
 		delete parm;
 		return NULL;

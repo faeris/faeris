@@ -1,7 +1,7 @@
 #ifndef FY_MATH_VECTOR2_INL_
 #define FY_MATH_VECTOR2_INL_
-#include "vector2.h"
-#include "mathutil.h"
+#include "core/vector2.h"
+#include "core/mathutil.h"
 #include<math.h>
 inline Vector2::Vector2(float fx,float fy)
 	:x(fx),y(fy)

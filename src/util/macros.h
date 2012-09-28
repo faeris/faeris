@@ -3,6 +3,7 @@
 
 #include<stdio.h>
 
+#define FY_INLINE static inline 
 
 #define Maroc_Func_Condition(name,condition,args...) \
 	do{ \

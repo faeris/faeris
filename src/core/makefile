@@ -1,11 +1,11 @@
 PROJECT=fymath
  
-SRC= matrix4.cc
+SRC= matrix4.cc mathutil.cc
 
 
 DEBUG=test.cc
 
-BIN=vector3_test.cc vector2_test.cc vector4_test.cc 
+BIN=matrix4_test.cc
 
 
 

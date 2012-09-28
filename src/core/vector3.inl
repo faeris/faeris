@@ -1,8 +1,9 @@
 #ifndef FY_MATH_VECTORE3_INL_
 #define FY_MATH_VECTORE3_INL_
 #include<math.h>
-#include"mathutil.h"
+#include"core/mathutil.h"
 #include<stdio.h>
+#include"util/macros.h"
 
 inline Vector3::Vector3(float fx,float fy,float fz)
 	:x(fx),y(fy),z(fz) {}
@@ -49,7 +50,7 @@ inline Vector3 Vector3::cross(const Vector3& u) const
 }
 
 /* normal(v)= v/|v| */
-Vector3 Vector3::normal() const
+inline Vector3 Vector3::normal() const
 {
 	float l=length();
 	return Vector3(x/l,y/l,z/l);
@@ -57,7 +58,7 @@ Vector3 Vector3::normal() const
 
 
 
-void Vector3::normalize()
+inline void Vector3::normalize()
 {
 	float l=length();
 	x=x/l;

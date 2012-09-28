@@ -1,7 +1,17 @@
+/************************************************************
+ * File: matrix4.h
+ * Description: Thanks to three.js,I can impliement quickly
+ * Author: NosicLin(nosiclin@foxmail.com)
+ * Date:2012-9-27
+ * LastUpdate:2012-9-28
+ * Copyright:Faery Studio
+ ************************************************************/
+
 #ifndef FY_MATH_MATRIX_H_
 #define FY_MATH_MATRIX_H_ 
 #include"core/vector3.h"
 #include"core/vector4.h"
+#include"core/quaternion.h"
 
 class  Matrix4
 {
@@ -17,6 +27,16 @@ class  Matrix4
 			float v[16];
 			float m[4][4];
 		};
+	public:
+		enum 
+		{
+			MR_XYZ,
+			MR_XZY,
+			MR_YZX,
+			MR_YXZ,
+			MR_ZXY,
+			MR_ZYX,
+		};
 
 	public:
 		static Matrix4 makeRotateX(float theta);
@@ -28,7 +48,7 @@ class  Matrix4
 		static Matrix4 makePerspective(float fov,float aspect,float near,float far);
 		static Matrix4 makeOrthographic(float left,float right,float top,float bottom,float neay,float far);
 
-		Matrix4();
+		Matrix4(){}
 		Matrix4(const float* v);
 
 		Matrix4(float v00,float v01,float v02,float v03,
@@ -39,18 +59,18 @@ class  Matrix4
 			set(v00,v01,v02,v03,
 				v10,v11,v12,v13,
 				v20,v21,v22,v23,
-				v30,v31,v32,v33,
+				v30,v31,v32,v33
 			   );
 		}
 
-		void add(const Matrix44& n); 
-		void mul(const Matrix44& n);
+		void add(const Matrix4& n); 
+		void mul(const Matrix4& n);
 		void mulScaler(float s);
 
 		void transpose();
-		void indentity();
+		void identity();
 
-		void setPosition(x,y,z);
+		void setPosition(float x,float y,float z);
 		void setPosition(const Vector3& v);
 
 		Vector3 getColumnX();
@@ -62,9 +82,9 @@ class  Matrix4
 		Matrix4 getInverse();
 
 		void setRotationFromEuler(int type,float rx,float ry,float rz);
-		void setRotationFromQauternion(); /*TODO*/
-		void compose(const Vector3& translation,float rx,float ry,float rz,float s);
-		void decompose(Vector3* translation,float* rx,float* ry,float* rz,float* s);
+		void setRotationFromQuaternion(const Quaternion& q); 
+		void compose(const Vector3& translation,const Quaternion& q,const Vector3& s);
+		void decompose(Vector3* translation,Quaternion* q,Vector3* s);
 
 
 
@@ -73,7 +93,7 @@ class  Matrix4
 		void rotateY(float angle);
 		void rotateZ(float angle);
 
-		void rotateByAxis(const Vector3& v,angle);
+		void rotateByAxis(const Vector3& v,float angle);
 		void scale(const Vector3& v);
 
 	protected:

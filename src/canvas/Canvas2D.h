@@ -1,6 +1,7 @@
 #ifndef _CANVAS_CANVAS2D_H_
 #define _CANVAS_CANVAS2D_H_
 
+
 class Canvas2D
 {
 	public:

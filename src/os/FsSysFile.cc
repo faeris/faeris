@@ -1,4 +1,4 @@
-#include"io/sys_file.h"
+#include"io/FsSysFile.h"
 #include<stdio.h>
 #include"util/marocs.h"
 
@@ -13,18 +13,18 @@ SysFile* SysFile::open(const char* name,const char* mode)
 	return new SysFile(f);
 }
 
-int SysFile::read(void* buf,size_t length)
+FsLong SysFile::read(void* buf,FsLong length)
 {
 	return fread(buf,1,length,mfile);
 }
 
-int SysFile::write(const void* buf,size_t length)
+FsLong SysFile::write(const void* buf,FsLong length)
 {
 	return fwrite(buf,1,length,mfile);
 }
-long SysFile::seek(long offset,int where)
+FsLong SysFile::seek(FsLong offset,FsInt where)
 {
-	off_t ret;
+	FsLong ret;
 	switch(where)
 	{
 		case IFile::IF_CUR:
@@ -41,10 +41,14 @@ long SysFile::seek(long offset,int where)
 	}
 	return ret;
 }
-int SysFile::close()
+FsInt SysFile::close()
 {
-	int ret=fclose(mfile);
-	mfile=NULL;
+	FsInt ret=0;
+	if(mfile)
+	{
+		ret=fclose(mfile);
+		mfile=NULL;
+	}
 	return ret;
 }
 SysFile::~SysFile()

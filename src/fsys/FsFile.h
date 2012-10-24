@@ -1,6 +1,6 @@
 #ifndef _FAERY_IO_IFILE_H_
 #define _FAERY_IO_IFILE_H_
-class FsIFile
+class IFile
 {
 	public:
 		enum

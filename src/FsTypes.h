@@ -2,6 +2,11 @@
 #define _FAERY_TYPES_H_
 
 
+typedef void FsVoid;
+typedef char FsChar;
+typedef unsigned char FsUchar;
+typedef bool FsBool;
+
 typedef char FsInt8;
 typedef unsigned char FsUint8;
 

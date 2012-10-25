@@ -1,45 +1,55 @@
 #ifndef FS_UTIL_LOG_H_
 #define FS_UTIL_LOG_H_
+#include "FsMacros.h"
+
+FAERIS_NAMESPACE_BEGIN 
+
+class FsFile;
 class FsLog
 {
 	private:
 		static FsLog* ms_log;
+		static void init();
 	public:
-		static void sLog(const char* tag,const char* msg,...);
+		static void sLog(const FsChar* tag,const FsChar* msg,...);
+		static void sLog(const FsChar* fmt,...);
+
 	public:
-		void log(const char* log,const char* msg,...);
-		virtual void log(const char* log)=0;
-		virtual void FsLog(){}
+		void log(const FsChar* tag,const FsChar* fmt,...);
+		void log(const FsChar* fmt,...);
+
+		virtual ~FsLog(){}
+	protected:
+		virtual void logMsg(const FsChar* log)=0;
+
 };
 
-class FsStdioLog:public FsLog
+class FileLog:public FsLog 
 {
 	public:
-		virtual void log(const char* log);
-};
-
-class FsFileLog:public FsLog 
-{
+		static FileLog* getStdioFileLog();
+		static FileLog* ms_stdioFileLog;
 	public:
-		FsFileLog* create(const char* filename);
-		virtual void log(const char* log);
-		virtual ~FsFileLog();
+		FileLog* create(const FsChar* filename);
+		virtual ~FileLog();
+	protected:
+		virtual void logMsg(const FsChar* log);
 	private:
-		FsFileLog(void* data);
+		FileLog(FsFile* file);
 	private:
-		void* m_data;
+		FsFile* m_file;
 };
 
 
+#define FS_LOG_INFO(fmt,...) 
 
-#define FS_LOG_INFO(msg,...) \
-	fsLog::sLog("info",msg,#VA_ARGS);
-
-#define FS_LOG_WARN()
-#define FS_LOG_ERROR()
-#define FS_LOG_INFO_ON()
+#define FS_LOG_WARN(fmt,...)
+#define FS_LOG_DEBUG(fmt,...)
+#define FS_LOG_ERROR(fmt,...)
+#define FS_LOG_INFO_ON(conditon,fmt,...)
 #define FS_LOGON_WARN_ON()
 #define FS_LOGON_ERROR_ON()
+FAERIS_NAMESPACE_END
 
 #endif  /*FS_UTIL_LOG_H_*/
 

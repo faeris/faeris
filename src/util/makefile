@@ -1,11 +1,11 @@
 PROJECT=fyutil
  
-SRC= util.cc
+SRC= util.cc FsLog.cc
 
 
 DEBUG=
 
-BIN=
+BIN=test_log.cc
 
 
 
@@ -27,9 +27,9 @@ BIN_OBJ_NAME=$(BIN:%.cc=%.o)
 BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 
 CC=g++
-FLAGS=-g -Wall  -Werror -include sys/types.h
+FLAGS=-g -Wall  -Werror 
 INCLUDE=-I. -I./debug   -I../  
-LIB=-Llib -l$(PROJECT) -l$(PROJECT)debug  
+LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug   -lfsys
 
 
 

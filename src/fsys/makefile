@@ -1,6 +1,6 @@
-PROJECT=io
+PROJECT=fsys
  
-SRC= sys_file.cc
+SRC= FsSysFile.cc FsVFS.cc
 
 
 DEBUG=
@@ -27,8 +27,8 @@ BIN_OBJ_NAME=$(BIN:%.cc=%.o)
 BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 
 CC=g++
-FLAGS=-g -Wall  -Werror -include sys/types.h
-INCLUDE=-I. -I./debug   -I../  
+FLAGS=-g -Wall  -Werror 
+INCLUDE=-I. -I./debug   -I../   -I../
 LIB=-Llib -l$(PROJECT) -l$(PROJECT)debug  
 
 

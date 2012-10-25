@@ -1,15 +1,22 @@
 #ifndef _FAERY_SYS_FILE_H_
 #define _FAERY_SYS_FILE_H_
-#include "FsIFile.h"
 
-FAERY_NAMESPACE_BEGIN
+#include "FsMacros.h"
+#include "FsFile.h"
 
-class FsSysFilePlateform;
+FAERIS_NAMESPACE_BEGIN
 
-class FsSysFile:public IFile 
+#if defined(FS_OS_WIN) || defined(FS_OS_LINUX)
+	#include<stdio.h>
+	typedef FILE* SysFilePlateform ;
+#else 
+	#error "Error Platform For SysFile"
+#endif 
+
+class SysFile:public FsFile 
 {
 	public:
-		static SysFile* open(const FsChar* name,const FsChar* mode);
+		static SysFile* open(const FsChar* name,FsUint mode);
 	public:
 		virtual FsLong read(FsVoid* buf,FsLong length);
 		virtual FsLong write(const FsVoid* buf,FsLong length);
@@ -17,10 +24,12 @@ class FsSysFile:public IFile
 		virtual FsInt close();
 		virtual FsLong tell();
 		virtual ~SysFile();
+	protected:
+		SysFile(SysFilePlateform f){m_platfromFile=f;}
 	private:
-		FsSysFilePlateform* m_platfromFile;
+		SysFilePlateform m_platfromFile;
 };
-FAERY_NAMESPACE_END
+FAERIS_NAMESPACE_END
 
 #endif  /*_FAERY_SYS_FILE_H_*/
 

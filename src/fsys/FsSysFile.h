@@ -6,7 +6,7 @@
 
 FAERIS_NAMESPACE_BEGIN
 
-#if defined(FS_OS_WIN) || defined(FS_OS_LINUX)
+#if FS_PLATFORM_OS(FS_OS_WIN) || FS_PLATFORM_OS(FS_OS_LINUX)
 	#include<stdio.h>
 	typedef FILE* SysFilePlateform ;
 #else 
@@ -17,6 +17,13 @@ class SysFile:public FsFile
 {
 	public:
 		static SysFile* open(const FsChar* name,FsUint mode);
+		static SysFile* getStdoutFile();
+		static SysFile* getStderrFile();
+		static SysFile* getStdinFile();
+	private:
+		static SysFile* ms_stdout;
+		static SysFile* ms_stdin;
+		static SysFile* ms_stderr;
 	public:
 		virtual FsLong read(FsVoid* buf,FsLong length);
 		virtual FsLong write(const FsVoid* buf,FsLong length);

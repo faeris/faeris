@@ -1,6 +1,6 @@
 PROJECT=fsys
  
-SRC= FsSysFile.cc FsVFS.cc
+SRC= FsSysFile.cc FsVFS.cc FsFile.cc
 
 
 DEBUG=

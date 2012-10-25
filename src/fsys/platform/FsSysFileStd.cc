@@ -1,6 +1,36 @@
 #include <stdio.h>
 #include "util/FsLog.h"
 
+SysFile* SysFile::ms_stdout=NULL;
+SysFile* SysFile::ms_stdin=NULL;
+SysFile* SysFile::ms_stderr=NULL;
+
+SysFile* SysFile::getStdoutFile()
+{
+	if(ms_stdout==NULL)
+	{
+		ms_stdout=new SysFile(stdout);
+	}
+	return ms_stdout;
+}
+SysFile* SysFile::getStdinFile()
+{
+	if(ms_stdin==NULL)
+	{
+		ms_stdin=new SysFile(stdout);
+	}
+	return ms_stdin;
+}
+SysFile* SysFile::getStderrFile()
+{
+	if(ms_stderr==NULL)
+	{
+		ms_stderr=new SysFile(stdout);
+	}
+	return ms_stderr;
+}
+
+
 SysFile* SysFile::open(const char* name,FsUint mode)
 {
 	FILE* f=fopen(name,"w+");

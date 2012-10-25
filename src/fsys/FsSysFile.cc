@@ -1,8 +1,8 @@
 #include"FsSysFile.h"
 
 FAERIS_NAMESPACE_BEGIN
-#if defined(FS_OS_WIN)||defined(FS_OS_LINUX)
-	#include "platform/FsSysFileStdio.cc"
+#if FS_PLATFORM_OS(FS_OS_WIN)|| FS_PLATFORM_OS(FS_OS_LINUX)
+	#include "platform/FsSysFileStd.cc"
 #else
 	#error "Error Platform For SysFile"
 #endif 

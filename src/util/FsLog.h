@@ -27,10 +27,10 @@ class FsLog
 class FileLog:public FsLog 
 {
 	public:
-		static FileLog* getStdioFileLog();
-		static FileLog* ms_stdioFileLog;
+		static FileLog* getStdoutFileLog();
+		static FileLog* ms_stdoutFileLog;
+		static FileLog* create(const FsChar* filename);
 	public:
-		FileLog* create(const FsChar* filename);
 		virtual ~FileLog();
 	protected:
 		virtual void logMsg(const FsChar* log);

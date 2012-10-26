@@ -12,5 +12,17 @@
 
 #define FS_OS_LINUX
 
+#ifndef NULL
+	#define NULL 0
+#endif 
+
+#define FS_WARN_ON(cnd,fmt,...)
+#define FS_BUG_ON(cnd,fmt,...)
+#define FS_DEBUG_ON(cnd,fmt,...)
+
+#define FS_WARN(fmt,...)
+#define FS_BUG(fmt,...)
+#define FS_DEBUG(fmt,...)
+
 #endif /*_FAERIS_MACROS_H_*/
 

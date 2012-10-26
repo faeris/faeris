@@ -4,7 +4,6 @@
 #include "FsMacros.h"
 #include "FsFile.h"
 
-FAERIS_NAMESPACE_BEGIN
 
 #if FS_PLATFORM_OS(FS_OS_WIN) || FS_PLATFORM_OS(FS_OS_LINUX)
 	#include<stdio.h>
@@ -13,6 +12,8 @@ FAERIS_NAMESPACE_BEGIN
 	#error "Error Platform For SysFile"
 #endif 
 
+
+FAERIS_NAMESPACE_BEGIN
 class SysFile:public FsFile 
 {
 	public:

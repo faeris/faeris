@@ -49,6 +49,7 @@ class FileLog:public FsLog
 #define FS_LOG_INFO_ON(conditon,fmt,...)
 #define FS_LOGON_WARN_ON()
 #define FS_LOGON_ERROR_ON()
+
 FAERIS_NAMESPACE_END
 
 #endif  /*FS_UTIL_LOG_H_*/

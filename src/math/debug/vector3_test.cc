@@ -1,6 +1,6 @@
-#include <vector3.h>
-#include<math.h>
+#include <FsVector3.h>
 #include<stdio.h>
+#include<FsVector2.h>
 
 #define Func_Test(func) \
 	do{ \
@@ -21,6 +21,7 @@
 	} while(0) 
 
 
+using namespace Faeris;
 int test_constructor()
 {
 	Vector3 v(1,2,3);
@@ -111,11 +112,11 @@ int test_cross()
 	Vector3 v2(2,4,6);
 	Vector3 r=v1.cross(v2);
 
-	if(float_abs(r.dot(v1))>0.00001)
+	if(Math::abs(r.dot(v1))>0.00001)
 	{
 		return 0;
 	}
-	if(float_abs(r.dot(v2))>0.00001)
+	if(Math::abs(r.dot(v2))>0.00001)
 	{
 		return 0;
 	}
@@ -126,9 +127,9 @@ int test_length()
 {
 	Vector3 v(3,4,5);
 
-	float l=sqrt(3*3+4*4+5*5);
+	float l=Math::sqrt(3*3+4*4+5*5);
 
-	if(float_equal(v.length(),l))
+	if(Math::floatEqual(v.length(),l))
 	{
 		return 1;
 	}
@@ -139,7 +140,7 @@ int test_normal()
 {
 	Vector3 v1(100,100,100);
 
-	if(!float_equal(v1.normal().length(),1))
+	if(!Math::floatEqual(v1.normal().length(),1))
 	{
 		return 0;
 	}
@@ -178,12 +179,12 @@ int test_project()
 	Vector3 v2(1,1,1);
 	if(!v1.proj(v2).equal(Vector3(2,2,2)))
 	{
-		v1.proj(v2).print();
+		//v1.proj(v2).print();
 		return 0;
 	}
 	if(!v2.proj(v1).equal(Vector3(1,1,1)))
 	{
-		v2.proj(v1).print();
+		//v2.proj(v1).print();
 		return 0;
 	}
 
@@ -192,7 +193,7 @@ int test_project()
 
 	if(!v3.proj(v1).equal(Vector3(2.0/3,2.0/3,2.0/3)))
 	{
-		v3.proj(v1).print();
+		//v3.proj(v1).print();
 		return 0;
 	}
 
@@ -203,7 +204,7 @@ int test_project()
 	Vector3 vp=v4.proj(v5);
 	Vector3 vq=v4.sub(vp);
 
-	if (!float_equal(vp.dot(vq),0))
+	if (!Math::floatEqual(vp.dot(vq),0))
 	{
 		printf("%.10f\n",vp.dot(vq));
 		return 0;
@@ -218,11 +219,11 @@ int test_angle()
 	Vector3 v2(2,2,2);
 	Vector3 v3(3,3,0);
 
-	if( !float_equal(v1.angle(v2),0))
+	if( !Math::floatEqual(v1.angle(v2),0))
 	{
 		return 0;
 	}
-	if(!float_equal(v1.angle(v3),35.264389))
+	if(!Math::floatEqual(v1.angle(v3),35.264389))
 	{
 		return 0;
 	}

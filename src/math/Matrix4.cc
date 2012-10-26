@@ -1,15 +1,7 @@
-/************************************************************
- * File: matrix4.cc
- * Description: Thanks to three.js,I can impliement quickly
- * Author: NosicLin(nosiclin@foxmail.com)
- * Date:2012-9-27
- * LastUpdate:2012-9-28
- * Copyright:Faery Studio
- ************************************************************/
+#include "FsMatrix4.h"
 
-#include"core/matrix4.h"
-#include"core/mathutil.h"
-#include"util/macros.h"
+FAERIS_NAMESPACE_BEGIN
+
 Matrix4 Matrix4::makeRotateX(float theta)
 {
 	float c=Math::cos(theta);
@@ -426,6 +418,7 @@ void Matrix4::decompose(Vector3* translation,Quaternion* q,Vector3* s)
 
 }
 
+FAERIS_NAMESPACE_END
 
 
 

@@ -1,13 +1,14 @@
 #ifndef _FAERIS_FSMD2_LOADER_H_
 #define _FAERIS_FSMD2_LOADER_H_
 
-#include "math/vector2.h"
+#include "FsMacros.h"
+#include "math/FsVector3.h"
 #include "math/FsTexCoord2.h"
 #define FS_MD2_MAGIC_NUM 844121161
 #define FS_MD2_VERSION 8
 
-FAERIS_BEGIN_NAMESPACE
-class IFile;
+FAERIS_NAMESPACE_BEGIN
+class FsFile;
 struct Md2Header
 {
 	FsInt32 m_iMaigcNum;
@@ -21,6 +22,7 @@ struct Md2Header
 	FsInt32 m_iNumTriangles;
 	FsInt32 m_iNumGlCommands;
 	FsInt32 m_iNumFrames;
+
 	FsInt32 m_iOffsetSkins;
 	FsInt32 m_iOffsetTexCoords;
 	FsInt32 m_iOffsetTriangles;
@@ -31,19 +33,15 @@ struct Md2Header
 
 struct Md2Frame
 {
-	FsFloat m_fScale[3];
-	FsFloat m_fTrans[3];
 	char m_caName[16];
-	Vector2* m_pVerts;
-	FsUint m_iVertNu;
-	Md2Frame(FsUint vertNu)
-	{
-		m_pVerts=new Vector2[vertNu];
-		m_iVertNu=vertNu;
-	}
+	Vector3* m_pVerts;
+	Md2Frame():m_pVerts(NULL){}
 	~Md2Frame()
 	{
-		delete[] m_pVerts;
+		if(m_pVerts)
+		{
+			delete[] m_pVerts;
+		}
 	}
 };
 
@@ -56,11 +54,20 @@ struct Md2Triangle
 class Md2Model
 {
 	public:
-		Md2Mode* create(const char* filename);
-		Md2Mode* create(IFile* file);
+		Md2Model* create(const char* filename);
+		Md2Model* create(FsFile* file);
 	private:
-		struct Md2Frame* m_PFrames;
+		Md2Model(struct Md2Header* h,FsFile* file);
+
+		void loadFrames(struct Md2Header* h,FsFile* file);
+		void loadTriangles(struct Md2Header* h,FsFile* file);
+		void loadTexCoords(struct Md2Header* h,FsFile* file);
+		void loadSkins(struct Md2Header* h,FsFile* file);
+	public:
+	//private:
+		struct Md2Frame* m_pFrames;
 		FsUint m_iFrameNu;
+		FsUint m_iVertexNu;
 
 		TexCoord2* m_pTexCoords;
 		FsUint m_iTexCoordNu;
@@ -71,6 +78,6 @@ class Md2Model
 
 
 
-FAERIS_END_NAMESPACE 
+FAERIS_NAMESPACE_END
 #endif /*_FAERIS_FSMD2_LOADER_H_*/
 

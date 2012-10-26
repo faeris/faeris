@@ -1,6 +1,5 @@
-#include"stdio.h"
-#include"vector4.h"
-
+#include <stdio.h>
+#include"FsVector4.h"
 
 #define Func_Test(func) \
 	do{ \
@@ -20,6 +19,7 @@
 		printf("\n"); \
 	} while(0) 
 
+using namespace Faeris;
 
 
 int test_constructor()
@@ -110,7 +110,7 @@ int test_dot()
 
 	float r=v1.dot(v2);
 
-	if(!float_equal(r,1*5+2*6+3*7+4*8))
+	if(!Math::floatEqual(r,1*5+2*6+3*7+4*8))
 	{
 		return 0;
 	}
@@ -121,7 +121,7 @@ int test_dot()
 int test_length()
 {
 	Vector4 v1(1,2,3,4);
-	if(!float_equal(v1.length(),sqrt(1*1+2*2+3*3+4*4)))
+	if(!Math::floatEqual(v1.length(),Math::sqrt(1*1+2*2+3*3+4*4)))
 	{
 		return 0;
 	}

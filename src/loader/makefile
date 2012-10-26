@@ -1,12 +1,11 @@
-PROJECT=fymath
+PROJECT=loader
  
-SRC=FsMathUtil.cc 
+SRC=FsMd2Loader.cc
 
 
 DEBUG=
 
-BIN=vector2_test.cc vector3_test.cc  vector4_test.cc
-
+BIN=test_md2loader.cc
 
 
 
@@ -30,7 +29,8 @@ BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 CC=g++
 FLAGS=-g -Wall  -Werror -include sys/types.h
 INCLUDE=-I. -I./debug   -I../  
-LIB=-Llib -l$(PROJECT) -l$(PROJECT)debug  
+LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug  -lfyutil -lfymath  \
+	-lglut
 
 
 

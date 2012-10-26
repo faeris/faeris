@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "util/FsLog.h"
 
+FAERIS_NAMESPACE_BEGIN
+
 SysFile* SysFile::ms_stdout=NULL;
 SysFile* SysFile::ms_stdin=NULL;
 SysFile* SysFile::ms_stderr=NULL;
@@ -93,3 +95,5 @@ SysFile::~SysFile()
 		m_platfromFile=NULL;
 	}
 }
+
+FAERIS_NAMESPACE_END

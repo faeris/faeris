@@ -4,15 +4,16 @@
  * Author: NosicLin(nosiclin@foxmail.com)
  * Date:2012-9-27
  * LastUpdate:2012-9-28
- * Copyright:Faery Studio
+ * Copyright:Faery Game Studio
  ************************************************************/
 
 #ifndef FY_MATH_MATRIX_H_
 #define FY_MATH_MATRIX_H_ 
-#include"core/vector3.h"
-#include"core/vector4.h"
-#include"core/quaternion.h"
+#include"FsVector3.h"
+#include"FsVector4.h"
+#include"FsQuaternion.h"
 
+FAERIS_NAMESPACE_BEGIN
 class  Matrix4
 {
 	public:
@@ -107,11 +108,7 @@ class  Matrix4
 			m20=v20;m21=v21;m22=v22;m23=v23;
 			m30=v30;m31=v31;m32=v32;m33=v33;
 		}
-				
-
-
-
-
 };
+FAERIS_NAMESPACE_END
 #endif 
 

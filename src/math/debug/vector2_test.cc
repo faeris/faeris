@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<vector2.h>
+#include<FsVector2.h>
 
 #define Func_Test(func) \
 	do{ \
@@ -19,6 +19,7 @@
 		printf("\n"); \
 	} while(0) 
 
+using namespace Faeris;
 int test_constructor()
 {
 	Vector2 v(1,2);
@@ -93,7 +94,7 @@ int test_dot()
 	Vector2 v2(1,3);
 
 
-	if(!float_equal(v1.dot(v2),21))
+	if(!Math::floatEqual(v1.dot(v2),21))
 	{
 		return 0;
 	}
@@ -105,7 +106,7 @@ int test_length()
 {
 	Vector2 v1(3,4);
 
-	if(!float_equal(v1.length(),5))
+	if(!Math::floatEqual(v1.length(),5))
 	{
 		return 0;
 	}
@@ -161,7 +162,7 @@ int test_project()
 	Vector2 vp=v4.proj(v3);
 	Vector2 vq=v4.sub(vp);
 
-	if(!float_equal(vp.dot(vq),0))
+	if(!Math::floatEqual(vp.dot(vq),0))
 	{
 		return 0;
 	}
@@ -176,16 +177,16 @@ int test_angle()
 	Vector2 v1(1,1);
 	Vector2 v2(2,0);
 
-	if(!float_equal(v1.angle(v2),45))
+	if(!Math::floatEqual(v1.angle(v2),45))
 	{
 		printf("%f\n",v1.angle(v2));
 		return 0;
 	}
 
-	Vector2 v3(cos(30.0/180*PI),sin(30.0/180*PI));
-	Vector2 v4(cos(60.0/180*PI),sin(60.0/180*PI));
+	Vector2 v3(Math::cos(30.0/180*PI),Math::sin(30.0/180*PI));
+	Vector2 v4(Math::cos(60.0/180*PI),Math::sin(60.0/180*PI));
 
-	if(!float_equal(v3.angle(v4),30))
+	if(!Math::floatEqual(v3.angle(v4),30))
 	{
 		printf("%f\n",v3.angle(v4));
 		return 0;

@@ -1,11 +1,11 @@
-PROJECT=fyutil
+PROJECT=loader
  
-SRC= util.cc FsLog.cc
+SRC=FsMd2Loader.cc
 
 
 DEBUG=
 
-BIN=test_log.cc
+BIN=test_md2loader.cc md2file_info.cc
 
 
 
@@ -27,9 +27,10 @@ BIN_OBJ_NAME=$(BIN:%.cc=%.o)
 BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 
 CC=g++
-FLAGS=-g -Wall  -Werror 
+FLAGS=-g -Wall  -Werror -include sys/types.h
 INCLUDE=-I. -I./debug   -I../  
-LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug   -lfsys
+LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug  -lfyutil -lfymath  \
+	-lglut -lfsys -lGLU
 
 
 

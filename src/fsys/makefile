@@ -1,11 +1,11 @@
-PROJECT=fyutil
+PROJECT=fsys
  
-SRC= util.cc FsLog.cc
+SRC= FsSysFile.cc FsVFS.cc FsFile.cc
 
 
 DEBUG=
 
-BIN=test_log.cc
+BIN= 
 
 
 
@@ -28,8 +28,8 @@ BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 
 CC=g++
 FLAGS=-g -Wall  -Werror 
-INCLUDE=-I. -I./debug   -I../  
-LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug   -lfsys
+INCLUDE=-I. -I./debug   -I../   -I../
+LIB=-Llib -l$(PROJECT) -l$(PROJECT)debug  
 
 
 
@@ -54,6 +54,8 @@ obj/%.o:%.cc
 obj/%.o:debug/%.cc
 	$(CC) $(FLAGS) -c -o $@ $< $(INCLUDE) 
 	
+grammar.tab.c: grammar.y
+	bison grammar.y
 	
 init:
 	mkdir -p obj 
@@ -83,7 +85,7 @@ depend:
 	echo -n >.$(PROJECT).dep
 	for element in $(addprefix debug/,$(BIN)) $(SRC) $(addprefix debug/,$(DEBUG));do \
 		file_name=`basename $$element`;\
-		result=`echo $$file_name | sed -e 's/.c/.o/'`;\
+		result=`echo $$file_name | sed -e 's/.cc/.o/'`;\
 		gcc -M -MT "obj/$$result" $$element $(INCLUDE) >>.$(PROJECT).dep ;\
 	done
 

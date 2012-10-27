@@ -1,11 +1,12 @@
-PROJECT=fyutil
+PROJECT=fymath
  
-SRC= util.cc FsLog.cc
+SRC=FsMathUtil.cc 
 
 
 DEBUG=
 
-BIN=test_log.cc
+BIN=vector2_test.cc vector3_test.cc  vector4_test.cc
+
 
 
 
@@ -27,9 +28,9 @@ BIN_OBJ_NAME=$(BIN:%.cc=%.o)
 BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 
 CC=g++
-FLAGS=-g -Wall  -Werror 
+FLAGS=-g -Wall  -Werror -include sys/types.h
 INCLUDE=-I. -I./debug   -I../  
-LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug   -lfsys
+LIB=-Llib -l$(PROJECT) -l$(PROJECT)debug  
 
 
 

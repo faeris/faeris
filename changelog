@@ -19,4 +19,8 @@
 		1)cammer
 		2)render
 		3)interactive action 
+	@develop resource manager 
+		1) texture 
+		2) mesh 
+		3) sound 
 }

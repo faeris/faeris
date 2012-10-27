@@ -6,4 +6,9 @@
 #define FS_LOG_STDIO
 #define FS_MAX_LOG_BUF 1024
 
+
+/* render */
+#define FS_GL_RENDER
+
 #endif 
+

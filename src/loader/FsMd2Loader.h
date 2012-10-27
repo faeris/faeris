@@ -47,15 +47,15 @@ struct Md2Frame
 
 struct Md2Triangle
 {
-	FsUint m_iVertIndics[3];
-	FsUint m_iTexIndics[3];	
+	FsUint16 m_iVertIndics[3];
+	FsUint16 m_iTexIndics[3];	
 };
 
 class Md2Model
 {
 	public:
-		Md2Model* create(const char* filename);
-		Md2Model* create(FsFile* file);
+		static Md2Model* create(const char* filename);
+		static Md2Model* create(FsFile* file);
 	private:
 		Md2Model(struct Md2Header* h,FsFile* file);
 
@@ -74,6 +74,9 @@ class Md2Model
 
 		struct Md2Triangle* m_pTriangles;
 		FsUint m_iTriangleNu;
+
+		FsUint m_iSkinNu;
+		FsTexture* m_pTexture;
 };
 
 

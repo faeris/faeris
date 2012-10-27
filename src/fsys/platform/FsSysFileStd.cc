@@ -35,7 +35,45 @@ SysFile* SysFile::getStderrFile()
 
 SysFile* SysFile::open(const char* name,FsUint mode)
 {
-	FILE* f=fopen(name,"w+");
+	FILE* f=NULL;
+	switch(mode)
+	{
+		case FsFile::FO_RDONLY:
+			f=fopen(name,"r");
+			break;
+		case FsFile::FO_WRONLY:
+		case FsFile::FO_RDWR:
+			f=fopen(name,"r+");
+			break;
+		case FsFile::FO_APPEND:
+			f=fopen(name,"a");
+			break;
+		case FsFile::FO_TRUNC:
+			f=fopen(name,"w");
+			break;
+		case FsFile::FO_CREATE:
+			f=fopen(name,"w+");
+			break;
+		default:
+			if(mode&FsFile::FO_TRUNC)
+			{
+				f=fopen(name,"w+");
+			}
+			else if(mode&FsFile::FO_APPEND)
+			{
+				f=fopen(name,"a");
+			}
+			else if(mode&FsFile::FO_APPEND&FsFile::FO_CREATE)
+			{
+				f=fopen(name,"a+");
+			}
+			else
+			{
+				f=fopen(name,"r+");
+			}
+			break;
+	}
+	
 	if(f==NULL)
 	{
 		FS_LOG_DEBUG("Open File(%s) Failed",name);

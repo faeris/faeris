@@ -5,7 +5,7 @@ SRC=FsMd2Loader.cc
 
 DEBUG=
 
-BIN=test_md2loader.cc
+BIN=test_md2loader.cc md2file_info.cc
 
 
 
@@ -30,7 +30,7 @@ CC=g++
 FLAGS=-g -Wall  -Werror -include sys/types.h
 INCLUDE=-I. -I./debug   -I../  
 LIB=-Llib -L../lib -l$(PROJECT) -l$(PROJECT)debug  -lfyutil -lfymath  \
-	-lglut
+	-lglut -lfsys -lGLU
 
 
 

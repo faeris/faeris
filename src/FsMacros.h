@@ -16,13 +16,48 @@
 	#define NULL 0
 #endif 
 
-#define FS_WARN_ON(cnd,fmt,...)
-#define FS_BUG_ON(cnd,fmt,...)
-#define FS_DEBUG_ON(cnd,fmt,...)
 
-#define FS_WARN(fmt,...)
-#define FS_BUG(fmt,...)
-#define FS_DEBUG(fmt,...)
+#include<stdio.h>
+#define FsStdout_Write printf
+
+#define FS_CONDTION_ON(tag,cnd,fmt,...) \
+	do{\
+		if(cnd) \
+		{ \
+			FsStdout_Write("%s:",#tag); \
+			FsStdout_Write("%s:%s:%d:",__FILE__,__func__,__LINE__); \
+			FsStdout_Write("%s:",#cnd); \
+			FsStdout_Write(fmt,##__VA_ARGS____); \
+			FsStdout_Write("\n"); \
+		}\
+	} while(0)
+
+#define FS_MESSAGE(tag,fmt,...) \
+	do{\
+		FsStdout_Write("%s:",#tag); \
+		FsStdout_Write("%s:%s:%d:",__FILE__,__func__,__LINE__); \
+		FsStdout_Write(fmt,##__VA_ARGS__); \
+		FsStdout_Write("\n"); \
+	} while(0)
+
+#define FS_WARN_ON(cnd,fmt,...) \
+	FS_CONDTION_ON(WARN_ON,cnd,fmt,##__VA_ARGS__) 
+
+#define FS_BUG_ON(cnd,fmt,...) \
+	FS_CONDTION_ON(BUG_ON,cnd,fmt,##__VA_ARGS__) 
+
+#define FS_DEBUG_ON(cnd,fmt,...) \
+	FS_CONDTION_ON(DEBUG_ON,cnd,fmt,##__VA_ARGS__) 
+
+
+#define FS_WARN(fmt,...) \
+	FS_MESSAGE(WARN,fmt,##__VA_ARGS__)
+
+#define FS_BUG(fmt,...) \
+	FS_MESSAGE(BUG,fmt,##__VA_ARGS__)
+
+#define FS_DEBUG(fmt,...) \
+	FS_MESSAGE(DEBUG,fmt,##__VA_ARGS__)
 
 #endif /*_FAERIS_MACROS_H_*/
 

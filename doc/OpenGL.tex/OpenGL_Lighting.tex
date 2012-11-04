@@ -144,6 +144,35 @@ v和d这两个向量的点积随新着它位之间角度的余弦值而发生改
 在进行纹理帖图时，只有主颜色与纹理颜色进行混合，在纹理操作之后，辅助颜色被添加到主颜色和纹理颜色混合所产生的颜色之中
 
 
+\section{雾方程式}
+雾根据雾的混合因子把雾颜色与源片断的颜色进行混合。这个因子f是根据下列3个方程式之一进行计算，并截取在[0,1]的范围之内
+当FOG\_MODE为GL\_EXP时:
+\begin{displaymath}
+ f=e^{-(density\cdot{}z)}
+\end{displaymath}
+当FOG\_MODE为GL\_EXP2时:
+\begin{displaymath}
+ f=e^{-(density\cdot{}z)^2}
+\end{displaymath}
+当FOG\_MODE为GL\_LINEAR时:
+\begin{displaymath}
+ f=\frac{end-z}{end-start}
+\end{displaymath}
+不同参数值情况下雾浓度方程式如下图：
+\begin{figure}[hbtp]
+\centering
+ \includegraphics[height=60mm]{fog_dagram.png}
+\end{figure}
+在RGBA模式下，在启用雾的情况下，最终得到的颜色值为
+\begin{displaymath}
+ C=fC_{i}+(1-f)C_{f}
+\end{displaymath}
+其中$C_{i}$表示源片断的RGBA的值，$C_{f}$表示用\verb|GL_FOG_COLOR|分配的雾颜色值。
+
+
+
+
+
 
 
 

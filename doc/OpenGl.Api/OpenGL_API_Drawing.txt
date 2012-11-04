@@ -1,0 +1,53 @@
+[绘制相关]
+*) 设置当前颜色
+    void glColor{34}{sifd}(TYPE r,TYPE g,TYPE b,[TYPE a])
+    void glColor{34}{sifd}v(const TYPE* v)
+*) 强制绘图命令开始执行
+    void glFlush(void)
+*) 强制绘图命令开始执行，并且等到绘图完成
+    void glFinsh(void)
+*) 绘制矩形
+    void glRect{sifd}(TYPE x1,TYPE y1,TYPE x2,TYPE y2)
+    void glRect{sifd}v(const TYPE* v1,const TYPE* v2)
+*) 指定顶点
+    void glVectex[234]{sifd}(TYPE x,TYPE y,[TYPE z,[TYPE w]])
+    void glVertex[234]{sifd}v(const TYPE* coords)
+*) 绘制图元开始
+    void glBegin(GLenum mode)
+    参数：mode是下列值之一
+      1) GL_POINTS (单个的点)
+      2) GL_LINES (一对顶点解释为一条直线)
+      3) GL_LINES_STRIP (一系列的连接直线)
+      4) GL_LINE_LOOP (和上面相同，但每一个顶点和最后一个顶点彼此相连)
+      5) GL_TRIANGLES (3个顶点被解释为一个三角形)
+      6) GL_TRIANGLES_STRIP (三角形的连接串)
+      7) GL_TRIANGLES_FAN (连接成扇形)
+      8) GL_QUADS (四边形的连接串)
+      9) GL_QUAD_STRIP (四边形的连接串)
+      10) GL_POLYGON (简单的凸多边形的边界)
+*) 绘制图元结束
+    void glEnd()
+*) 设置绘制点的大小
+    void glPointSize(GLfloat size)
+*) 设置绘制直线的宽度
+    void glLineWidth(GLfloat width)
+*) 设置点画线
+    void glLineStipple(GLint factor,GLushort pattern)
+*) 设置点画多边形
+    void glPolygonStipple(const GLubyte* mask)
+    参数：mask是一个指向32*32位图的指针
+*) 设置一个多边形的正面和背面的绘图模式
+    void glPolygonMode(GLenum face,GLenum mode)
+    参数：face的值有:GL_FRONT_AND_BACK,GL_FRONT,GL_BACK
+    参数：mode的值有:GL_POINT,GL_LINE,GL_FILL
+*)设置多边形的正面方向
+    void glFrontFace(GLenum mode)
+    参数：mode的值如下
+      1) GL_CCW (顶点的顺序为逆时针方向的表面为正面)
+      2) GL_CW (顶点顺度为顺时针方向的表面为正面)
+*)多边形正反面剔除
+    void glCullFace(GLenum mode)
+    参数：mode的值有：GL_FRONT,GL_BACK,GL_FRONT_AND_BACK
+*)设置法线向量
+    void glNormal3{bsidf}(TYPE nx,TYPE ny,TYPE nz)
+    void glNormal3{bsidf}v{const TYPE* v)

@@ -1,0 +1,74 @@
+[绘制相关]
+
+*) 设置着色模型
+  void glShadeModel(GLenum mode);
+  参数mode的值为：GL_SMOOTH 或 GL_FLAT
+*) 设置光源属性
+  void glLight{if}(GLenum light,GLenum pname,TYPE param)
+  void GLLight{if}v(GLenum light,GLenum pname,const TYPE* param)
+  参数light指定光源的类型，它可以是GL_LIGHT0,GL_LIGHT1,...,GL_LIGHT7
+  参数pname指定光源属性的类型，它可以是:
+     1) GL_AMBIENT（光的环境强度,默认值为(0.0,0.0,0.0,1.0))
+     2) GL_DIFFUSE (光的散射强度，GL_LIGHT0的默认值为(1.0,1.0,1.0,1.0)，其它的为(0.0,0.0,0.0,1.0))
+     3) GL_SPECULAR (光的镜面强度，GL_LIGHT0的默认值为(1.0,1.0,1.0,1.0)，其它的为(0,0,0.0,0.0,1.0))
+     4) GL_POSITION (光源位置的坐标，默认值为(0.0,0.0,1.0,0.0))
+     5) GL_SPOT_DIRECTION (聚光灯方向的向量，默认值为(0,0,0.0,-1.0))
+     6) GL_SPOT_EXPONENT (聚光指数,默认值为 0.0)
+     7) GL_SPOT_CUTOFF (聚光灯的切角，默认值为 180.0)
+     8) GL_CONSTANT_ATTENUATION (常量衰减因子,默认值为1.0)
+     9) GL_LINEAR_ATTENUAION (线性衰减因子，默认值0.0)
+     10) GL_QUADRATIC_ATTENUATION (二次衰减因子，默认值为0.0)
+*) 设置光照模型
+  void glLightModel{if}(GLenum pname,TYPE param)
+  void glLightModel{if}v(GLenum pname,const TYPE* param)
+  参数pname的值如下：
+    1）GL_LIGHT_MODEL_AMBIENT （整个场景的环境光的RGBA强度,默认值为(0.2,0.2,0.2,1.0))
+    2) GL_LIGHT_MODEL_LOCAL_VIEWER (镜面反射角度是如何计算的 默认值为0.0或GL_FALSE)
+    3) GL_LIGHT_MODEL_TWO_SIDE (指定了单面还是双面光照,默认值为0.0 或者 GL_FALSE)
+    4) GL_LIGHT_MODEL_COLOR_CONTROL (镜面颜色的计算是否从环境和散射颜色中分离出来，默认值为GL_SINGLE_COLOR，如果分离出来，值为GL_SEPARATE_SPECULAR_COLOR)
+
+*) 设置材料属性
+  void glMaterial{if}(GLenum face,GLenum pname,TYPE param)
+  void glMaterial{if}v(GLenum face,GLenum pname,const TYPE* param)
+  参数face的值有：GL_FRONT,GL_BACK,GL_FRONT_AND_BACK
+  参数pname的值如下:
+    1) GL_AMBIENT (材料的环境颜色，默认值为(0.2,0.2,0.2,1.0))
+    2) GL_DIFFUSE (材料的散射颜色，默认值为(0.8,0.8,0.8,1.0))
+    3) GL_AMBIENT_AND_DIFFUSE (材料的环境颜色和散射颜色)
+    4) GL_SPECULAR (材料的镜面颜色，默认值为(0.0,0.0,0.0,1.0))
+    5) GL_SHININESS (镜面指数，默认值为0.0)
+    6) GL_EMISSION (材料的发射颜色，默认值为(0.0,0.0,0.0,1.0))
+    7) GL_COLOR_INDEXES (环境，散射和镜面颜色索引，默认值(0,1,1))
+
+*) 颜色材料模式
+  void glColorMaterial(GLenum face,GLenum mode)
+  参数face的值有:GL_FRONT,GL_BACK,GL_FRONT_AND_BACK
+  参数mode的值有:GL_AMBIENT,GL_DIFFUSE,GL_SPECULAR,GL_SPECULAR,GL_AMBIENT_AND_DIFFUSE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

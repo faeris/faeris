@@ -1,0 +1,83 @@
+[Opengl 顶点数组]
+
+[渲染步骤]
+  1) 激活（启用）最多可达8个数组，每个数组用于存储不同的类型的数据：
+     a) 顶点坐标 (*)
+     b) 表面法线 (*)
+     c) RGBA颜色
+     d) 辅助颜色
+     e) 颜色索引 
+     f) 雾坐标 
+     g) 纹理坐标 (*)
+     h) 多边形的边界标志
+  2) 把数据放入数组中，这些数组是通过它们的内存位置的地址（指针）进行访问的
+  3) 用这些数据缓制几何图形，OpenGL通过指针从所有的被激活的数组中获取数据，有三种方式可以完成这处任务
+     a) 访问单独的数组元素（随机存取）
+     b) 创建一个单独数组元素的列表（系统存取）
+     c) 线性地处理数组元素
+
+[Example]
+
+1)启用和加载顶点数组
+    GLinit vertices[]={....}
+    GLfloat colors[]={....}
+    glEnalbeClientState(GL_COLOR_ARRAY);
+    glEnalbeClientState(GL_VERTEX_ARRAY);
+    glColorPointer(3,GL_FLOAT,0,colors);
+    glVertexPointer(2,GL_INT,0,vertices);
+    
+2)解引用单个数组
+    glBegin(GL_TRIANGLES)
+      glArrayElement(2)
+      glArrayElement(3)
+      glArrayElement(5)
+    glEnd()
+    
+3)解引用数组元素的一个列表
+    GLUInt indices[]={2,3,5};
+    glDrawElements(GL_TRIANGLES,3,GL_UNSIGNED_SHORT,indices);
+  上面的代码等价于
+    glBegin(GL_TRIANGLES);
+      for(int i=0;i<count;i++)
+      {
+	glArrayElement(indices[i);
+      }
+    glEnd()
+    
+4)解引用多个数组元素
+    glMultiDrawElements(mode,count,type,indices,primcount)
+  等价于
+    for(i=0;i<primcount;i++)
+    {
+      if(count[i]>0)
+      {
+	glDrawElements(mode,count[i],type,indices[i])
+      }
+    }
+      
+     
+	
+	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

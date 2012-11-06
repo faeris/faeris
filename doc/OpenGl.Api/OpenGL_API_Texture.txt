@@ -101,7 +101,68 @@
 			      GLint yoffset,GLint zoffset,GLint x,
 			      GLint y,GLsizei width,GLsizei height)
 			      
-	
+*) 根据一幅已压缩的纹理图像定义一个一维，二维，三维的纹理	
+    void glCompressedTexImage1D(GLenum target,GLint level,
+				GLenum internalFormat,GLsizei width,
+				GLint border,GLsizei imageSize,
+				const GLvoid* texels);
+    void glCompressedTexImage2D(GLenum target,GLint level,
+				GLenum internalFormat,GLsizei width,
+				GLsizei height,GLint border,
+				GLsizei imageSize,const GLvoid* texels);
+    void glCompressedTexImage3D(GLenum target,GLint level,
+				GLenum internalFormat,GLsizei width,
+				GLsizei height,GLsizei depth,
+				GLint border,GLsizei imageSize,
+				const GLvoid* texels);
+*) 为相应的纹理图像生成一组完整的mipmap，所构建的mipmap层由GL_TEXTURE_BASE_LEVEL和GL_TEXTURE_MAX_LEVEL控制
+    int glGenerateMipmap(GLenum target);
+    
+    
+*) 创建一系列mipmap，并调用glTexImages*D()加载这些纹理图像
+    int gluBuild1DMipmaps(GLenum target,GLint internalFormat,
+			  GLint width,GLenum format,GLenum type,
+			  const void* texels);
+    int gluBuild2DMipmaps(GLenum target,GLint internalFormat
+			  GLint width,GLint height,GLenum format,
+			  GLenum type,const void* texels);
+
+*) 纹理过滤设置
+    void glTexParameteri(GLenum target,GLenum type,GLenum value)
+    当用于放大和缩小过滤时参数如下：
+	  参数						值
+    GL_TEXTURE_MAG_FILTER			GL_NEAREST或GL_LINEAR
+    GL_TEXTURE_MIN_FILTER			GL_NEAREST,GL_LINEAR,GL_NEAREST_MIPMAP_NEAREST,
+						GL_NEAREST_MIPMAP_LINEAR,GL_LINEAR_MIPMAP_NEAREST,
+						GL_LINEAR_MIPMAP_LINEAR
+						
+*) 命名纹理对象
+    void glGenTextures(GLsizei n,GLuint* textureNames)
+*) 判断是否为一个纹理对象
+    void glIsTexture(GLuint textureName);
+*) 创建和使用纹理对象    
+    void glBindTexture(GLenum target,GLuint textureNames)
+*) 删除纹理对象
+    void glDeleteTextures(GLsizei n,Const GLuint* textureNames)
+*) 查询n个纹理对象的纹理常驻状态
+    GLboolean glAreTexturesResident(GLsizei n,
+				    const GLuint* textureNames,
+				    GLboolean* residences)
+
+*) 设置纹理常驻的优先级
+    void glPrioritizeTextures(GLsizei n,const GLuint* textureNames,
+			      const GLclampf* priorities);
+				    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	
 	
 	

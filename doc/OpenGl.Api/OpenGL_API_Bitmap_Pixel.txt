@@ -1,0 +1,86 @@
+[OpenGL Api 绘制像素，位图，字体和图像]
+
+*) 设置当前光栅位置，光栅的位置会被转换成屏幕坐标
+    void glRasterPos{234}{sifd}(TYPE x,TYPE y,TYPE z,TYPE w);
+    void glRasterPos{234}{sifd}v(const TYPE* coords);
+    
+*) 直接用窗口坐标指定光栅的位置
+    void glWindowPos{23}{sifd}(TYPE x,TYPE y,TYPE z);
+    void glWindowPos{23}{sifd}v(const TYPE* coords);
+
+*) 绘制位图
+    void glBitmap(GLsizei width,GLsizei height,
+                  GLfloat x_orgin,GLsizei y_orgin,
+                  GLfloat x_advance,GLsizei y_advance,
+                  const GLubyte* bitmap)
+
+*) 把像素数据从缓冲区读取到内存
+    void glReadPixels(GLint x,GLint y,GLsizei width,GLsizei height,
+                      GLenum format,GLenum type,GLvoid* pixels)
+    参数x,y指的是矩形区域的左下角位置是窗口坐标
+    参数width,height指的是读取区域的宽高
+    参数format的值如下：
+      格式常量				像素格式
+      GL_COLOR_INDEX			1个颜色索引值
+      GL_RG或GL_RG_INTEGER		1个红色成分，后面跟着1个绿色成分
+      GL_RGB或GL_RGB_INTEGER		依次是1个红色，绿色，蓝色成分
+      GL_RGBA或GL_RGBA_INTEGER		依次是1个红色，绿色，蓝色，和一个alpha成分
+      GL_BGR或GL_BGR_INTEGER		依次是1个蓝色成分，1个绿色成分和一个红色成分
+      GL_BGRA或GL_BGRA_INTEGER		依次是1个蓝色成分，1个绿色成分，1个经色成分和一个alpha成分
+      GL_RED或GL_RED_INTEGER		1个红色成分
+      GL_GREEN或GL_GREEN_INTEGER		1个绿色成分
+      GL_BLUE或GL_BLUE_INTEGER		1个蓝色成分
+      GL_ALPHA或GL_ALPHA_INTEGER		1个alpha成分
+      GL_LUMINANCE			1个亮度成分
+      GL_LUMINANCE_ALPHA		1个亮度成分和1个alpha成分
+      GL_STENCIL_INDEX			1个模板索引值
+      GL_DEPTH_COMPONENT		1个深度成分
+      GL_DEPTH_STENCIL			深度成分和模板成分的组合
+    
+*) 把像素数据从内存写入到帧缓冲区
+    void glDrawPixels(GLsizei width,GLsizei height,Gleunm format,
+		      GLenum type,const GLvoid* pixels)
+		    
+*) 在帧缓冲区内部复制像数素数据
+    void glCopyPixels(GLint x,GLint y,GLsizei width,GLsizei height,GLenum buffer)
+
+*) 设置像素的存储模式
+    void glPixelStore{if}(GLenum pname,TYPE param)
+    
+*) 指定颜色表
+    void glColorTable(GLenum target,GLenum internalFormat,
+		      GLsizei width,GLenum foramt,GLenum type,
+		      const GLvoid* data);
+    参数target的值如下：
+      1) GL_COLOR_TABLE
+      2) GL_POST_CONVOLUTION_COLOR_TABLE
+      3) GL_POST_COLOR_MATRIX_COLOR_TABLE
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

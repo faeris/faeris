@@ -12,24 +12,35 @@
 
 FAERIS_NAMESPACE_BEGIN
 
-class Image2d;
-class Texture:public FsObject
+class Image2D;
+class Texture2D:public FsObject
 {
 	public:
 		static Texture* create(Image2d* file_name);
+		static texture* LoadFromMgr(FsChar* name);
 	private:
-		FsChar* m_fileName;
-		FsUint m_width;
-		FsUint m_height;
-		FsPlatformTexture m_texture;
+		bool m_managed; /* managerd by texture manager */
+
+		PixelFormat m_format;
+
+		FsUint m_wrapS; 
+		FsUint m_wrapT;
+
+		FsUint m_magFilter;
+		FsUint m_minFilter;
+
+		FsUint m_width;		/* texture width*/
+		FsUint m_height;	/* texture height*/
+
+		FsPlatformTexture m_texName;
 	public:
 		FsUint getWidth()const{return m_width;} 
 		FsUint getHeight()const{return m_height;}
-		FsPlatformTexture getPlatformTexture(){return m_texture;}
+		FsPlatformTexture getTexName(){return m_texture;}
 	public:
-		~Texture();
+		~Texture2D();
 	protected:
-		Texture(){}
+		Texture2D(){}
 };
 FAERIS_NAMESPACE_END
 #endif /*_FAERIS_TEXTURE_H_*/

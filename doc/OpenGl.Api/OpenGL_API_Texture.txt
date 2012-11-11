@@ -152,14 +152,69 @@
 *) 设置纹理常驻的优先级
     void glPrioritizeTextures(GLsizei n,const GLuint* textureNames,
 			      const GLclampf* priorities);
+    说明：向n个纹理对象分配纹理常驻优先级，这些纹理对象的名称由textureNames数组提贡，相应的优先级在priorities数组中设置，在分配之前，priorities数组中的优先级被截取在[0.0,1.0]的范围之内，0表示最低优先级，1表示最高优先级。
 				    
+*) 纹理函数
+    void glTexEnv{if}(GLenum target,GLenum pname,TYPE param);
+    void glTexEnv{if}v(GLenum target,GLenum pname,TYPE* param);
+    参数target的值必须为GL_TEXTURE_FILTER_CONTROL,GL_TEXTURE_ENV,GL_POINT_SPRITE
+      1)当target为GL_TEXTURE_FILTER时:
+	  a)pname必须是GL_TEXTURE_LOD_BIAS，param必须是一个浮点值,作为mipmap细节偏移值
+      2)当target为GL_TEXTURE_ENV时:
+	  a)pname是GL_TEXTURE_ENV_MODE，那么param必须是:
+	    (1)GL_DECAL
+	    (2)GL_REPLACE
+	    (3)GL_MODULATE
+	    (4)GL_BLEND
+	    (5)GL_ADD
+	    (6)GL_COMBINE
+	  b)pname是GL_TEXTURE_ENV_COLOR时，那么param就是包含了4个浮点值(G,G,B,A)
+      3)当target为GL_POINT_SPRITE时，并且pname是GL_COORD_REPLACE时，那么把param设置为GL_TRUE可以启用围绕一个点块纹理从标进行迭代
     
+*) 纹理的内部保存格式
+    纹理存储时，一共有6种内部格式，如下表
+    --------------------------------------------------
+     基本内部格式			所提取的源颜色(G,G,B,A)
+    --------------------------------------------------
+    GL_ALPHA			(0,0,0,A)
+    GL_LUMINANCE		(L,L,L,i)
+    GL_LUMINANCE_ALPHA		(L,L,L,A)
+    GL_INTENSITY		(I,I,I,I)
+    GL_RGB			(R,G,B,I)
+    GL_RGBA			(R,G,B,A)
     
+  纹理应用的公式如下:
+    * s表示纹理源颜色
+    * f表示新的片断值
+    * c表示GL_TEXTURE_ENV_COLOR分配的值
+    * 如果没有下标，表示最终计算所得的颜色
     
+   替换，调整和帖花纹理函数
+   ----------------------------------------------------------------------------------
+   基本内部格式		GL_RELACE函数             GL_MODULATE函数         GL_DECAL函数
+   ----------------------------------------------------------------------------------
+   GL_ALPHA		C=Cf A=As		 C=Cf	A=AfAs		underfine
+   GL_LUMINANCE 	C=Cs A=Af		 C=CfCs A=Af		underfine
+   GL_LUMINANCE_ALPHA	C=Cs A=As		 C=CfCs	A=AfAs		underfine
+   GL_INTENSITY		C=Cs A=As		 C=CfCs	A=AfCs		underfine
+   GL_RGB		C=Cs A=Af		 C-CfCs A=Af		C=Cs A=Af
+   GL_RGBA		C=Cs A=As		 C=CfCs A=AfAs		C=Cf(1-As)+Cs*As A=Af
+   
+   
+   混合和添加纹理函数
+   -----------------------------------------------------------------------------------
+   基本内部格式		GL_BLEND函数			GL_ADD函数
+   -----------------------------------------------------------------------------------
+   GL_ALPHA		C=Cf A=AfAs			C=Cf	A=AfAf
+   GL_LUMINANCE		C=Cf(1-Cs)+CcCs A=Af		C=Cf+Cs	A=Af
+   GL_LUMINANCE_ALPHA 	C=Cf(1-Cs)+CcCs A=AfAs		C=Cf+Cs	A=AfAs
+   GL_INTENSITY		C=Cf(1-Cs)+CcCs A=Af(1-As)+AfAs C=Cf+Cs A=Af+As
+   GL_RGB		C=Cf(1-Cs)+CcCs	A=Af		C=Cf+Cs A=Af
+   GL_RGBA		C=Cf(1-Cs)+CcCs A=AfAs		C=Cf+Cs A=AfAs
     
-    
-    
-    
+*) 设置当前的纹理坐标
+    void glTexCoord{1234}{sifd}(TYPE coords)
+    void glTexCoord{1234}{sifd}v(const TYPE* coords)
     
     
     

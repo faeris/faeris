@@ -16,10 +16,11 @@ class Image2D;
 class Texture2D:public FsObject
 {
 	public:
-		static Texture* create(Image2d* file_name);
+		static Texture* create(Image2D* img);
 		static texture* LoadFromMgr(FsChar* name);
 	private:
-		bool m_managed; /* managerd by texture manager */
+		FsUlong m_managed:1; /* managerd by texture manager */
+		FsUlong m_mipmap:1;
 
 		PixelFormat m_format;
 

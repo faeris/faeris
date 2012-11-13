@@ -1,22 +1,21 @@
 # Normal Information 
-CC=g++ 
-FLAGS= -g -Wall -Werror
-FILE_EXT=cc
+CC=gcc
+FLAGS= -g -Wall 
+FILE_EXT=c
 
 #Project infor 
 PROJECT_PATH=../../build/
-PROJECT=fsys
+PROJECT=tinyjpeg
 
 # User Config Information 
 LIB_DIR=$(PROJECT_PATH)lib
 OBJ_DIR=$(PROJECT_PATH)obj
 SRC_DIR=./
-INCLUDE_DIR=  -I./ -I../
+INCLUDE_DIR=-I../src  -I./
 
 #Source File 
-SRC= FsFile.cc \
-     FsSysFile.cc \
-     FsVFS.cc \
+SRC= jidctflt.c \
+	 tinyjpeg.c \
 	
 
 #full src name 

@@ -1,12 +1,11 @@
-PROJECT=fymath
- 
-SRC=FsMathUtil.cc 
+PROJECT=GraphicsUnit
+  
+SRC= 
 
 
 DEBUG=
 
-BIN=vector2_test.cc vector3_test.cc  vector4_test.cc
-
+BIN=  jpeg_load_test.cc loadjpeg.cc
 
 
 
@@ -28,9 +27,10 @@ BIN_OBJ_NAME=$(BIN:%.cc=%.o)
 BIN_OBJ_NAME_WITH_PATH=$(addprefix obj/,$(BIN_OBJ_NAME))
 
 CC=g++
-FLAGS=-g -Wall  -Werror -include sys/types.h
-INCLUDE=-I. -I./debug   -I../  
-LIB=-Llib -l$(PROJECT) -l$(PROJECT)debug  
+FLAGS=-g -Wall   -include sys/types.h
+INCLUDE=-I. -I./debug   -I../   -I../../src -I../../thirdparty
+LIB=-Llib -L../lib  -L../../build/lib -l$(PROJECT) -l$(PROJECT)debug \
+   	-lfsys -lcore -lutil -ltinyjpeg -lgraphics
 
 
 
@@ -55,6 +55,8 @@ obj/%.o:%.cc
 obj/%.o:debug/%.cc
 	$(CC) $(FLAGS) -c -o $@ $< $(INCLUDE) 
 	
+xir_grammer.cc:xir_grammer.y
+	bison xir_grammer.y -o xir_grammer.cc
 	
 init:
 	mkdir -p obj 

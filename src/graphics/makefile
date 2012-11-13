@@ -1,11 +1,11 @@
 # Normal Information 
-CC=g++ 
-FLAGS= -g -Wall -Werror
+CC=g++
+FLAGS= -g -Wall 
 FILE_EXT=cc
 
 #Project infor 
 PROJECT_PATH=../../build/
-PROJECT=fsys
+PROJECT=graphics
 
 # User Config Information 
 LIB_DIR=$(PROJECT_PATH)lib
@@ -14,9 +14,11 @@ SRC_DIR=./
 INCLUDE_DIR=  -I./ -I../
 
 #Source File 
-SRC= FsFile.cc \
-     FsSysFile.cc \
-     FsVFS.cc \
+SRC=FsColor.cc  \
+	FsImage2D.cc \
+
+
+
 	
 
 #full src name 

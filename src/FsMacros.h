@@ -27,7 +27,7 @@
 			FsStdout_Write("%s:",#tag); \
 			FsStdout_Write("%s:%s:%d:",__FILE__,__func__,__LINE__); \
 			FsStdout_Write("%s:",#cnd); \
-			FsStdout_Write(fmt,##__VA_ARGS____); \
+			FsStdout_Write(fmt,##__VA_ARGS__); \
 			FsStdout_Write("\n"); \
 		}\
 	} while(0)
@@ -40,24 +40,24 @@
 		FsStdout_Write("\n"); \
 	} while(0)
 
-#define FS_WARN_ON(cnd,fmt,...) \
+#define FS_TRACE_WARN_ON(cnd,fmt,...) \
 	FS_CONDTION_ON(WARN_ON,cnd,fmt,##__VA_ARGS__) 
 
-#define FS_BUG_ON(cnd,fmt,...) \
-	FS_CONDTION_ON(BUG_ON,cnd,fmt,##__VA_ARGS__) 
+#define FS_TRACE_ERROR_ON(cnd,fmt,...) \
+	FS_CONDTION_ON(ERROR_ON,cnd,fmt,##__VA_ARGS__) 
 
-#define FS_DEBUG_ON(cnd,fmt,...) \
-	FS_CONDTION_ON(DEBUG_ON,cnd,fmt,##__VA_ARGS__) 
+#define FS_TRACE_INFO_ON(cnd,fmt,...) \
+	FS_CONDTION_ON(INFO_ON,cnd,fmt,##__VA_ARGS__) 
 
 
-#define FS_WARN(fmt,...) \
+#define FS_TRACE_WARN(fmt,...) \
 	FS_MESSAGE(WARN,fmt,##__VA_ARGS__)
 
-#define FS_BUG(fmt,...) \
-	FS_MESSAGE(BUG,fmt,##__VA_ARGS__)
+#define FS_TRACE_ERROR(fmt,...) \
+	FS_MESSAGE(ERROR,fmt,##__VA_ARGS__)
 
-#define FS_DEBUG(fmt,...) \
-	FS_MESSAGE(DEBUG,fmt,##__VA_ARGS__)
+#define FS_TRACE_INFO(fmt,...) \
+	FS_MESSAGE(INFO,fmt,##__VA_ARGS__)
 
 #endif /*_FAERIS_MACROS_H_*/
 

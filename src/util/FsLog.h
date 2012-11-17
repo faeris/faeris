@@ -7,13 +7,6 @@ FAERIS_NAMESPACE_BEGIN
 class FsFile;
 class FsLog
 {
-	private:
-		static FsLog* ms_log;
-		static void init();
-	public:
-		static void sLog(const FsChar* tag,const FsChar* msg,...);
-		static void sLog(const FsChar* fmt,...);
-
 	public:
 		void log(const FsChar* tag,const FsChar* fmt,...);
 		void log(const FsChar* fmt,...);
@@ -40,15 +33,9 @@ class FileLog:public FsLog
 		FsFile* m_file;
 };
 
+void FsUtil_Log(const FsChar* tag,const FsChar* msg,...);
+void FsUtil_Log(const FsChar* fmt,...);
 
-#define FS_LOG_INFO(fmt,...) 
-
-#define FS_LOG_WARN(fmt,...)
-#define FS_LOG_DEBUG(fmt,...)
-#define FS_LOG_ERROR(fmt,...)
-#define FS_LOG_INFO_ON(conditon,fmt,...)
-#define FS_LOGON_WARN_ON()
-#define FS_LOGON_ERROR_ON()
 
 FAERIS_NAMESPACE_END
 

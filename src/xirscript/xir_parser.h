@@ -1,13 +1,13 @@
 #ifndef _FAERY_XIR_SCRIPT_XIR_PARSE_H_
 #define _FAERY_XIR_SCRIPT_XIR_PARSE_H_
 #include"xirscript/xir_ast.h"
-#include"io/ifile.h"
+#include"fsys/FsFile.h"
 #include"xirscript/xir_scanner.h"
 #include<vector>
 class XirParser
 {
 	public:
-		static XirAstNode* parse(IFile* file);
+		static XirAstNode* parse(Faeris::FsFile* file);
 };
 class YYParserParm
 {

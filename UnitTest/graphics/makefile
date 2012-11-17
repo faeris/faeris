@@ -5,7 +5,8 @@ SRC=
 
 DEBUG=
 
-BIN=  jpeg_load_test.cc loadjpeg.cc
+BIN=  jpeg_load_test.cc loadjpeg.cc png_load_test.cc png_converto_png.cc \
+	  image2d_test.cc
 
 
 
@@ -30,7 +31,7 @@ CC=g++
 FLAGS=-g -Wall   -include sys/types.h
 INCLUDE=-I. -I./debug   -I../   -I../../src -I../../thirdparty
 LIB=-Llib -L../lib  -L../../build/lib -l$(PROJECT) -l$(PROJECT)debug \
-   	-lfsys -lcore -lutil -ltinyjpeg -lgraphics
+   	-lfsys -lcore -lutil -ltinyjpeg -lgraphics -llibpng -lzlib -lGLU -lglut
 
 
 

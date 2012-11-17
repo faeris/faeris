@@ -18,7 +18,9 @@ grammar.tab.c
 *.dvi
 *.out
 *~
-
+*.png
+*.jpg
+*.tga
 temp
 
 

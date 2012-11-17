@@ -33,8 +33,8 @@ class Image2D:public FsObject
 	public:
 		FsUint getWidth()const{return m_width;} 
 		FsUint getHeight()const{return m_height;};
-		const FsUchar* getBuffer();
-		PixelFormat getPixelFormat()const;
+		const FsUchar* getPixelData()const{return m_buffer;}
+		PixelFormat getPixelFormat()const{return m_format;}
 		Color getColor(FsUint x,FsUint y)const;
 		void setColor(FsUint x,FsUint y,Color c);
 	private:

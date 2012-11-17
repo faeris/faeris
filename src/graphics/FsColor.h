@@ -31,6 +31,8 @@ class Color
 		Color operator+(Color right);
 		Color operator-(Color right);
 		Color operator*(FsFloat s);
+		bool operator==(Color right){return rgba==right.rgba;}
+		bool operator!=(Color right){return rgba!=right.rgba;}
 };
 FAERIS_NAMESPACE_END
 #endif /*_FAERIS_COLOR_H_*/

@@ -80,17 +80,20 @@ Color Image2D::getColor(FsUint w,FsUint h)const
 		return Color::DEFAULT_COLOR;
 	}
 	Color ret;
-	Color* p=(Color*)(m_buffer+(h*m_width+w)*m_pixel_bytes);
+	FsUchar* p=m_buffer+(h*m_width+w)*m_pixel_bytes;
 	switch(m_format)
 	{
 		case FS_PIXEL_RGB888:
-			ret.r=p->r;
-			ret.g=p->g;
-			ret.b=p->b;
+			ret.r=*p++;
+			ret.g=*p++;
+			ret.b=*p++;
 			ret.a=255;
 			break;
 		case FS_PIXEL_RGBA8888:
-			ret=*p;
+			ret.r=*p++;
+			ret.g=*p++;
+			ret.b=*p++;
+			ret.a=*p++;
 			break;
 		default:
 			FS_TRACE_WARN("UnKown Format Type");
@@ -105,17 +108,20 @@ void Image2D::setColor(FsUint w,FsUint h,Color c)
 		FS_TRACE_WARN("Invalid Index");
 		return ;
 	}
-	Color* p=(Color*) (m_buffer+(h*m_width+w)*m_pixel_bytes);
+	FsUchar* p=m_buffer+(h*m_width+w)*m_pixel_bytes;
 
 	switch(m_format)
 	{
 		case FS_PIXEL_RGB888:
-			p->r=c.r;
-			p->g=c.g;
-			p->b=c.b;
+			*p++=c.r;
+			*p++=c.g;
+			*p++=c.b;
 			break;
 		case FS_PIXEL_RGBA8888:
-			*p=c;
+			*p++=c.r;
+			*p++=c.g;
+			*p++=c.b;
+			*p++=c.a;
 			break;
 		default:
 			FS_TRACE_WARN("UnKown Format Type");

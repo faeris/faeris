@@ -17,6 +17,8 @@ INCLUDE_DIR=  -I./  -I../  -I../../thirdparty
 SRC=  FsImgDecoder.cc \
 	  FsLog.cc \
 	  FsStringUtil.cc \
+	  platform/FsLibPngDecoder.cc \
+	  platform/FsTinyJpegDecoder.cc
 	
 
 #full src name 
@@ -32,9 +34,13 @@ OBJ_NAME_WITH_PATH=$(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 main:$(LIB_DIR)/lib$(PROJECT).a
 
 $(LIB_DIR)/lib$(PROJECT).a: $(OBJ_NAME_WITH_PATH) 
-	ar cr $@ $(OBJ_NAME_WITH_PATH)
+	ar cr $@ $(addprefix $(OBJ_DIR)/,$(notdir $(OBJ_NAME_WITH_PATH)))
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.$(FILE_EXT)
-	$(CC) $(FLAGS) -c -o $@ $< $(INCLUDE_DIR) 
+	$(CC) $(FLAGS) -c -o  $(OBJ_DIR)/$(notdir $@) $< $(INCLUDE_DIR) 
 
 
+
+clean:
+	rm -f $(OBJ_NAME_WITH_PATH)
+	rm -f $(LIB_DIR)/lib$(Project).a 

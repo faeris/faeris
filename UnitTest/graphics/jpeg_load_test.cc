@@ -25,7 +25,7 @@ int main(int argc,char** argv)
 		goto error;
 	}
 
-	img=FsUtil_DecodeJpeg(file);
+	img=FsUtil_JpegReader(file);
 	if(img==NULL)
 	{
 		printf("load jpeg failed\n");

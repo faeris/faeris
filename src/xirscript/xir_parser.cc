@@ -67,7 +67,7 @@ XirAstNode* XirParser::parse(IFile* file)
 
 	delete lex;
 	XirAstNode* ast=parm->getRoot();
-	BUG_ON(ast==NULL,"Some Error Must Happened In xir_grammy.y");
+	FS_TRACE_ERROR_ON(ast==NULL,"Some Error Must Happened In xir_grammy.y");
 	delete parm;
 	return ast;
 }

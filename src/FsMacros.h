@@ -8,14 +8,28 @@
 #define FAERIS_NAMESPACE_BEGIN FS_BEGIN_NAMESPACE(Faeris)
 #define FAERIS_NAMESPACE_END  FS_END_NAMESPACE(Faeris)
 
+#if defined(WIN32)
+	#define FS_OS_WIN
+#elif defined(LINUX)
+	#define FS_OS_LINUX
+#elif defined(ANDROID)
+	#define FS_OS_ANDROID
+#else
+	#error "UNKOWN PLATFORM OS"
+#endif
+
+
 #define FS_PLATFORM_OS defined
 
-#define FS_OS_LINUX
 
 #ifndef NULL
 	#define NULL 0
 #endif 
 
+
+#if defined(FS_OS_WIN)
+#define snprintf _snprintf
+#endif 
 
 #include<stdio.h>
 #define FsStdout_Write printf
@@ -25,7 +39,7 @@
 		if(cnd) \
 		{ \
 			FsStdout_Write("%s:",#tag); \
-			FsStdout_Write("%s:%s:%d:",__FILE__,__func__,__LINE__); \
+			FsStdout_Write("%s:%s:%d:",__FILE__,__FUNCTION__,__LINE__); \
 			FsStdout_Write("%s:",#cnd); \
 			FsStdout_Write(fmt,##__VA_ARGS__); \
 			FsStdout_Write("\n"); \
@@ -35,7 +49,7 @@
 #define FS_MESSAGE(tag,fmt,...) \
 	do{\
 		FsStdout_Write("%s:",#tag); \
-		FsStdout_Write("%s:%s:%d:",__FILE__,__func__,__LINE__); \
+		FsStdout_Write("%s:%s:%d:",__FILE__,__FUNCTION__,__LINE__); \
 		FsStdout_Write(fmt,##__VA_ARGS__); \
 		FsStdout_Write("\n"); \
 	} while(0)

@@ -30,7 +30,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  */
-
+#include "FsMacros.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,6 +39,7 @@
 
 #include "tinyjpeg.h"
 #include "tinyjpeg-internal.h"
+
 
 enum std_markers {
    DQT  = 0xDB, /* Define Quantization Table */
@@ -67,10 +68,10 @@ enum std_markers {
    fflush(stderr); \
 } while(0)
 #else
-#define trace(fmt, args...) do { } while (0)
+#define trace(fmt, ...) do { } while (0)
 #endif
-#define error(fmt, args...) do { \
-   snprintf(error_string, sizeof(error_string), fmt, ## args); \
+#define error(fmt, ...) do { \
+   snprintf(error_string, sizeof(error_string), fmt, ##__VA_ARGS__); \
    return -1; \
 } while(0)
 

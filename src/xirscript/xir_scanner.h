@@ -13,7 +13,7 @@ class XirScanner
 		XirState* m_begin_state;
 		bool m_eof;
 	public:
-		XirScanner(IFile* file,XirState* begin_state);
+		XirScanner(Faeris::FsFile* file,XirState* begin_state);
 		~XirScanner();
 		int nextToken();
 		int curToken(){return m_cur_token;}

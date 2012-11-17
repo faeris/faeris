@@ -42,10 +42,10 @@ Color Color::operator-(Color right)
 
 Color Color::operator*(FsFloat s)
 {
-	FsInt red=r*s;
-	FsInt green=g*s;
-	FsInt blue=b*s;
-	FsInt alpha=a*s;
+	FsInt red=(FsInt)(r*s);
+	FsInt green=(FsInt)(g*s);
+	FsInt blue=(FsInt)(b*s);
+	FsInt alpha=(FsInt)(a*s);
 
 	if(red<0) red=0;
 	if(red>255) red=255;

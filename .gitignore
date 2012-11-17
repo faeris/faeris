@@ -21,6 +21,13 @@ grammar.tab.c
 *.png
 *.jpg
 *.tga
+*.lib
+*.ncb
+*.user
+*.obj
+*.suo
+BuildLog.htm
+Debug
 temp
 
 

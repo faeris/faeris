@@ -30,7 +30,10 @@
  * POSSIBILITY OF SUCH DAMAGE.
  *
  */
-#include "FsMacros.h"
+#if defined(WIN32)
+#define snprintf _snprintf
+#endif 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

@@ -26,6 +26,8 @@ grammar.tab.c
 *.user
 *.obj
 *.suo
+*.ilk
+*.pdb
 BuildLog.htm
 Debug
 temp

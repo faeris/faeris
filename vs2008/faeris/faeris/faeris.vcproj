@@ -253,11 +253,27 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\src\fsys\FsSysFile.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\src\fsys\FsVFS.cc"
 					>
 				</File>
 				<File
 					RelativePath="..\..\..\src\fsys\FsVFS.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="core"
+				>
+				<File
+					RelativePath="..\..\..\src\core\FsObject.cc"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\src\core\FsObject.h"
 					>
 				</File>
 			</Filter>

@@ -1,3 +1,5 @@
 main:
-	make -C lua/linux/ 
-	make -C libpng/linux/
+	make -C tinyjpeg
+	make -C zlib
+	make -C libpng 
+

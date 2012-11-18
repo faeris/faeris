@@ -11,7 +11,7 @@ PROJECT=libpng
 LIB_DIR=$(PROJECT_PATH)lib
 OBJ_DIR=$(PROJECT_PATH)obj
 SRC_DIR=./
-INCLUDE_DIR= -I./
+INCLUDE_DIR= -I./ -I../zlib
 
 #Source File 
 SRC=  png.c \

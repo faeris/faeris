@@ -38,37 +38,37 @@ SysFile* SysFile::open(const char* name,FsUint mode)
 	switch(mode)
 	{
 		case FsFile::FS_IO_RDONLY:
-			f=fopen(name,"r");
+			f=fopen(name,"rb");
 			break;
 		case FsFile::FS_IO_WRONLY:
 		case FsFile::FS_IO_RDWR:
-			f=fopen(name,"r+");
+			f=fopen(name,"r+b");
 			break;
 		case FsFile::FS_IO_APPEND:
-			f=fopen(name,"a");
+			f=fopen(name,"ab");
 			break;
 		case FsFile::FS_IO_TRUNC:
-			f=fopen(name,"w");
+			f=fopen(name,"wb");
 			break;
 		case FsFile::FS_IO_CREATE:
-			f=fopen(name,"w+");
+			f=fopen(name,"w+b");
 			break;
 		default:
 			if(mode&FsFile::FS_IO_TRUNC)
 			{
-				f=fopen(name,"w+");
+				f=fopen(name,"w+b");
 			}
 			else if(mode&FsFile::FS_IO_APPEND)
 			{
-				f=fopen(name,"a");
+				f=fopen(name,"ab");
 			}
 			else if(mode&FsFile::FS_IO_APPEND&FsFile::FS_IO_CREATE)
 			{
-				f=fopen(name,"a+");
+				f=fopen(name,"a+b");
 			}
 			else
 			{
-				f=fopen(name,"r+");
+				f=fopen(name,"r+b");
 			}
 			break;
 	}

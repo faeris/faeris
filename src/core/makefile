@@ -1,6 +1,6 @@
 # Normal Information 
 CC=g++
-FLAGS= -g -Wall 
+FLAGS= -g -Wall  -DLINUX
 FILE_EXT=cc
 
 #Project infor 

@@ -14,11 +14,12 @@
 FAERIS_NAMESPACE_BEGIN
 class Shader:public FsObject
 {
-	enum ShaderType
-	{
-		FS_VERTEX_SHADER,
-		FS_FRAGMENT_SHADER,
-	};
+	public:
+		enum ShaderType
+		{
+			FS_VERTEX_SHADER,
+			FS_FRAGMENT_SHADER,
+		};
 	public:
 		static Shader* create(FsFile* file,ShaderType t);
 	public:

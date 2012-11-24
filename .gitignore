@@ -32,4 +32,5 @@ BuildLog.htm
 Debug
 temp
 
+*.swo
 

@@ -9,24 +9,29 @@ Shader* Shader::create(FsFile* file,ShaderType t)
 	FsChar* source=NULL;
 	FsChar* log_info=NULL;
 	Shader* ret=NULL;
-
-	const FsChar* all_source[]={source};
-
-	GLenum gl_type=t==FS_VERTEX_SHADER?GL_VERTEX_SHADER:GL_FRAGMENT_SHADER;
-	GLuint shader=glCreateShader(gl_type);
 	GLint compile_result,log_length;
 
+
+	GLenum gl_type=t==FS_VERTEX_SHADER?GL_VERTEX_SHADER:GL_FRAGMENT_SHADER;
+	GLuint shader=0;
 	file->seek(0,FsFile::FS_SEEK_END);
 	length=file->tell();
 	file->seek(0,FsFile::FS_SEEK_SET);
+
 	source=new FsChar[length];
 	readbyte=file->read(source,length);
 	if(readbyte<length)
 	{
 		FS_TRACE_WARN("Expected %d Bytes Data,But Only %d Bytes Read",length,readbyte);
-		goto error;
+		delete[] source;
+		return NULL;
 	}
-	glShaderSource(shader,1,all_source,&length);
+
+	shader=glCreateShader(gl_type);
+	const FsChar* all_source[]={source};
+	const FsInt all_source_length[]={length};
+
+	glShaderSource(shader,1,all_source,all_source_length);
 	glCompileShader(shader);
 	glGetShaderiv(shader,GL_COMPILE_STATUS,&compile_result);
 

@@ -1,53 +1,40 @@
 #ifndef _FAERY_GEOMETRY_H_
 #define _FAERY_GEOMETRY_H_
+#include <vector>
+#include "FsMacros.h"
 #include "math/FsVector3.h"
-#include "graphics/FsRGBA.h"
+#include "graphics/FsColor.h"
 #include "graphics/FsTexCoord2.h"
-#include "FsTypes.h"
 #include "graphics/FsBoundingBox.h"
 #include "graphics/FsboundingSphere.h"
 FAERIS_BEGIN_NAMESPACE
-class Render;
-
 class Geometry
 {
 	public:
-		enum GeometryFlags
-		{
-			
-		};	
-
-	private:
-		FsLong m_flags;
-
-		Vector3* m_vectices;
-		FsUlong  m_vecticesNu;
-
-		Vector3* m_normals;
-		FsUlong m_normalsNu;
-
-		RGBA* m_colors;
-		FsUlong m_colorsNu;
-
-		TexCoord2* m_texCoords;
-		FsUlong m_texCoordsNu;
-
-		Face3* m_faces;
-		FsUlong m_facesNu;
-
-		FsUint m_vecticesBuffer;
-		FsUint m_normalsBuffer;
-		FsUint m_texCoordsBuffer;
-		FsUint m_facesBuffer;
-
-
-		
+		std::vector<Vector3> vectices;
+		std::vector<Vector3> normals;
+		std::vector<Color> colors;
+		std::vector<TexCoord2> texCoords;
+		std::vector<Face3> faces;
 		BoundingBox m_boundingBox;
 		BoundingSphere m_boundingSphere;
+}
 
+class GeometryUtil
+{
+	public:
+		static Geometry* makeSphere(FsFloat radius,FsInt slices,FsInt stacks,FsBool tex_coord=false);
+		static Geometry* makeCylinder(FsFloat base_radius,FsFloat top_radius,
+				FsFloat height,FsInt slices,FsInt stacks,FsBool tex_coord=false);
+		static Geometry* makeDisk(FsFloat inner_radius,FsFloat outer_radius,
+				FsInt slices,FsInt rings,FsBool tex_coord=false);
+		static Geometry* makePartialDisk(FsFloat inner_radius,FsFloat outer_radius,
+				FsInt rings,FsFloat startAngle,FsFloat sweepAngle,tex_coord=false);
+		static Geometry* makeCube(FsFloat length,FsFloat width,FsFloat height,
+				FsInt lslices,FsInt wslices,FsInt hslices,FsBool tex_coord=false);
+		static Geometry* makePlane(FsFloat width,FsFloat height,FsInt lslices,FsInt wslices,tex_coord=false);
 
 }
 FAERIS_END_NAMESPACE
-
 #endif /*_FAERY_GEOMETRY_H_*/
 

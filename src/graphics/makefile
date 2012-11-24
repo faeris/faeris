@@ -1,6 +1,6 @@
 # Normal Information 
 CC=g++
-FLAGS= -g -Wall 
+FLAGS= -g -Wall  -DLINUX
 FILE_EXT=cc
 
 #Project infor 
@@ -16,6 +16,9 @@ INCLUDE_DIR=  -I./ -I../
 #Source File 
 SRC=FsColor.cc  \
 	FsImage2D.cc \
+	FsShader.cc \
+	FsProgram.cc \
+
 
 
 

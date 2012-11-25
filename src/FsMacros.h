@@ -73,5 +73,56 @@
 #define FS_TRACE_INFO(fmt,...) \
 	FS_MESSAGE(INFO,fmt,##__VA_ARGS__)
 
+
+
+
+
+
+
+
+
+/* global Macros For Faeris */
+
+/* event part*/
+
+#define FS_MOUSE_EVENT 0x1
+#define FS_KEYBOARD_EVENT 0x2
+#define FS_TOUCH_EVENT 0x3
+
+#define FS_MOUSE_LEFT_BUTTON 0x1
+#define FS_MOUSE_MIDDLE_BUTTON 0x2 
+#define FS_MOUSE_RIGHT_BUTTON 0x3 
+
+#define FS_DOWN 0x1 
+#define FS_UP 0x2 
+#define FS_CLICK 0x3 
+#define FS_DCLICK 0x4
+#define FS_MOVE 0x5
+
+
+/* Frame Buffer */
+#define FS_BUFFER_LEFT
+#define FS_BUFFER_RIGHT
+#define FS_BUFFER_FRONT
+#define FS_BUFFER_BACK
+#define FS_BUFFER_SINGLE 
+#define FS_BUFFER_DOUBLE 
+#define FS_BUFFER_STENCIL
+#define FS_BUFFER_SAMPLES 
+#define FS_BUFFER_DEPTH
+#define FS_BUFFER_RGB 
+#define FS_BUFFER_RGBA
+
+
+
+
+
+
+
+
+
+
+
+
 #endif /*_FAERIS_MACROS_H_*/
 

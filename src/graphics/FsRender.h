@@ -10,13 +10,8 @@ FAERIS_NAMESPACE_BEGIN
 class Image2D;
 class RenderTarget;
 
-
 class Render 
 {
-	public:
-		static RenderTarget* newRenderTarget();
-		static void deleteRenderTarget(RenderTarget*);
-		
 	public:
 		void setRenderTarget(const RenderTarget* t);
 	public:

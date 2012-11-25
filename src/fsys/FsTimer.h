@@ -1,20 +1,29 @@
 #ifndef _FAERY_TIMER_H_
 #define _FAERY_TIMER_H_ 
-#include"FsTypes.h"
+#include "FsMacros.h"
+#include "FsConfig.h"
 
-FAERY_NAMESPACE_BEGIN
+#if FS_PLATFORM_OS(FS_OS_LINUX)
+	#include <sys/time.h>
+	typedef struct timeval PlatformTimeVal;
+#else 
+	#error "Unsupport Platform OS"
+#endif 
 
-class FsTimer
+FAERIS_NAMESPACE_BEGIN
+
+
+class Timer
 {
 	public:
-		FsTimer();
+		Timer();
 		void reset();
-		FsUlong now() const ;
+		FsLong now() const ;
 	private:
-		FsUlong m_beginTime;
+		PlatformTimeVal m_begin;
 };
 
-FAERY_NAMESPACE_END
+FAERIS_NAMESPACE_END
 
 #endif /*_FAERY_TIMER_H_*/
 

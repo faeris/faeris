@@ -14,7 +14,10 @@ SRC_DIR=./
 INCLUDE_DIR=  -I./ -I../
 
 #Source File 
-SRC= FsObject.cc
+SRC= FsObject.cc \
+	 FsEvent.cc \
+	 FsEventDispatch.cc \
+	 FsFrame.cc
 
 
 

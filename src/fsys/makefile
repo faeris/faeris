@@ -17,6 +17,8 @@ INCLUDE_DIR=  -I./ -I../
 SRC= FsFile.cc \
      FsSysFile.cc \
      FsVFS.cc \
+	 FsSys.cc \
+	 FsTimer.cc
 	
 
 #full src name 

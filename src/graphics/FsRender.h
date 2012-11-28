@@ -4,6 +4,7 @@
 #include "core/FsMatrix44.h"
 #include "FsConfig.h"
 #include "graphics/FsColor.h"
+#include "core/FsVector3.h"
 
 FAERIS_NAMESPACE_BEGIN
 
@@ -13,7 +14,10 @@ class RenderTarget;
 class Render 
 {
 	public:
+		static Render* instance();
+	public:
 		void setRenderTarget(const RenderTarget* t);
+		void swapBuffers();
 	public:
 		void pushMatrix();
 		void popMatrix();
@@ -27,14 +31,18 @@ class Render
 
 		void setScissor(FsInt x,FsInt y,FsInt width,FsInt height);
 
-		void setClearColor(Color c){m_clearColor=c;}
+		void setClearColor(Color c);
 		Color getClearColor()const{return m_clearColor;}
 
 		void setFaceCulling(FsLong cull_face,front_face);
 
 		void setLineWidth(FsFloat width);
 
-		void clear(FsBool color,FsBool depth,FsBool stencil);
+		void clear(FsBool color=true,FsBool depth=true,FsBool stencil=true);
+	private:
+		Render();
+	private:
+		RenderTarget* m_renderTarget;
 	private:
 		FsLong m_doubleSided;
 		FsLong m_FlipSided;
@@ -73,10 +81,6 @@ class Render
 		FsLong m_maxTextures;
 		FsLong m_maxVectexTextures;
 		FsLong m_maxTextureSize;
-
-
-
-
 
 };
 

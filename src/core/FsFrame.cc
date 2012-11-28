@@ -123,12 +123,12 @@ void Frame::frameEnd(FsLong now,FsLong diff)
 	}
 }
 
-void Frame::addFrameListener(FrameListener* l)
+void Frame::addListener(FrameListener* l)
 {
 	m_listener.push_back(l);
 }
 
-void Frame::removeFrameListener(FrameListener* l)
+void Frame::removeListener(FrameListener* l)
 {
 	Iterator iter;
 	for(iter=m_listener.begin();iter!=m_listener.end();++iter)

@@ -2,6 +2,7 @@
 #include "core/FsEvent.h"
 FAERIS_NAMESPACE_BEGIN
 
+#if 0
 static EventDispatch* s_singleton=NULL;
 
 EventDispatch* EventDispatch::instance()
@@ -68,6 +69,7 @@ void EventListener::handleKeyboardEvent(KeyboardEvent *e){}
 void EventListener::handleTouchEvent(TouchEvent* e){}
 EventListener::~EventListener(){}
 
+#endif 
 
 FAERIS_NAMESPACE_END
 

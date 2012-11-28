@@ -31,7 +31,9 @@ class KeyboardEvent:public Event
 	public:
 		FsInt keycode;
 		FsInt state;
+		FsUint mask;
 };
+
 class TouchEvent:public Event 
 {
 	public:

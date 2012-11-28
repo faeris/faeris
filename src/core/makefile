@@ -17,7 +17,8 @@ INCLUDE_DIR=  -I./ -I../
 SRC= FsObject.cc \
 	 FsEvent.cc \
 	 FsEventDispatch.cc \
-	 FsFrame.cc
+	 FsFrame.cc \
+	 FsWindow.cc \
 
 
 

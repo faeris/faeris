@@ -1,10 +1,7 @@
-#ifndef _FAERIS_EVENT_DISPATCH_H_
-#define _FAERIS_EVENT_DISPATCH_H_
-
-#include <vector>
+#ifndef _FS_EVENT_LISTENER_H_
+#define _FS_EVENT_LISTENER_H_
 #include "FsMacros.h"
 #include "core/FsEvent.h"
-
 FAERIS_NAMESPACE_BEGIN
 class EventListener
 {
@@ -14,8 +11,8 @@ class EventListener
 		virtual void handleTouchEvent(TouchEvent* e);
 		virtual ~EventListener();
 };
-
 FAERIS_NAMESPACE_END
 
-#endif  /*_FAERIS_EVENT_DISPATCH_H_*/
+#endif /*_FS_EVENT_LISTENER_H_*/
+
 

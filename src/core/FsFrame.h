@@ -30,8 +30,8 @@ class Frame
 
 		FsInt getAvgFPS();
 
-		void addFrameListener(FrameListener* l);
-		void removeFrameListener(FrameListener* l);
+		void addListener(FrameListener* l);
+		void removeListener(FrameListener* l);
 	protected:
 		void frameBegin(FsLong now,FsLong diff);
 		void frameUpdate(FsLong now,FsLong diff);

@@ -7,11 +7,20 @@ FAERIS_NAMESPACE_BEGIN
 class Material:public FsObject 
 {
 	public:
+		enum MaterialType
+		{
+			FS_MATERIAL_BASE=0,
+			FS_MATERIAL_LINE,
+			FS_MATERIAL_MESH,
+		};
+	public:
 		std::string name;
+
 		FsInt frontSide;
 
 		FsFloat opacity;
 		FsBool transparent;
+
 
 		FsBool blending;
 		FsInt blendSrc;
@@ -37,11 +46,9 @@ class Material:public FsObject
 			polygonOffset(false),polygonOffsetFactor(0),polygonOffsetUnits(0),
 			alphaTest(false),
 			visible(true) {}
-
-
-
-
-}
+	public:
+		virtual MaterialType getMaterialType() const;
+};
 
 
 FAERIS_NAMESPACE_END

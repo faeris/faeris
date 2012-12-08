@@ -15,6 +15,7 @@ class Render
 {
 	public:
 		static Render* instance();
+
 	public:
 		void setRenderTarget(const RenderTarget* t);
 		void swapBuffers();
@@ -24,33 +25,44 @@ class Render
 		void translate(const Vector3& v);
 		void scale(const Vector3& v);
 		void rotate(FsFloat angle,const Vector3& v);
-		void setMatrix(const FsMatrix44& m);
+		void setModelViewMatrix(const Matrix44& m);
+		void setProjectionMatrix(const Matrix44& m);
 	public:
-		void setMeterial(const Material* m);
 		void setViewport(FsInt x,FsInt y,FsInt width,FsInt height);
-
-		void setScissor(FsInt x,FsInt y,FsInt width,FsInt height);
-
-		void setClearColor(Color c);
-		Color getClearColor()const{return m_clearColor;}
-
-		void setFaceCulling(FsLong cull_face,front_face);
-
-		void setLineWidth(FsFloat width);
-
 		void clear(FsBool color=true,FsBool depth=true,FsBool stencil=true);
+	public:
+		void setMaterial(Material* mat);
+		void setFaceCulling(FsLong cull_face,FsLong front_face);
+		void setScissor(FsInt x,FsInt y,FsInt width,FsInt height);
+		void setClearColor(Color c);
+		void setColor(const Color& c);
+		void setLineWidth(FsFloat width);
+		void setBlend(FsLong  equation,FsLong src,FsLong dst);
+	public:
+		void enableBlend(FsBool enable);
+
+		void enableAlphaTest(FsBool enable);
+		void enableDepthTest(FsBool enable);
+		void enableScissorTest(FsBool enable);
+
+		void enableDepthMask(FsBool enable);
+
+
+	protected:
+		void setLineMaterial(LineMaterial* mat);
+		void setBaseMaterial(Material* mat);
+		void setMeshMaterial(MeshMaterial* mat);
 	private:
 		Render();
 	private:
 		RenderTarget* m_renderTarget;
+
 	private:
 		FsLong m_doubleSided;
 		FsLong m_FlipSided;
 
 		/* clear */
 		Color m_clearColor;
-
-
 
 		/* Scissor*/
 		FsLong m_enableScissor;

@@ -31,6 +31,72 @@ void Render::setRenderTarget(const RenderTarget* t)
 }
 
 
+void Render::setMaterial(Material* mat)
+{
+	Material::MaterialType mat_type=mat->getMaterialType();
+	switch(mat_type)
+	{
+		case FS_MATERIAL_BASE:
+			setBaseMaterial(mat);
+			break;
+		case FS_MATERIAL_LINE:
+			setLineMaterial((LineMaterial*)mat);
+			break;
+		case FS_MATERIAL_MESH:
+			setMeshMaterial((MeshMaterial*)mat);
+			break;
+		default:
+			FS_TRACE_WARN("Unkown Material Type(%d)",mat_type);
+	}
+}
+void Render::setLineMaterial(LineMaterial* mat)
+{
+	setBaseMaterial(mat);
+	setLineWidth(mat->lineWidth);
+	enableFog(mat->fog);
+	setColor(mat->color);
+}
+void Render::setBaseMaterial(Material* mat)
+{
+	setFrontSide(mat->frontSide);
+	if(mat->transparent)
+	{
+		setGlobalAlpha(opacity);
+	}
+
+	if(mat->blending)
+	{
+		enableBlend(true);
+		setBlend(mat->blendEquation,mat->blendSrc,mat->blendDst);
+	}
+	else
+	{
+		enableBlend(false);
+	}
+
+	enableDepthTest(mat->depthTest);
+	setDepthMask(mat->depthMask);
+
+	if(mat->polygonOffset)
+	{
+		enablePolygonOffset(true);
+		setPolygonOffset(mat->polygonOffset,mat->polygonOffsetUnits);
+	}
+	else 
+	{
+		enablePolygonOffset(false);
+	}
+	enableAlphaTest(mat->alphaTest);
+}
+
+
+
+
+
+
+
+
+
 
 
 

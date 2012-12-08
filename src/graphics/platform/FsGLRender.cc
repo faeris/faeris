@@ -100,6 +100,7 @@ void Render::setDepthMask(FsBool enable)
 		m_depthMask=enable;
 	}
 }
+
 void Render::setLineWidth(FsFloat width)
 {
 	if(m_lineWidth!=width)
@@ -109,7 +110,24 @@ void Render::setLineWidth(FsFloat width)
 	}
 }
 
-void Render::enablePolygonOffset(){}
+void Render::enableFog(FsBool enable)
+{
+	if(m_fogEnable!=enable)
+	{
+		if(enable)
+		{
+			glEnable(GL_FOG);
+		}
+		else
+		{
+			glDisable(GL_FOG);
+		}
+		m_fogEnable=enable;
+	}
+}
+
+void Render::enablePolygonOffset(FsBool){}
+void Render::setPolygonOffset(FsFloat factor,FsFloat units);
 
 
 

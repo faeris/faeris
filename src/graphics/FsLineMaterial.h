@@ -5,7 +5,7 @@
 #include "graphics/FsColor.h"
 
 FAERIS_NAMESPACE_BEGIN
-class LineBasicMaterial:public Material
+class LineMaterial:public Material
 {
 	public:
 		Color color;
@@ -18,6 +18,8 @@ class LineBasicMaterial:public Material
 		LineBasicMaterial()
 			:lineWidth(1),lineCap(FS_LINE_CAP),lineJoin(FS_LINE_CAP),
 			vertexColors(false),fog(true){}
+	public:
+		virtual MeterialType getMaterialType() const
 };
 FAERIS_NAMESPACE_END
 

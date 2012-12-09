@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include "FsLog.h"
 #include "FsConfig.h"
 #include "fsys/FsFile.h"
@@ -7,19 +7,19 @@
 
 
 FAERIS_NAMESPACE_BEGIN
-FsLog* FsLog::ms_log=NULL;
+static FsLog* s_global_log=NULL;
 FileLog* FileLog::ms_stdoutFileLog=NULL;
 
-void FsLog::init()
+static void init_global_log()
 {
-	if(ms_log==NULL)
+	if(s_global_log==NULL)
 	{
 #if FS_CONFIG(FS_LOG_FILE)
-		ms_log=FileLog::Create(FS_CONFIG(LOG_FILE_NAME));
+		s_global_log=FileLog::Create(FS_CONFIG(LOG_FILE_NAME));
 #elif FS_CONFIG(FS_LOG_STDIO)
-		ms_log=FileLog::getStdoutFileLog();
+		s_global_log=FileLog::getStdoutFileLog();
 #else
-		ms_log=FileLog::getStdoutFileLog();
+		s_global_log=FileLog::getStdoutFileLog();
 #endif
 	}
 }
@@ -45,9 +45,9 @@ static void FsLog_FormatLogTagBuffer(FsChar* buf,FsUlong size,
 
 
 
-void FsLog::sLog(const FsChar* tag,const FsChar* fmt,...)
+void FsUtil_Log(const FsChar* tag,const FsChar* fmt,...)
 {
-	init();
+	init_global_log();
 
 	FsChar buf[FS_MAX_LOG_BUF];
 	va_list args;
@@ -55,11 +55,11 @@ void FsLog::sLog(const FsChar* tag,const FsChar* fmt,...)
 	FsLog_FormatLogTagBuffer(buf,FS_MAX_LOG_BUF,tag,fmt,args);
 	va_end(args);
 
-	ms_log->logMsg(buf);
+	s_global_log->log("%s",buf);
 }
-void FsLog::sLog(const FsChar* fmt,...)
+void FsUtil_Log(const FsChar* fmt,...)
 {
-	init();
+	init_global_log();
 	FsChar buf[FS_MAX_LOG_BUF];
 
 	va_list args;
@@ -67,7 +67,7 @@ void FsLog::sLog(const FsChar* fmt,...)
 	FsLog_FormatLogBuffer(buf,FS_MAX_LOG_BUF,fmt,args);
 	va_end(args);
 
-	ms_log->logMsg(buf);
+	s_global_log->log("%s",buf);
 }
 
 void FsLog::log(const FsChar* tag,const FsChar* fmt,...)
@@ -96,7 +96,7 @@ void FsLog::log(const FsChar* fmt,...)
 FileLog* FileLog::create(const FsChar* filename)
 {
 
-	FsFile* f=VFS::open(filename,VFS::FO_CREATE|VFS::FO_APPEND);
+	FsFile* f=VFS::open(filename,VFS::FS_IO_CREATE|VFS::FS_IO_APPEND);
 	if(f==NULL)
 	{
 		return NULL;

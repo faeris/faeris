@@ -1,0 +1,70 @@
+[顶点数组]
+*)启用和关闭顶点数组
+    void glEnalbeClientState(GLenum array)
+    void glDisableClientState(GLenum array)
+    参数：mode的值如下
+      1）GL_VERTEX_ARRAY (顶点坐标)
+      2) GL_COLOR_ARRAY (RGBA颜色)
+      3) GL_SECONDARY_COLOR_ARRAY (辅助颜色)
+      4) GL_INDEX_ARRAY (颜色索引)
+      5) GL_NORMAL_ARRAY (表面法线)
+      6) GL_FOG_COORDINATE_ARRAY (雾坐标)
+      7) GL_TEXTURE_COORD_ARRAY (纹理坐标)
+      8) GL_EDGE_FLAG_ARRAY (多边形的边界标志)
+*)指定数组的数据
+    void glVertexPointer(GLint size,GLenum type,GLsizei stride,const GLvoid* pointer)
+    void glSecondaryColorPointer(GLint size,GLenum type,GLsizei stride,const GLvoid* pointer)
+    void glIndexPointer(GLint size,GLenum type,GLsizei stride,const GLvoid* pointer)
+    void glNormalPointer(GLint size,GLenum type,GLsizei stride,const GLvoid* pointer)
+    void glFogCoordPointer(GLint size,GLenum type,GLsizei stride,const GLvoid* pointer)
+    void glTexCoordPointer(GLint size,GLenum type,GLsizei stride,const GLvoid* pointer)
+    void glEdgeFlagPointer(GLsizei stride,const GLvoid* pointer)
+    参数：sizer是每个顶点的坐标数量，它必须是2，3或4
+       type指定了数组中每个坐标的数据类型：GL_SHORT,GL_INT,GL_FLOAT,GL_BOUBLE
+       stride是连续顶点之间的字节偏移量，如果stride为0，数组中的顶点便是紧密相邻的
+*)解引用单个数组元素,获取当前所有已启用数组的一个顶点（第ith个)的数据
+    void glArrayElement(GLint ith)
+*)解引用数组元素的一个列表
+    void glDrawElements(GLenum mode,GLsizei count,GLenum type,const GLvoid* indices)
+    参数：mode参数指定了被创建的图元类型，例如：GL_POLYGON,GL_LINE_LOOP等
+	 count定义图元顶点的数量
+	 type指定indices数组的类型，值必须是GL_UNSIGNED_BYTE,GL_UNSIGNED_SHORT,GL_UNSIGNED_INT
+	 indices绘制的数组
+*)解引用多个数组元数列表
+    void glMultiDrawElements(GLenum mode,GLsizei* count,GLenum type,
+			     const GLvoid** indices,GLsizei primcount)
+*)解引用数组元素的一个列表，但限制索值的范围    
+    void glDrawRangeElements(GLenum mode,GLuint start,GLuint end,GLsizei count,
+                             GLenum type,const GLvoid* indices)
+*)混合数组
+    void glInterleavedArrays(GLenum format,GLsizei stride,const GLvoid* pointer)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

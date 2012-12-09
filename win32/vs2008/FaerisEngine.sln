@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "faeris", "faeris\faeris.vcproj", "{1A220C0A-1B8C-4B0D-9EF8-157B34855925}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libpng", "libpng\libpng.vcproj", "{15A66B2F-D7D6-48FD-8104-41C105CE6618}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "lua\lua.vcproj", "{55B20E3B-3B33-4578-926B-68A98F21C72D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tinyjpeg", "tinyjpeg\tinyjpeg.vcproj", "{C097CE91-BC70-40FF-9B2A-7FA425AB49F3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "zlib\zlib.vcproj", "{A511AD25-4E47-42D1-B88B-CB62EA0DA8AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A220C0A-1B8C-4B0D-9EF8-157B34855925}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1A220C0A-1B8C-4B0D-9EF8-157B34855925}.Debug|Win32.Build.0 = Debug|Win32
+		{1A220C0A-1B8C-4B0D-9EF8-157B34855925}.Release|Win32.ActiveCfg = Release|Win32
+		{1A220C0A-1B8C-4B0D-9EF8-157B34855925}.Release|Win32.Build.0 = Release|Win32
+		{15A66B2F-D7D6-48FD-8104-41C105CE6618}.Debug|Win32.ActiveCfg = Debug|Win32
+		{15A66B2F-D7D6-48FD-8104-41C105CE6618}.Debug|Win32.Build.0 = Debug|Win32
+		{15A66B2F-D7D6-48FD-8104-41C105CE6618}.Release|Win32.ActiveCfg = Release|Win32
+		{15A66B2F-D7D6-48FD-8104-41C105CE6618}.Release|Win32.Build.0 = Release|Win32
+		{55B20E3B-3B33-4578-926B-68A98F21C72D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{55B20E3B-3B33-4578-926B-68A98F21C72D}.Debug|Win32.Build.0 = Debug|Win32
+		{55B20E3B-3B33-4578-926B-68A98F21C72D}.Release|Win32.ActiveCfg = Release|Win32
+		{55B20E3B-3B33-4578-926B-68A98F21C72D}.Release|Win32.Build.0 = Release|Win32
+		{C097CE91-BC70-40FF-9B2A-7FA425AB49F3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C097CE91-BC70-40FF-9B2A-7FA425AB49F3}.Debug|Win32.Build.0 = Debug|Win32
+		{C097CE91-BC70-40FF-9B2A-7FA425AB49F3}.Release|Win32.ActiveCfg = Release|Win32
+		{C097CE91-BC70-40FF-9B2A-7FA425AB49F3}.Release|Win32.Build.0 = Release|Win32
+		{A511AD25-4E47-42D1-B88B-CB62EA0DA8AC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A511AD25-4E47-42D1-B88B-CB62EA0DA8AC}.Debug|Win32.Build.0 = Debug|Win32
+		{A511AD25-4E47-42D1-B88B-CB62EA0DA8AC}.Release|Win32.ActiveCfg = Release|Win32
+		{A511AD25-4E47-42D1-B88B-CB62EA0DA8AC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

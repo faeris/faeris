@@ -1,0 +1,243 @@
+[OpenGL纹理]
+
+*)生成纹理对象
+  void glGenTextures(GLint,GLint*)
+  
+*)定义一个二维纹理
+  void glTexImage2D(GLenum target,GLint level,GLint internalFormat,
+		    GLSizei width,GLsizei height,GLint border,
+		    GLenum format,GLenum type,GLvoid* textels);
+  参数:
+     1) target的值为下列常量之一：
+	(1) GL_TEXTURE_2D
+	(2) GL_PROXY_TEXTURE_2D
+	(3) GL_TEXTURE_CUBE_MAP_POSITIVE_X
+	(4) GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+	(5) GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+	(6) GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+	(7) GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+	(8) GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+	(9) GL_TEXTURE_PROXY_TExTURE_CUBE_MAP
+	(10) GL_TEXTURE_1D_ARRAY
+	(11) GL_PROXY_TEXTURE_1D_ARRAY
+	(12) GL_TEXTURE_RECTANGLE
+	(13) GL_PROXY_TEXTURE_RECTANGLE
+     2) format参数的值如下:
+        (1) GL_COLOR_INDEX
+        (2) GL_DEPTH_COMPONENT
+        (3) GL_RGB
+        (4) GL_RGBA
+        (5) GL_RED
+        (5) GL_GREEN
+        (6) GL_BLUE
+        (7) GL_ALPHA
+        (8) GL_LUMINANCE
+        (9) GL_LUMINANCE_ALPHA
+     3) type参数如下:
+        (1) GL_BYTE
+        (2) GL_UNSIGNED_BYTE
+        (3) GL_SHORT
+        (4) GL_UNSIGNED_SHORT
+        (5) GL_INT
+        (6) GL_UNSIGNED_INT
+        (7) GL_FLOAT
+        (8) GL_BITMAP
+     4) texels参数包含了纹理像数据，这个数据描述了纹理图像本身以及它的边框
+     5) width,height参数是纹理图像的宽度和高度（不包括可选的边框宽度），他们的值必须是2的整数次方
+*) 对图像进行缩放
+  int gluScaleImage(GLenum format,GLint widthin,GLint heightin,
+		    GLenum typein,const void* datain,GLint widthout,
+		    GLint heightout,GLenum typeout,void* dataout)
+
+*) 从帧缓冲区读取数据，作为一个新纹理单元
+  void glCopyTexImage2D(GLenum target,GLint level,
+			GLint internalFormat,GLint x,GLint y,
+			GLsizei width,GLsizei height,GLint border)
+
+*) 查询纹理图像最大宽度和最大高度（不包括边框）的下界
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE,...)
+    
+*) 替换纹理图像的全部或一部分
+    void glTexSubImage2D(GLenum target,GLint level,GLint xoffset,
+			 GLint yoffset,GLsizei width,GLsizei height,
+			 GLenum format,GLenum type,
+			 const GLvoid* texels)
+	
+*) 使用帧缓冲区的数据作为纹理
+    void glCopyTexSubImage2D(GLenum target,GLint level,GLint xoffset,
+			      GLint yoffset,GLint x,GLint y,
+			      GLsizei width,GLsizei height)
+*) 一维纹理
+    void glTexImage1D(GLenum target,GLint level,GLint internalFormat,
+		      GLsizei width,GLint border,GLenum format,
+		      GLenum type,const GLvoid* texels)
+
+*) 替换一维纹理的全部或一部分
+    void glTexSubImage1D(GLenum target,GLint level,GLint xoffset,
+			  GLsizei width,GLenum format,
+			  GLenum type,const GLvoid* texels)
+			  
+*) 使用帧缓冲作为一维纹理的来源，或者用它来替换一个现有的一维纹理
+    void glCopyTexImage1D(GLenum target,GLint level,
+			  GLint internalFormat,GLint x,GLint y,
+			  GLsizei width,GLint border)
+    void glCopyTexSubImage1D(GLenum target,GLint level,GLint xoffset,
+			    GLint x,GLint y,GLsizei width)
+
+*) 定义一个三维纹理
+    void glTexImage3D(GLenum target,GLint level,GLint internalFormat,
+		      GLsizei width,GLsizei height,GLsizei depth,
+		      GLint border,GLenum format,GLenum type,
+		      const GLvoid* texels)
+	
+*) 替换三维纹理的全部或部分纹理单元
+    void glTexSubImage3D(GLenum target,GLint level,GLint xoffset,
+			GLint yoffset,GLint zoffset,GLsizei width,
+			GLsizei height,GLsizei depth,GLenum format,
+			GLenum type,const GLvoid* texels)
+	
+*) 从帧缓存中读取数据到当前三维纹理的一块连续子区域
+    void glCopyTexSubImage3D(GLenum target,GLint level,GLint xoffset,
+			      GLint yoffset,GLint zoffset,GLint x,
+			      GLint y,GLsizei width,GLsizei height)
+			      
+*) 根据一幅已压缩的纹理图像定义一个一维，二维，三维的纹理	
+    void glCompressedTexImage1D(GLenum target,GLint level,
+				GLenum internalFormat,GLsizei width,
+				GLint border,GLsizei imageSize,
+				const GLvoid* texels);
+    void glCompressedTexImage2D(GLenum target,GLint level,
+				GLenum internalFormat,GLsizei width,
+				GLsizei height,GLint border,
+				GLsizei imageSize,const GLvoid* texels);
+    void glCompressedTexImage3D(GLenum target,GLint level,
+				GLenum internalFormat,GLsizei width,
+				GLsizei height,GLsizei depth,
+				GLint border,GLsizei imageSize,
+				const GLvoid* texels);
+*) 为相应的纹理图像生成一组完整的mipmap，所构建的mipmap层由GL_TEXTURE_BASE_LEVEL和GL_TEXTURE_MAX_LEVEL控制
+    int glGenerateMipmap(GLenum target);
+    
+    
+*) 创建一系列mipmap，并调用glTexImages*D()加载这些纹理图像
+    int gluBuild1DMipmaps(GLenum target,GLint internalFormat,
+			  GLint width,GLenum format,GLenum type,
+			  const void* texels);
+    int gluBuild2DMipmaps(GLenum target,GLint internalFormat
+			  GLint width,GLint height,GLenum format,
+			  GLenum type,const void* texels);
+
+*) 纹理过滤设置
+    void glTexParameteri(GLenum target,GLenum type,GLenum value)
+    当用于放大和缩小过滤时参数如下：
+	  参数						值
+    GL_TEXTURE_MAG_FILTER			GL_NEAREST或GL_LINEAR
+    GL_TEXTURE_MIN_FILTER			GL_NEAREST,GL_LINEAR,GL_NEAREST_MIPMAP_NEAREST,
+						GL_NEAREST_MIPMAP_LINEAR,GL_LINEAR_MIPMAP_NEAREST,
+						GL_LINEAR_MIPMAP_LINEAR
+						
+*) 命名纹理对象
+    void glGenTextures(GLsizei n,GLuint* textureNames)
+*) 判断是否为一个纹理对象
+    void glIsTexture(GLuint textureName);
+*) 创建和使用纹理对象    
+    void glBindTexture(GLenum target,GLuint textureNames)
+*) 删除纹理对象
+    void glDeleteTextures(GLsizei n,Const GLuint* textureNames)
+*) 查询n个纹理对象的纹理常驻状态
+    GLboolean glAreTexturesResident(GLsizei n,
+				    const GLuint* textureNames,
+				    GLboolean* residences)
+
+*) 设置纹理常驻的优先级
+    void glPrioritizeTextures(GLsizei n,const GLuint* textureNames,
+			      const GLclampf* priorities);
+    说明：向n个纹理对象分配纹理常驻优先级，这些纹理对象的名称由textureNames数组提贡，相应的优先级在priorities数组中设置，在分配之前，priorities数组中的优先级被截取在[0.0,1.0]的范围之内，0表示最低优先级，1表示最高优先级。
+				    
+*) 纹理函数
+    void glTexEnv{if}(GLenum target,GLenum pname,TYPE param);
+    void glTexEnv{if}v(GLenum target,GLenum pname,TYPE* param);
+    参数target的值必须为GL_TEXTURE_FILTER_CONTROL,GL_TEXTURE_ENV,GL_POINT_SPRITE
+      1)当target为GL_TEXTURE_FILTER时:
+	  a)pname必须是GL_TEXTURE_LOD_BIAS，param必须是一个浮点值,作为mipmap细节偏移值
+      2)当target为GL_TEXTURE_ENV时:
+	  a)pname是GL_TEXTURE_ENV_MODE，那么param必须是:
+	    (1)GL_DECAL
+	    (2)GL_REPLACE
+	    (3)GL_MODULATE
+	    (4)GL_BLEND
+	    (5)GL_ADD
+	    (6)GL_COMBINE
+	  b)pname是GL_TEXTURE_ENV_COLOR时，那么param就是包含了4个浮点值(G,G,B,A)
+      3)当target为GL_POINT_SPRITE时，并且pname是GL_COORD_REPLACE时，那么把param设置为GL_TRUE可以启用围绕一个点块纹理从标进行迭代
+    
+*) 纹理的内部保存格式
+    纹理存储时，一共有6种内部格式，如下表
+    --------------------------------------------------
+     基本内部格式			所提取的源颜色(G,G,B,A)
+    --------------------------------------------------
+    GL_ALPHA			(0,0,0,A)
+    GL_LUMINANCE		(L,L,L,i)
+    GL_LUMINANCE_ALPHA		(L,L,L,A)
+    GL_INTENSITY		(I,I,I,I)
+    GL_RGB			(R,G,B,I)
+    GL_RGBA			(R,G,B,A)
+    
+  纹理应用的公式如下:
+    * s表示纹理源颜色
+    * f表示新的片断值
+    * c表示GL_TEXTURE_ENV_COLOR分配的值
+    * 如果没有下标，表示最终计算所得的颜色
+    
+   替换，调整和帖花纹理函数
+   ----------------------------------------------------------------------------------
+   基本内部格式		GL_RELACE函数             GL_MODULATE函数         GL_DECAL函数
+   ----------------------------------------------------------------------------------
+   GL_ALPHA		C=Cf A=As		 C=Cf	A=AfAs		underfine
+   GL_LUMINANCE 	C=Cs A=Af		 C=CfCs A=Af		underfine
+   GL_LUMINANCE_ALPHA	C=Cs A=As		 C=CfCs	A=AfAs		underfine
+   GL_INTENSITY		C=Cs A=As		 C=CfCs	A=AfCs		underfine
+   GL_RGB		C=Cs A=Af		 C-CfCs A=Af		C=Cs A=Af
+   GL_RGBA		C=Cs A=As		 C=CfCs A=AfAs		C=Cf(1-As)+Cs*As A=Af
+   
+   
+   混合和添加纹理函数
+   -----------------------------------------------------------------------------------
+   基本内部格式		GL_BLEND函数			GL_ADD函数
+   -----------------------------------------------------------------------------------
+   GL_ALPHA		C=Cf A=AfAs			C=Cf	A=AfAf
+   GL_LUMINANCE		C=Cf(1-Cs)+CcCs A=Af		C=Cf+Cs	A=Af
+   GL_LUMINANCE_ALPHA 	C=Cf(1-Cs)+CcCs A=AfAs		C=Cf+Cs	A=AfAs
+   GL_INTENSITY		C=Cf(1-Cs)+CcCs A=Af(1-As)+AfAs C=Cf+Cs A=Af+As
+   GL_RGB		C=Cf(1-Cs)+CcCs	A=Af		C=Cf+Cs A=Af
+   GL_RGBA		C=Cf(1-Cs)+CcCs A=AfAs		C=Cf+Cs A=AfAs
+    
+*) 设置当前的纹理坐标
+    void glTexCoord{1234}{sifd}(TYPE coords)
+    void glTexCoord{1234}{sifd}v(const TYPE* coords)
+    
+    
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

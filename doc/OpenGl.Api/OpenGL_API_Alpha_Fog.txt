@@ -1,0 +1,115 @@
+[OpenGL Api 混合，抗锯齿，雾和多边形偏移]
+
+*) 设置源混合因子和目标混合因子
+    void glBlendFunc(GLenum srcfactor,GLenum destfactor)
+    void glBlendFuncSeparate(GLenum srcRGB,GLenum destRGB,
+			     GLenum srcAlpha,GLenum destAlpha)
+    参数srcfactor与destfactor的值如下：
+	  常量				RGB混合因子		alpha混合因子
+      1) GL_ZERO			(0,0,0)			    0
+      2) GL_ONE				(1,1,1)			    1
+      
+      3) GL_SRC_COLOR			(Rs,Gs,Bs)		    As
+      4) GL_ONE_MINUS_SRC_COLOR		(1,1,1)-(Rs,Gs,Bs)	    1-As
+      
+      5) GL_DST_COLOR			(Rd,Gd,Bd)		    Ad
+      6) GL_ONE_MINUS_DST_COLOR		(1,1,1)-(Rd,Gd,Bd)	    1-Ad
+      
+      7) GL_SRC_ALPHA			(As,As,As)		    As
+      8) GL_ONE_MINUS_SRC_ALPHA		(1,1,1)-(As,As,As)	    1-As
+      
+      9) GL_DST_ALPHA			(Ad,Ad,Ad)		    Ad
+      10)GL_ONE_MINUS_DST_ALPHA		(1,1,1)-(Ad,Ad,Ad)	    1-Ad
+      
+      11)GL_CONSTANT_COLOR		(Rc.Gc,Bc)		    Ac
+      12)GL_ONE_MINUS_CONST_COLOR	(1,1,1)-(Rc,Gc,Bc)	    1-Ac
+      
+      13)GL_CONSTANT_ALPHA		(Ac,Ac,Ac)		    Ac
+      14)GL_ONE_MINUS_CONSTANT_ALPHA	(1,1,1)-(Ac,Ac,Ac)	    1-Ac
+      
+      15)GL_SRC_ALPHA_SATURATE		(f,f,f);f-min(As,1-Ad)	    1
+      
+*) 设置混合的常量颜色
+    void glBlendColor(GLclampf red,GLclampf green,GLclampf blue,
+		      GLclampf alpha)
+		      
+*) 启用混合
+    void glEnable(GL_BLEND)
+    
+*) 设置混合方程式组合像素
+    void glBlendEquation(GLenum mode)
+    void glBlendEquationSeparate(GLenum modeRGB,GLenum modeAlpha)
+    参数mode如下:
+	  混合模式参数				操作
+      1) GL_FUNC_ADD				Cs*S+Cd*D
+      2) GL_FUNC_SUBTRACT			Cs*S-Cd*D
+      3) GL_FUNC_REVERSE_SUBTRACT		Cd*D-Cs*S
+      4) GL_MIN					min(Cs*s,Cd*D)
+      5) GL_MAX					max(Cs*S,Cd*D)
+      6) GL_LOGIC_OP				Cs op Cd
+    
+*) 抗锯齿
+    void glHint(GLenum target,GLenum hint)
+    参数target值如下：
+      1) GL_POINT_SMOOTH_HINT,GL_LINE_SMOOTH_HINT,
+	 GL_POLYGON_SMOOTH_HINT  (点，直线，多边形的采样质量)
+      2) GL_FOG_HINT	(雾计算是根据像素(GL_NICEST)还是顶点(GL_FASTEST)进行
+      3) GL_PERSPECTIVE_CORRECTION_HINT	(颜色和纹理坐标插值的质量)
+      4) GL_GENERATE_MIPMAP_HINT	(自动mipmap层生成的质量和性能)
+      5) GL_TEXTURE_COMPRESSION_HINT	(压缩纹理图像的质量和性能)
+    参数hit的值如下:
+      1) GL_FASTEST (效率最高)
+      2) GL_NICEST (质量最高)
+      3) GL_DONT_CARE (自动选择)
+
+*) 启用抗锯齿功能
+    glEnable(GL_POINT_SMOOTH)    点抗锯齿
+    glEnable(GL_LINE_SMOOTH) 	 直线抗锯齿
+    glEnable(GL_POLYGON_SMOOTH)  多边形抗锯齿
+      
+*) 设置雾参数
+    void glFog{if}(GLenum pname,TYPE param)
+    void glFog{if}v{GLenum pname,const TYPE* params)
+    参数pname为GL_FOG_MODE时，param的值为GL_EXP(默认)，GL_EXP2或者是GL_LINEAR
+    参数pname为GL_FOG_DENSITY，GL_FOG_START,GL_FOG_END时，那么param的值为表示density,start,end的值
+    参数pname为GL_FOG_COLOR时，param的值雾的RGBA颜色
+      
+*) 为每个顶点指定雾坐标
+    void glFogCoord{fd}(TYPE z)
+    void glFogCoord{fd}v(const TYPE* z)
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      

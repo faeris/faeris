@@ -4,8 +4,14 @@
 
 typedef void FsVoid;
 typedef char FsChar;
+
 typedef unsigned char FsUchar;
+
+#if defined(__cplusplus)
 typedef bool FsBool;
+#else 
+typedef int FsBool;
+#endif 
 
 typedef char FsInt8;
 typedef unsigned char FsUint8;

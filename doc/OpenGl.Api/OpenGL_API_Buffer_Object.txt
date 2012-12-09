@@ -1,0 +1,98 @@
+[缓冲区对象]
+
+*)创建缓冲区对象
+    void glGenBuffers(GLsizei n,GLuint* buffers)
+    参数：在buffers数组中返回n个当前未使用的名称
+*)判断一个标识符是否是一个当前被使用的缓冲区对象的标识符    
+    GLboolean glIsBuffer(GLuint buffer)
+*)绑定缓冲区对象
+    glBindBuffer(GLenum target,GLuint buffer)
+    参数：target必须为：GL_ARRAY_BUFFER,GL_ELEMENT_ARRAY_BUFFER,GL_PIXEL_PACK_BUFFER,
+		    GL_PIXEL_UNPACK_BUFFER,GL_COPY_READ_BUFFER,GL_COPY_WRITE_BUFFER,
+		    GL_TRANSFORM_FEEDBACK_BUFFER,GL_UNIFORM_BUFFER
+	 buffer指定将要绑定的缓冲区对象
+    说明：glBindBuffer完成3个任务之一
+	1)当buffer是一个首次使用的非零符号整数时，它就创建一个新的缓冲区对象，并把buffer分配给这个缓冲区对象,作为它的名称
+	2)当绑定到一个以前创建的缓冲区对象时，这个缓冲区对象便成为活动的缓冲区对象
+	3)当绑定到一个值为零的buffer时，OpenGL就会停止使用缓冲区对象
+*)初始化缓冲区对象	
+    void glBufferData(GLenum target,GLsizeptr size,const GLvoid* data,GLenum usage)
+    参数：在OpenGL服务器中内存中分配size个存储单位
+    参数：target可以是以下值：
+	    1)GL_ARRAY_BUFFER (表示顶点数据)
+	    2)GL_ELEMENT_ARRAY_BUFFER (表示索引数据)
+	    3)GL_PIXEL_UNPACK_BUFFER (表示传递给OpenGL的像素数据)
+	    4)GL_PIXEL_PACK_BUFFER (表示从OpenGL获取的像素数据)
+	    5)GL_TEXTURE_BUFFER (表示作为纹理缓冲区存储的纹理数据）
+	    6)GL_TRANSFORM_FEEDBACK_BUFFER (表示执行一个变换反馈着色器的结果)
+	    7)GL_UNIFORM_BUFFER (表法统一变量值)
+    参数：size是存储相关数据所需要的内存数量
+    参数：data可以是一个指向客户机内存的指针（用于初始化缓冲区对象），也可以是NULL。如果这传递的是一个有效的指针，size个单位的存储空间就从客户机复制到服务器，如果它传递的是NULL,这个函数将会保留size个单位在存储空间供以后使用，但不会对它进行初始化。
+    参数：usage提供了一个提示，就是数据在分配之后将如何进行读取和写入，这的有效值包括:
+	    1)GL_STREAM_DRAW,GL_STREAM_READ,GL_STREAM_COPY
+	    2)GL_STATIC_DRAW,GL_STATIC_READ,GL_STATIC_COPY
+	    3)GL_DYNAMIC_DRAW,GL_DYNAMIC_READ,GL_DYNAMIC_COPY
+	 根据usage的值，OpenGL可能会对数据进行优化，在缓冲区对象数据上，可以进行3种类型的操作：
+	    1)绘图：客户机指定了用于渲染的数据
+	    2)读取：从OpenGL缓冲区读取（例如帧缓冲区）的数据值，并且在应用程序中用于各种与渲染并不直接相关的计算过程
+	    3)复制：从OpenGL缓冲区读取数据值，作为用于渲染的数据
+	 另外，根据数据的更新频率，有几种不同的操作提示描述了数据的读取频率或在渲染中使用的频率：
+	    1)流模式：缓冲区对象中的数据常常需要更新，但是在绘图或其它操作中使用这些数据的次数较少
+	    2)静态模式：缓冲区对象中的数据只指定1次，但是这些数据被使用的频率很高
+	    3)动态模式：缓冲区对象中的数据不仅常常需要进行更新，而且使用频率也非常高
+    说明：如果请求的内存太多，它会设置GL_OUT_OF_MEMORY错误
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   

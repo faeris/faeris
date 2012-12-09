@@ -1,6 +1,6 @@
 #include"xirscript/xir_ast.h"
 #include<assert.h>
-#include"util/marocs.h"
+#include"FsMacros.h"
 
 static void __XirAstNode_Print(XirAstNode* node,char demiliter,bool indent,int indent_nu);
 
@@ -271,7 +271,7 @@ static void __XirAstNode_Print(XirAstNode* node,char demiliter,bool indent,int i
 			__XirAstRefer_Print((XirAstReferNode*)node,demiliter,indent,indent_num);
 			break;
 		default:
-			BUG("Unkown Type(%d)",type);
+			FS_TRACE_ERROR("Unkown Type(%d)",type);
 	}
 }
 

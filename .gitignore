@@ -1,6 +1,7 @@
 *.dep
 tags
 *.swp
+*.kate-swp
 *.exe
 *.o
 *.a
@@ -17,7 +18,19 @@ grammar.tab.c
 *.dvi
 *.out
 *~
-
+*.png
+*.jpg
+*.tga
+*.lib
+*.ncb
+*.user
+*.obj
+*.suo
+*.ilk
+*.pdb
+BuildLog.htm
+Debug
 temp
 
+*.swo
 

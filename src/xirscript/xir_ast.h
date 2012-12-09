@@ -1,7 +1,7 @@
 #ifndef _FAERY_XIR_SCRIPT_XIR_AST_H_
 #define _FAERY_XIR_SCRIPT_XIR_AST_H_
 #include<vector>
-#include"util/marocs.h"
+#include"FsMacros.h"
 #include<string>
 class XirAstNode
 {
@@ -131,7 +131,7 @@ class XirAstComplexNode:public XirAstNode
 		}
 		XirAstNode* getChirld(unsigned long index)
 		{
-			BUG_ON(index>=m_chirldren.size(),"Invalid Index");
+			FS_TRACE_ERROR_ON(index>=m_chirldren.size(),"Invalid Index");
 			return m_chirldren[index];
 		}
 

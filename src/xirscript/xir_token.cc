@@ -23,7 +23,7 @@ static const char* s_xir_token_name[]=
 };
 std::string XirToken_Name(int token)
 {
-	BUG_ON(token>=XT_TOKEN_NU,"Token(%d) Valied",token);
+	FS_TRACE_ERROR_ON(token>=XT_TOKEN_NU,"Token(%d) Valied",token);
 	return std::string(s_xir_token_name[token]);
 }
 

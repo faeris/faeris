@@ -47,7 +47,7 @@ inline Vector2 Vector2::proj(const Vector2& v) const
 inline FsFloat Vector2::angle(const Vector2& v) const
 {
 	FsFloat theta=dot(v)/(length()*v.length());
-	return Math::acos(theta)/PI*180.0;
+	return Math::acosr(theta)/FS_PI*180.0;
 }
 inline FsFloat Vector2::length() const 
 {

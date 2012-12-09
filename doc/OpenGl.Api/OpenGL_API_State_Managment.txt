@@ -1,0 +1,55 @@
+[状态管理]
+*)启用一个功能
+    void glEnable(GLenum capability)
+*)关闭一个功能
+    void glDisable(GLenum capability)
+*)查询一个状态当前是处于打开还是关闭状态
+    GLboolean glIsEnalbled(Glenum capability)
+    参数：capability值如下
+      1) GL_LINE_STIPPLE (直线点画功能)
+      2) GL_CULL_FACE (剔除功能)
+      3) GL_POLYGON_STIPPLE (多边形的点画模式)
+      4) GL_NORMALIZE (对法线向量进行规范化)
+      5) GLRESCALE_NORMAL (对法线向量进行缩放)
+*)查询状态变量的值
+    void glGetBooleanv(GLenum pname,GLboolean* params)
+    void glGetIntegerv(GLenum pname,GLint* params)
+    void glGetFloatv(GLenum pname,GLfloat* params)
+    void glGetDoublev(GLenum panme,GLdouble* params)
+    void glGetPointerv(GLenum pname,GLvoid** params)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -1,32 +1,30 @@
-#ifndef _FAERIS_NODE_H_
-#define _FAERIS_NODE_H_
+#ifndef _FAERIS_SCENE_NODE_H_
+#define _FAERIS_SCENE_NODE_H_
 
 #include <string>
 
 #include "FsMacros.h"
-#include "core/FsObject.h"
-#include "core/FsVector3.h"
-#include "core/FsMatrix44.h"
-#include "core/FsQuaternion.h"
-#include "core/FsBoundSphere.h"
-#include "core/FsBoundBox.h"
+#include "FsObject.h"
+#include "geometry/FsVector3.h"
+#include "geometry/FsMatrix44.h"
+#include "geometry/FsQuaternion.h"
+#include "geometry/FsBoundSphere.h"
+#include "geometry/FsBoundBox.h"
 #include "util/FsListHead.h"
 
 FAERIS_NAMESPACE_BEGIN
 
 
-class Node :public FsObject.h
+class SceneNode :public FsObject.h
 {
 	public:
 		Node(std::string name);
 		Node();
 	public:
+		virtual void update(FsLong msec);
+		virtual void draw(Render* r);
+	public:
 		void applyMatrix(const Matrix44& m);
-		void lTranslate(float distance,const Vector3& direction);
-
-		void lTranslateX(float distance);
-		void lTranslateY(float distance);
-		void lTranslateZ(float distance);
 
 		Vector3 localToWorld(Vector3 l);
 		Vector3 worldToLocal(Vector3 l);

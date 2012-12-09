@@ -73,7 +73,7 @@ inline Vector3 Vector3::proj(const Vector3& v) const
 inline FsFloat Vector3::angle(const Vector3& v) const 
 {
 	FsFloat m=dot(v)/(length()*v.length());
-	return Math::acos(m)/PI*180.0;
+	return Math::acosr(m)/FS_PI*180.0;
 }
 
 /* |u|=sqrt(x*x+y*y+z*z) */

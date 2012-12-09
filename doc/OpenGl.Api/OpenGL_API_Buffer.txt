@@ -1,0 +1,111 @@
+[OpenGL API 缓冲区]
+
+*) 设置缓冲区的清除值
+    void glClearColor(GLclampf red,GLclampf green,GLclampf blue,GLclampf alpha)
+    void glClearIndex(GLfloat index);
+    void glClearDepth(GLclampd depth);
+    void glClearStencil(GLint s)
+    void glClearAccum(GLfloat red,GLfloat green,GLfloat blue,GLfloat alpha)
+    
+*) 清楚缓冲区
+    void glClear(GLbitfield mask)
+    参数mask可以是下面几个的组合：
+      1) GL_COLOR_BUFFER_BIT
+      2) GL_DEPTH_BUFFER_BIT
+      3) GL_STENCIL_BUFFER_BIT
+      4) GL_ACCUM_BUFFER_BIT
+
+*) 设置绘制的缓冲区，选择写入或者清除的缓冲区，并禁用以前的glDrawBuffer调用所启用的缓冲区
+    void glDrawBuffer(GLenum mode)
+    void glDrawBuffer(GLenum GLsize n,const GLenum* buffers)
+    参数mode的值如下:
+      1)GL_FRONT,GL_FRONT_LEFT,GL_FRONT_RIGHT
+      2)GL_BACK,GL_BACK_LEFT,GL_BACK_RIGHT
+      3)GL_LEFT,GL_RIGHT
+      4)GL_FRONT_AND_BACK,GL_AUXi,GL_NONE,GL_COLOR_ATTACHMENT
+      
+*) 设置读取的缓冲区，设置后，该缓冲区会作为glReadPixels(),glCopyPixels(),glCopyTexImage(),glCopyTexSubImage,glCopyConvolutionFiliter()的像数读取的来源
+    glReadBuffer(GLenum mode)
+    参数mode同glDrawBuffer
+
+*) 缓冲区的屏蔽
+    void glIndexMask(GLunit mask)
+    void glColorMask(GLboolean red,GLboolean green,GLboolean blue,GLboolean alpha)
+    void glcolorMaski(GLuint buf,GLboolean red,GLboolean green,GLboolean blue,GLboolean alpha)
+    void glDepthMask(GLboolean flags);
+    void glStencilMask(GLuint mask);
+    void glStencilMaskSeparate(GLenum face,GLuint mask);
+    
+*) 设置裁剪，在窗口中定义一个矩形区域,并把绘制图限制在这个区域之内。
+    void glScissor(GLint x,GLint y,GLsizei width,GLsizei height)
+
+*) 开启或者禁用裁剪 
+    void glEnable/Disable(GL_SCISSOR_TEST)
+
+*) alpha测试
+    void glAlphaFunc(GLenum func,GLclampf ref)
+    参数func的值如下
+      1) GL_NEVER   	决不接受这个片断
+      2) GL_ALWAYS  	总是接受这个片断
+      3) GL_LESS  	如果片断alpha的值小于参数值便接受它
+      4) GL_EQUAL 	如果片断alpha的值大于参数值便接受它
+      5) GL_GEQUAL 	如果片断alpha的大于或者等于参考值便接受它
+      6) GL_GREATER 	如果片断的alpha大于参考值便接受它
+      7) GL_NOTEQUAL 	如果片断的alpha不等于参考值便接受它
+
+*) 开启或禁用alpha测试
+    glEnable/Disable(GL_ALPHA_TEST) 
+
+*) 设置模板测试函数
+    void glStencilFunc(GLenum func,GLint ref,GLuint mask)
+    void glStencilFuncSeparate(GLenum face,GLenum func,GLint ref,gLuint mask);
+  
+  
+*) 设置当一个片断通过或者未通过模板测试时，模板缓冲区中的数据如何进行修改  
+    void glStencilOp(GLenum fail,GLenum zfail,GLenum zpass);
+    void glStencilOpSeparate(GLenum face,GLenum fail,GLenum zfail,GLenum zpass);
+    
+    参数fail和zfail,zpass的值如下
+      1) GL_KEEP 	保持当前值 
+      2) GL_ZERO	用0替换当前值
+      3) GL_REPLACE	用参考值替换当前值
+      4) GL_INCR	在使用饱和的情况下将当前值加1
+      5) GL_INCR_WRAP	
+      6) GL_DECR
+      7) GL_DECR_WRAP
+      8) GL_INVERT
+
+*) 设置深度测试函数
+    void glDepthFunc(GLenum func)
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    

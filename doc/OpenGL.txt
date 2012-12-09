@@ -1,0 +1,11 @@
+[Opengl 特性]
+
+*) 顶点属性
+  1)位置(position)
+  2)顔色(color)
+  3)法线(normal)
+  4)纹理坐标(texture coordinates)
+  5)第二颜色(secondary color)
+  6)边界标志(edge flags)
+  7)雾坐标(fog coordinate)
+  

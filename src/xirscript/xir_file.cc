@@ -1,5 +1,5 @@
 #include"xirscript/xir_file.h"
-#include"util/marocs.h"
+#include"FsMacros.h"
 #include<string.h>
 #include<stdio.h>
 #define LEX_FILE_DEFAULT_SIZE 64

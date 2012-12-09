@@ -1,10 +1,10 @@
 #ifndef _FAERY_XIR_SCRIPT_FILE_H_
 #define _FAERY_XIR_SCRIPT_FILE_H_ 
-#include"io/ifile.h"
+#include "fsys/FsFile.h"
 class XirFile
 {
 	private:
-		IFile* m_file;
+		Faeris::FsFile* m_file;
 		char* m_buf;
 		int m_buf_cap;
 		int m_buf_size;
@@ -12,7 +12,7 @@ class XirFile
 		int m_mark;
 		int m_buf_pos;
 	public:
-		XirFile(IFile* file);
+		XirFile(Faeris::FsFile* file);
 		~XirFile();
 	protected:
 		int loadData();

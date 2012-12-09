@@ -1,0 +1,61 @@
+[OpenGl API 显示列表]
+
+*) 创建显示列表
+    GLuint glGenLists(GLsizei range)
+
+*) 指定显示列表的内容
+    void glNewList(GLuint list,GLenum mode)
+    void glEndList(void)
+    参数Mode的值如下:
+      1) GL_COMPILE (编译)
+      2) GL_COMPILE_AND_EXECUTE (编译和运行)
+      
+*) 执行显示列表
+    void glCallList(Gluint list)
+    
+*) 判断一个显示列表是否被使用
+    glBoolean glIsList(GLuint list)
+    
+*) 删除显示列表
+    void glDeleteLists(GLuint list,GLsizei range)
+
+*) 指定执行多个显示列表的偏移量
+    void glListBase(GLuint base)
+    
+*) 执行多个显示列表
+    void glCallLists(GLsizei n,GLenum type,const GLvoid* lists)
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

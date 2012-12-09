@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "util/FsLog.h"
 
 FAERIS_NAMESPACE_BEGIN
 
@@ -38,45 +37,45 @@ SysFile* SysFile::open(const char* name,FsUint mode)
 	FILE* f=NULL;
 	switch(mode)
 	{
-		case FsFile::FO_RDONLY:
-			f=fopen(name,"r");
+		case FsFile::FS_IO_RDONLY:
+			f=fopen(name,"rb");
 			break;
-		case FsFile::FO_WRONLY:
-		case FsFile::FO_RDWR:
-			f=fopen(name,"r+");
+		case FsFile::FS_IO_WRONLY:
+		case FsFile::FS_IO_RDWR:
+			f=fopen(name,"r+b");
 			break;
-		case FsFile::FO_APPEND:
-			f=fopen(name,"a");
+		case FsFile::FS_IO_APPEND:
+			f=fopen(name,"ab");
 			break;
-		case FsFile::FO_TRUNC:
-			f=fopen(name,"w");
+		case FsFile::FS_IO_TRUNC:
+			f=fopen(name,"wb");
 			break;
-		case FsFile::FO_CREATE:
-			f=fopen(name,"w+");
+		case FsFile::FS_IO_CREATE:
+			f=fopen(name,"w+b");
 			break;
 		default:
-			if(mode&FsFile::FO_TRUNC)
+			if(mode&FsFile::FS_IO_TRUNC)
 			{
-				f=fopen(name,"w+");
+				f=fopen(name,"w+b");
 			}
-			else if(mode&FsFile::FO_APPEND)
+			else if(mode&FsFile::FS_IO_APPEND)
 			{
-				f=fopen(name,"a");
+				f=fopen(name,"ab");
 			}
-			else if(mode&FsFile::FO_APPEND&FsFile::FO_CREATE)
+			else if(mode&FsFile::FS_IO_APPEND&FsFile::FS_IO_CREATE)
 			{
-				f=fopen(name,"a+");
+				f=fopen(name,"a+b");
 			}
 			else
 			{
-				f=fopen(name,"r+");
+				f=fopen(name,"r+b");
 			}
 			break;
 	}
 	
 	if(f==NULL)
 	{
-		FS_LOG_DEBUG("Open File(%s) Failed",name);
+		FS_TRACE_ERROR("Open File(%s) Failed",name);
 		return NULL;
 	}
 	return new SysFile(f);
@@ -96,13 +95,13 @@ FsLong SysFile::seek(FsLong offset,FsInt where)
 	FsLong ret;
 	switch(where)
 	{
-		case FsFile::SK_CUR:
+		case FsFile::FS_SEEK_CUR:
 			ret=fseek(m_platfromFile,offset,SEEK_CUR);
 			break;
-		case FsFile::SK_SET:
+		case FsFile::FS_SEEK_SET:
 			ret=fseek(m_platfromFile,offset,SEEK_SET);
 			break;
-		case FsFile::SK_END:
+		case FsFile::FS_SEEK_END:
 
 			ret=fseek(m_platfromFile,offset,SEEK_END);
 			break;

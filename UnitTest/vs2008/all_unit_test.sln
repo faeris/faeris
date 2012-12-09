@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "png_convert_png", "png_convert_png\png_convert_png.vcproj", "{ADE34474-6705-4661-96B7-AC8CB5D65727}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "load_png_test", "load_png_test\load_png_test.vcproj", "{4F7621A9-E8FB-4CA3-AAE0-4B498853A247}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADE34474-6705-4661-96B7-AC8CB5D65727}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ADE34474-6705-4661-96B7-AC8CB5D65727}.Debug|Win32.Build.0 = Debug|Win32
+		{ADE34474-6705-4661-96B7-AC8CB5D65727}.Release|Win32.ActiveCfg = Release|Win32
+		{ADE34474-6705-4661-96B7-AC8CB5D65727}.Release|Win32.Build.0 = Release|Win32
+		{4F7621A9-E8FB-4CA3-AAE0-4B498853A247}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4F7621A9-E8FB-4CA3-AAE0-4B498853A247}.Debug|Win32.Build.0 = Debug|Win32
+		{4F7621A9-E8FB-4CA3-AAE0-4B498853A247}.Release|Win32.ActiveCfg = Release|Win32
+		{4F7621A9-E8FB-4CA3-AAE0-4B498853A247}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

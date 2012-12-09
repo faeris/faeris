@@ -1,17 +1,15 @@
-/************************************************************
- * File: matrix4.h
- * Description: Thanks to three.js,I can impliement quickly
- * Author: NosicLin(nosiclin@foxmail.com)
- * Date:2012-9-27
- * LastUpdate:2012-9-28
- * Copyright:Faery Game Studio
- ************************************************************/
+#ifndef _FS_MATH_MATRIX4_H_
+#define _FY_MATH_MATRIX4_H_ 
+#include "math/FsVector3.h"
+#include "math/FsVector4.h"
+#include "math/FsQuaternion.h"
 
-#ifndef FY_MATH_MATRIX_H_
-#define FY_MATH_MATRIX_H_ 
-#include"FsVector3.h"
-#include"FsVector4.h"
-#include"FsQuaternion.h"
+#define FS_EULER_XYZ (0x1)
+#define FS_EULER_XZY (0x2)
+#define FS_EULER_YXZ (0x3)
+#define FS_EULER_YZX (0x4) 
+#define FS_EULER_ZXY (0x5)
+#define FS_EULER_ZYX (0x6)
 
 FAERIS_NAMESPACE_BEGIN
 class  Matrix4
@@ -29,25 +27,6 @@ class  Matrix4
 			float m[4][4];
 		};
 	public:
-		enum 
-		{
-			MR_XYZ,
-			MR_XZY,
-			MR_YZX,
-			MR_YXZ,
-			MR_ZXY,
-			MR_ZYX,
-		};
-
-	public:
-		static Matrix4 makeRotateX(float theta);
-		static Matrix4 makeRotateY(float theta);
-		static Matrix4 makeRotateZ(float theta);
-		static Matrix4 makeRotateAxis(const Vector3& v,float angle);
-		static Matrix4 makeScale(float x,float y,float z);
-		static Matrix4 makeFrustum(float left,float right,float bottom,float top,float near,float far);
-		static Matrix4 makePerspective(float fov,float aspect,float near,float far);
-		static Matrix4 makeOrthographic(float left,float right,float top,float bottom,float neay,float far);
 
 		Matrix4(){}
 		Matrix4(const float* v);
@@ -64,38 +43,55 @@ class  Matrix4
 			   );
 		}
 
+
+		/* normal operating for Matrix4 */
 		void add(const Matrix4& n); 
 		void mul(const Matrix4& n);
 		void mulScaler(float s);
 
 		void transpose();
-		void identity();
-
-		void setPosition(float x,float y,float z);
-		void setPosition(const Vector3& v);
-
-		Vector3 getColumnX();
-		Vector3 getColumnY();
-		Vector3 getColumnZ();
-		Vector3 getPosition();
-
+		void getTranspose(Matrix4* m);
+		void inverse();
+		void getInverse(Matrix4* m);
 		float getDetermiant();
-		Matrix4 getInverse();
 
-		void setRotationFromEuler(int type,float rx,float ry,float rz);
+
+		/* aux function to quick change Matrix4  */
+		void makeRotateX(float theta);
+		void makeRotateY(float theta);
+		void makeRotateZ(float theta);
+		void makeRotateAxis(const Vector3& v,float angle);
+		void makeScale(float x,float y,float z);
+		void makeFrustum(float left,float right,float bottom,float top,float near,float far);
+		void makePerspective(float fov,float aspect,float near,float far);
+		void makeOrthographic(float left,float right,float top,float bottom,float neay,float far);
+		void makeIdentity();
+
+
+		/* set rotate,scale and translate part in Matrix4 */
+		void setRotationFromEuler(float rx,float ry,float rz,int type);
 		void setRotationFromQuaternion(const Quaternion& q); 
-		void compose(const Vector3& translation,const Quaternion& q,const Vector3& s);
-		void decompose(Vector3* translation,Quaternion* q,Vector3* s);
+		void setScale(float sx,float sy,float sz);
+		void setScale(const Vector3& v){setScale(v.x,v.y,v.z);}
+		void setTranslate(float x,float y,float z);
+		void setTranslate(const Vector3& v){setTranslate(v.x,v.y,v.z);}
 
-
-
+		/* transform rotate,scale,translate part in Matrix4 */
 		void translate(const Vector3& v);
 		void rotateX(float angle);
 		void rotateY(float angle);
 		void rotateZ(float angle);
-
 		void rotateByAxis(const Vector3& v,float angle);
 		void scale(const Vector3& v);
+
+		
+		/* get rotate,scale,and translate information from Matrix4 */
+		void getColumnX(Vector3* v);
+		void getColumnY(Vector3* v);
+		void getColumnZ(Vector3* v);
+		void getTranslate(Vector3* v);
+		void getScale(Vector3* v);
+		void getRotate(Quaternion* q);
 
 	protected:
 		void set(float v00,float v01,float v02,float v03,
